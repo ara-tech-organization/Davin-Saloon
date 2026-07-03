@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Geist Pixel';
+  src: url('../node_modules/geist/dist/fonts/geist-pixel/GeistPixel-Line.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 0%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
+    --radius: 0px;
+  }
+
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@keyframes blur-text {
+  0% {
+    filter: blur(0px);
+  }
+  100% {
+    filter: blur(4px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Graphical Pattern Designs */
+.header-pattern {
+  background-color: #000;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.footer-pattern {
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, rgba(0,0,0,0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0,0,0,0.04) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.04) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.04) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
+
+/* Hover lift effect utility */
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Image hover zoom */
+.img-zoom {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.img-zoom:hover {
+  transform: scale(1.03);
+}
+
+/* Shimmer text effect */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.5) 0%,
+    rgba(255,255,255,1) 50%,
+    rgba(255,255,255,0.5) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* 3D Carousel CSS */
+.scene {
+  perspective: 900px;
+}
+
+.carousel {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.carousel__cell {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.preview {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.grid__item {
+  will-change: transform, clip-path;
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 768px) {
+  .facilities-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .facilities-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid #000;
+  }
+  .facilities-grid > div:last-child {
+    border-bottom: none;
+  }
+}
