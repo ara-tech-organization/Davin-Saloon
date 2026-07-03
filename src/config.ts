@@ -1,3 +1,5 @@
+import { assetUrl as img } from './lib/asset';
+
 export type Language = 'en' | 'ml';
 
 export interface SiteConfig {
@@ -376,7 +378,7 @@ export const manifestoConfig: ManifestoConfig = {
     en: "4.8 Stars · 750+ Google Reviews · 10,800+ Instagram Followers · Est. 2020",
     ml: "4.8 സ്റ്റാർ · 750+ ഗൂഗിൾ റിവ്യൂകൾ · 10,800+ ഇൻസ്റ്റാഗ്രാം ഫോളോവേഴ്സ് · സ്ഥാപിതം 2020",
   },
-  image: "/images/salon-interior.jpg",
+  image: img("/images/salon-interior.jpg"),
   imageAlt: {
     en: "DAVIN Beauty Salon Kaloor Kochi – premium luxury salon interior",
     ml: "DAVIN Beauty Salon Kaloor Kochi – premium luxury salon interior",
@@ -426,7 +428,7 @@ export const facilitiesConfig: FacilitiesConfig = {
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
       ctaHref: "tel:+918089069996",
-      image: "/images/service-hair.jpg",
+      image: img("/images/service-hair.jpg"),
       imageAlt: {
         en: "Hair care services including haircuts, color and keratin at DAVIN Kochi",
         ml: "Hair care services including haircuts, color and keratin at DAVIN Kochi",
@@ -463,7 +465,7 @@ export const facilitiesConfig: FacilitiesConfig = {
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
       ctaHref: "tel:+918089069996",
-      image: "/images/service-skin.jpg",
+      image: img("/images/service-skin.jpg"),
       imageAlt: {
         en: "Facial and skin care services at DAVIN Beauty Salon Kaloor",
         ml: "Facial and skin care services at DAVIN Beauty Salon Kaloor",
@@ -500,7 +502,7 @@ export const facilitiesConfig: FacilitiesConfig = {
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
       ctaHref: "tel:+918089069996",
-      image: "/images/service-nails.jpg",
+      image: img("/images/service-nails.jpg"),
       imageAlt: {
         en: "Nail art, manicure and pedicure at DAVIN Beauty Salon Kochi",
         ml: "Nail art, manicure and pedicure at DAVIN Beauty Salon Kochi",
@@ -537,7 +539,7 @@ export const facilitiesConfig: FacilitiesConfig = {
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
       ctaHref: "tel:+918089069996",
-      image: "/images/service-makeup.jpg",
+      image: img("/images/service-makeup.jpg"),
       imageAlt: {
         en: "Bridal and party makeup at DAVIN Beauty Salon Ernakulam",
         ml: "Bridal and party makeup at DAVIN Beauty Salon Ernakulam",
@@ -566,7 +568,7 @@ export const facilitiesConfig: FacilitiesConfig = {
 
 export const observationConfig: ObservationConfig = {
   sectionLabel: { en: "Live Look", ml: "ലായിവ് കാണിക്കുക" },
-  videoPath: "/videos/salon-live.mp4",
+  videoPath: img("/videos/salon-live.mp4"),
   statusText: { en: "NOW OPEN", ml: "ഇപ്പോള് തുറന്നു" },
   latLabel: "LAT",
   lonLabel: "LON",
@@ -583,7 +585,7 @@ export const archivesConfig: ArchivesConfig = {
   closeText: { en: "Close", ml: "അടക്കുക" },
   items: [
     {
-      src: "/images/service-makeup.jpg",
+      src: img("/images/service-makeup.jpg"),
       label: { en: "Bridal Elegance", ml: "ബ്രൈഡൽ ഭങ്ഗി" },
       alt: {
         en: "Bridal makeover transformation at DAVIN Beauty Salon Kochi",
@@ -591,7 +593,7 @@ export const archivesConfig: ArchivesConfig = {
       },
     },
     {
-      src: "/images/service-hair.jpg",
+      src: img("/images/service-hair.jpg"),
       label: { en: "Hair Artistry", ml: "ഹോർകളാ" },
       alt: {
         en: "Professional hair styling at DAVIN Beauty Salon Stadium Link Road",
@@ -599,7 +601,7 @@ export const archivesConfig: ArchivesConfig = {
       },
     },
     {
-      src: "/images/service-nails.jpg",
+      src: img("/images/service-nails.jpg"),
       label: { en: "Nail Masterpiece", ml: "നേിൽ കളാ" },
       alt: {
         en: "Nail art, manicure and pedicure at DAVIN Beauty Salon Kochi",
@@ -607,7 +609,7 @@ export const archivesConfig: ArchivesConfig = {
       },
     },
     {
-      src: "/images/service-skin.jpg",
+      src: img("/images/service-skin.jpg"),
       label: { en: "Glow & Glamour", ml: "പ്രകാശം" },
       alt: {
         en: "Facial skin care treatment at DAVIN Salon Kaloor Kochi",
@@ -776,7 +778,7 @@ export const footerConfig: FooterConfig = {
 }
 
 export const featuredConfig: FeaturedConfig = {
-  image: "/images/featured-haircut.jpg",
+  image: img("/images/featured-haircut.jpg"),
   eyebrow: {
     en: "EXPERIENCE THE DAVIN DIFFERENCE",
     ml: "DAVIN അനുഭവം അൽപ്പിക്കുക",
@@ -804,7 +806,7 @@ export const aboutConfig: AboutConfig = {
       en: "The Story Behind DAVIN Beauty Salon — Kaloor's Premier Beauty Destination",
       ml: "DAVIN ബ്യൂട്ടി സലൂണിന്റെ കഥ — കാലൂരിലെ പ്രമുഖ ബ്യൂട്ടി ഡെസ്റ്റിനേഷൻ",
     },
-    image: "/images/salon-interior.jpg",
+    image: img("/images/salon-interior.jpg"),
     imageAlt: {
       en: "Luxurious interior of DAVIN Beauty Salon Kaloor Kochi",
       ml: "Luxurious interior of DAVIN Beauty Salon Kaloor Kochi",
@@ -897,21 +899,21 @@ export const aboutConfig: AboutConfig = {
     },
     images: [
       {
-        src: "/images/service-hair.jpg",
+        src: img("/images/service-hair.jpg"),
         alt: {
           en: "Professional hair stylist at work at DAVIN Salon Stadium Link Road",
           ml: "Professional hair stylist at work at DAVIN Salon Stadium Link Road",
         },
       },
       {
-        src: "/images/salon-interior.jpg",
+        src: img("/images/salon-interior.jpg"),
         alt: {
           en: "Luxurious interior of DAVIN Beauty Salon Kaloor Kochi",
           ml: "Luxurious interior of DAVIN Beauty Salon Kaloor Kochi",
         },
       },
       {
-        src: "/images/service-makeup.jpg",
+        src: img("/images/service-makeup.jpg"),
         alt: {
           en: "DAVIN Beauty Salon team of expert stylists and makeup artists Kochi",
           ml: "DAVIN Beauty Salon team of expert stylists and makeup artists Kochi",
@@ -966,50 +968,50 @@ export const galleryConfig: GalleryConfig = {
     {
       title: { en: "Hair Gallery", ml: "ഹോർ ഗാലറി" },
       items: [
-        { slug: "haircut-1", src: "/images/gallery/hair/haircut-1.jpg", label: { en: "Haircut 1", ml: "Haircut 1" }, alt: { en: "Women's precision bob haircut at DAVIN Beauty Salon Kochi", ml: "Women's precision bob haircut at DAVIN Beauty Salon Kochi" } },
-        { slug: "haircut-2", src: "/images/gallery/hair/haircut-2.jpg", label: { en: "Haircut 2", ml: "Haircut 2" }, alt: { en: "Men's fade haircut at DAVIN Salon Stadium Link Road Kaloor", ml: "Men's fade haircut at DAVIN Salon Stadium Link Road Kaloor" } },
-        { slug: "balayage", src: "/images/gallery/hair/balayage.jpg", label: { en: "Balayage", ml: "Balayage" }, alt: { en: "Balayage hair color transformation at DAVIN Beauty Salon Ernakulam", ml: "Balayage hair color transformation at DAVIN Beauty Salon Ernakulam" } },
-        { slug: "global-color", src: "/images/gallery/hair/global-color.jpg", label: { en: "Global Color", ml: "Global Color" }, alt: { en: "Global hair color before and after at DAVIN Salon Kochi", ml: "Global hair color before and after at DAVIN Salon Kochi" } },
-        { slug: "highlights", src: "/images/gallery/hair/highlights.jpg", label: { en: "Highlights", ml: "Highlights" }, alt: { en: "Hair highlights and lowlights at DAVIN Beauty Salon Kochi", ml: "Hair highlights and lowlights at DAVIN Beauty Salon Kochi" } },
-        { slug: "hair-spa", src: "/images/gallery/hair/hair-spa.jpg", label: { en: "Hair Spa", ml: "Hair Spa" }, alt: { en: "Deep conditioning hair spa treatment result at DAVIN Kochi", ml: "Deep conditioning hair spa treatment result at DAVIN Kochi" } },
-        { slug: "keratin", src: "/images/gallery/hair/keratin.jpg", label: { en: "Keratin", ml: "Keratin" }, alt: { en: "Keratin treatment frizz-free hair result at DAVIN Kaloor Kochi", ml: "Keratin treatment frizz-free hair result at DAVIN Kaloor Kochi" } },
-        { slug: "hair-botox", src: "/images/gallery/hair/hair-botox.jpg", label: { en: "Hair Botox", ml: "Hair Botox" }, alt: { en: "Hair botox before and after at DAVIN Beauty Salon Kochi", ml: "Hair botox before and after at DAVIN Beauty Salon Kochi" } },
+        { slug: "haircut-1", src: img("/images/gallery/hair/haircut-1.jpg"), label: { en: "Haircut 1", ml: "Haircut 1" }, alt: { en: "Women's precision bob haircut at DAVIN Beauty Salon Kochi", ml: "Women's precision bob haircut at DAVIN Beauty Salon Kochi" } },
+        { slug: "haircut-2", src: img("/images/gallery/hair/haircut-2.jpg"), label: { en: "Haircut 2", ml: "Haircut 2" }, alt: { en: "Men's fade haircut at DAVIN Salon Stadium Link Road Kaloor", ml: "Men's fade haircut at DAVIN Salon Stadium Link Road Kaloor" } },
+        { slug: "balayage", src: img("/images/gallery/hair/balayage.jpg"), label: { en: "Balayage", ml: "Balayage" }, alt: { en: "Balayage hair color transformation at DAVIN Beauty Salon Ernakulam", ml: "Balayage hair color transformation at DAVIN Beauty Salon Ernakulam" } },
+        { slug: "global-color", src: img("/images/gallery/hair/global-color.jpg"), label: { en: "Global Color", ml: "Global Color" }, alt: { en: "Global hair color before and after at DAVIN Salon Kochi", ml: "Global hair color before and after at DAVIN Salon Kochi" } },
+        { slug: "highlights", src: img("/images/gallery/hair/highlights.jpg"), label: { en: "Highlights", ml: "Highlights" }, alt: { en: "Hair highlights and lowlights at DAVIN Beauty Salon Kochi", ml: "Hair highlights and lowlights at DAVIN Beauty Salon Kochi" } },
+        { slug: "hair-spa", src: img("/images/gallery/hair/hair-spa.jpg"), label: { en: "Hair Spa", ml: "Hair Spa" }, alt: { en: "Deep conditioning hair spa treatment result at DAVIN Kochi", ml: "Deep conditioning hair spa treatment result at DAVIN Kochi" } },
+        { slug: "keratin", src: img("/images/gallery/hair/keratin.jpg"), label: { en: "Keratin", ml: "Keratin" }, alt: { en: "Keratin treatment frizz-free hair result at DAVIN Kaloor Kochi", ml: "Keratin treatment frizz-free hair result at DAVIN Kaloor Kochi" } },
+        { slug: "hair-botox", src: img("/images/gallery/hair/hair-botox.jpg"), label: { en: "Hair Botox", ml: "Hair Botox" }, alt: { en: "Hair botox before and after at DAVIN Beauty Salon Kochi", ml: "Hair botox before and after at DAVIN Beauty Salon Kochi" } },
       ],
     },
     {
       title: { en: "Skin Care Gallery", ml: "സ്കിൻ കെയർ ഗാലറി" },
       items: [
-        { slug: "gold-facial", src: "/images/gallery/skin/gold-facial.jpg", label: { en: "Gold Facial", ml: "Gold Facial" }, alt: { en: "Gold facial glow result at DAVIN Beauty Salon Kaloor Kochi", ml: "Gold facial glow result at DAVIN Beauty Salon Kaloor Kochi" } },
-        { slug: "clean-up", src: "/images/gallery/skin/clean-up.jpg", label: { en: "Clean-up", ml: "Clean-up" }, alt: { en: "Skin clean-up treatment radiant result at DAVIN Salon Kochi", ml: "Skin clean-up treatment radiant result at DAVIN Salon Kochi" } },
-        { slug: "de-tan", src: "/images/gallery/skin/de-tan.jpg", label: { en: "De-tan", ml: "De-tan" }, alt: { en: "De-tan treatment before and after at DAVIN Beauty Salon Ernakulam", ml: "De-tan treatment before and after at DAVIN Beauty Salon Ernakulam" } },
-        { slug: "waxing", src: "/images/gallery/skin/waxing.jpg", label: { en: "Waxing", ml: "Waxing" }, alt: { en: "Professional waxing service at DAVIN Salon Stadium Link Road", ml: "Professional waxing service at DAVIN Salon Stadium Link Road" } },
-        { slug: "threading", src: "/images/gallery/skin/threading.jpg", label: { en: "Threading", ml: "Threading" }, alt: { en: "Expert eyebrow threading and shaping at DAVIN Beauty Salon Kochi", ml: "Expert eyebrow threading and shaping at DAVIN Beauty Salon Kochi" } },
-        { slug: "hydrating-facial", src: "/images/gallery/skin/hydrating-facial.jpg", label: { en: "Hydrating Facial", ml: "Hydrating Facial" }, alt: { en: "Hydrating facial glowing skin at DAVIN Salon Kaloor", ml: "Hydrating facial glowing skin at DAVIN Salon Kaloor" } },
+        { slug: "gold-facial", src: img("/images/gallery/skin/gold-facial.jpg"), label: { en: "Gold Facial", ml: "Gold Facial" }, alt: { en: "Gold facial glow result at DAVIN Beauty Salon Kaloor Kochi", ml: "Gold facial glow result at DAVIN Beauty Salon Kaloor Kochi" } },
+        { slug: "clean-up", src: img("/images/gallery/skin/clean-up.jpg"), label: { en: "Clean-up", ml: "Clean-up" }, alt: { en: "Skin clean-up treatment radiant result at DAVIN Salon Kochi", ml: "Skin clean-up treatment radiant result at DAVIN Salon Kochi" } },
+        { slug: "de-tan", src: img("/images/gallery/skin/de-tan.jpg"), label: { en: "De-tan", ml: "De-tan" }, alt: { en: "De-tan treatment before and after at DAVIN Beauty Salon Ernakulam", ml: "De-tan treatment before and after at DAVIN Beauty Salon Ernakulam" } },
+        { slug: "waxing", src: img("/images/gallery/skin/waxing.jpg"), label: { en: "Waxing", ml: "Waxing" }, alt: { en: "Professional waxing service at DAVIN Salon Stadium Link Road", ml: "Professional waxing service at DAVIN Salon Stadium Link Road" } },
+        { slug: "threading", src: img("/images/gallery/skin/threading.jpg"), label: { en: "Threading", ml: "Threading" }, alt: { en: "Expert eyebrow threading and shaping at DAVIN Beauty Salon Kochi", ml: "Expert eyebrow threading and shaping at DAVIN Beauty Salon Kochi" } },
+        { slug: "hydrating-facial", src: img("/images/gallery/skin/hydrating-facial.jpg"), label: { en: "Hydrating Facial", ml: "Hydrating Facial" }, alt: { en: "Hydrating facial glowing skin at DAVIN Salon Kaloor", ml: "Hydrating facial glowing skin at DAVIN Salon Kaloor" } },
       ],
     },
     {
       title: { en: "Nails & Grooming Gallery", ml: "നെയിൽസ് & ഗ്രൂമിംഗ് ഗാലറി" },
       items: [
-        { slug: "nail-art-1", src: "/images/gallery/nails/nail-art-1.jpg", label: { en: "Nail Art 1", ml: "Nail Art 1" }, alt: { en: "Floral nail art design at DAVIN Beauty Salon Kochi", ml: "Floral nail art design at DAVIN Beauty Salon Kochi" } },
-        { slug: "nail-art-2", src: "/images/gallery/nails/nail-art-2.jpg", label: { en: "Nail Art 2", ml: "Nail Art 2" }, alt: { en: "Minimalist nail art at DAVIN Salon Kaloor Ernakulam", ml: "Minimalist nail art at DAVIN Salon Kaloor Ernakulam" } },
-        { slug: "gel-extensions", src: "/images/gallery/nails/gel-extensions.jpg", label: { en: "Gel Extensions", ml: "Gel Extensions" }, alt: { en: "Gel nail extensions before and after at DAVIN Beauty Salon Kochi", ml: "Gel nail extensions before and after at DAVIN Beauty Salon Kochi" } },
-        { slug: "french-manicure", src: "/images/gallery/nails/french-manicure.jpg", label: { en: "French Manicure", ml: "French Manicure" }, alt: { en: "Classic French manicure at DAVIN Salon Stadium Link Road", ml: "Classic French manicure at DAVIN Salon Stadium Link Road" } },
-        { slug: "pedicure", src: "/images/gallery/nails/pedicure.jpg", label: { en: "Pedicure", ml: "Pedicure" }, alt: { en: "Spa pedicure glowing feet at DAVIN Beauty Salon Kochi", ml: "Spa pedicure glowing feet at DAVIN Beauty Salon Kochi" } },
-        { slug: "beard-grooming", src: "/images/gallery/nails/beard-grooming.jpg", label: { en: "Beard Grooming", ml: "Beard Grooming" }, alt: { en: "Men's beard grooming and shaping at DAVIN Salon Kaloor", ml: "Men's beard grooming and shaping at DAVIN Salon Kaloor" } },
-        { slug: "nail-art-festive", src: "/images/gallery/nails/nail-art-festive.jpg", label: { en: "Nail Art Festive", ml: "Nail Art Festive" }, alt: { en: "Festive Onam nail art at DAVIN Beauty Salon Ernakulam Kochi", ml: "Festive Onam nail art at DAVIN Beauty Salon Ernakulam Kochi" } },
+        { slug: "nail-art-1", src: img("/images/gallery/nails/nail-art-1.jpg"), label: { en: "Nail Art 1", ml: "Nail Art 1" }, alt: { en: "Floral nail art design at DAVIN Beauty Salon Kochi", ml: "Floral nail art design at DAVIN Beauty Salon Kochi" } },
+        { slug: "nail-art-2", src: img("/images/gallery/nails/nail-art-2.jpg"), label: { en: "Nail Art 2", ml: "Nail Art 2" }, alt: { en: "Minimalist nail art at DAVIN Salon Kaloor Ernakulam", ml: "Minimalist nail art at DAVIN Salon Kaloor Ernakulam" } },
+        { slug: "gel-extensions", src: img("/images/gallery/nails/gel-extensions.jpg"), label: { en: "Gel Extensions", ml: "Gel Extensions" }, alt: { en: "Gel nail extensions before and after at DAVIN Beauty Salon Kochi", ml: "Gel nail extensions before and after at DAVIN Beauty Salon Kochi" } },
+        { slug: "french-manicure", src: img("/images/gallery/nails/french-manicure.jpg"), label: { en: "French Manicure", ml: "French Manicure" }, alt: { en: "Classic French manicure at DAVIN Salon Stadium Link Road", ml: "Classic French manicure at DAVIN Salon Stadium Link Road" } },
+        { slug: "pedicure", src: img("/images/gallery/nails/pedicure.jpg"), label: { en: "Pedicure", ml: "Pedicure" }, alt: { en: "Spa pedicure glowing feet at DAVIN Beauty Salon Kochi", ml: "Spa pedicure glowing feet at DAVIN Beauty Salon Kochi" } },
+        { slug: "beard-grooming", src: img("/images/gallery/nails/beard-grooming.jpg"), label: { en: "Beard Grooming", ml: "Beard Grooming" }, alt: { en: "Men's beard grooming and shaping at DAVIN Salon Kaloor", ml: "Men's beard grooming and shaping at DAVIN Salon Kaloor" } },
+        { slug: "nail-art-festive", src: img("/images/gallery/nails/nail-art-festive.jpg"), label: { en: "Nail Art Festive", ml: "Nail Art Festive" }, alt: { en: "Festive Onam nail art at DAVIN Beauty Salon Ernakulam Kochi", ml: "Festive Onam nail art at DAVIN Beauty Salon Ernakulam Kochi" } },
       ],
     },
     {
       title: { en: "Makeup Gallery", ml: "മേക്കപ്പ് ഗാലറി" },
       items: [
-        { slug: "bridal-kerala", src: "/images/gallery/makeup/bridal-kerala.jpg", label: { en: "Bridal Kerala", ml: "Bridal Kerala" }, alt: { en: "Traditional Kerala bridal makeup transformation at DAVIN Salon Kochi", ml: "Traditional Kerala bridal makeup transformation at DAVIN Salon Kochi" } },
-        { slug: "bridal-hd", src: "/images/gallery/makeup/bridal-hd.jpg", label: { en: "Bridal HD", ml: "Bridal HD" }, alt: { en: "HD bridal makeup before and after at DAVIN Beauty Salon Kochi", ml: "HD bridal makeup before and after at DAVIN Beauty Salon Kochi" } },
-        { slug: "bridal-modern", src: "/images/gallery/makeup/bridal-modern.jpg", label: { en: "Bridal Modern", ml: "Bridal Modern" }, alt: { en: "Indo-Western bridal makeup at DAVIN Salon Kaloor Ernakulam", ml: "Indo-Western bridal makeup at DAVIN Salon Kaloor Ernakulam" } },
-        { slug: "party-makeup-1", src: "/images/gallery/makeup/party-makeup-1.jpg", label: { en: "Party Makeup 1", ml: "Party Makeup 1" }, alt: { en: "Reception party makeup look at DAVIN Beauty Salon Kochi", ml: "Reception party makeup look at DAVIN Beauty Salon Kochi" } },
-        { slug: "party-makeup-2", src: "/images/gallery/makeup/party-makeup-2.jpg", label: { en: "Party Makeup 2", ml: "Party Makeup 2" }, alt: { en: "Engagement makeup look at DAVIN Salon Stadium Link Road Kochi", ml: "Engagement makeup look at DAVIN Salon Stadium Link Road Kochi" } },
-        { slug: "saree-draping", src: "/images/gallery/makeup/saree-draping.jpg", label: { en: "Saree Draping", ml: "Saree Draping" }, alt: { en: "Professional saree draping service at DAVIN Beauty Salon Kochi", ml: "Professional saree draping service at DAVIN Beauty Salon Kochi" } },
-        { slug: "groom-makeup", src: "/images/gallery/makeup/groom-makeup.jpg", label: { en: "Groom Makeup", ml: "Groom Makeup" }, alt: { en: "Groom grooming and party look at DAVIN Salon Kaloor Kochi", ml: "Groom grooming and party look at DAVIN Salon Kaloor Kochi" } },
-        { slug: "festive-makeup", src: "/images/gallery/makeup/festive-makeup.jpg", label: { en: "Festive Makeup", ml: "Festive Makeup" }, alt: { en: "Festive occasion makeup look at DAVIN Beauty Salon Ernakulam", ml: "Festive occasion makeup look at DAVIN Beauty Salon Ernakulam" } },
+        { slug: "bridal-kerala", src: img("/images/gallery/makeup/bridal-kerala.jpg"), label: { en: "Bridal Kerala", ml: "Bridal Kerala" }, alt: { en: "Traditional Kerala bridal makeup transformation at DAVIN Salon Kochi", ml: "Traditional Kerala bridal makeup transformation at DAVIN Salon Kochi" } },
+        { slug: "bridal-hd", src: img("/images/gallery/makeup/bridal-hd.jpg"), label: { en: "Bridal HD", ml: "Bridal HD" }, alt: { en: "HD bridal makeup before and after at DAVIN Beauty Salon Kochi", ml: "HD bridal makeup before and after at DAVIN Beauty Salon Kochi" } },
+        { slug: "bridal-modern", src: img("/images/gallery/makeup/bridal-modern.jpg"), label: { en: "Bridal Modern", ml: "Bridal Modern" }, alt: { en: "Indo-Western bridal makeup at DAVIN Salon Kaloor Ernakulam", ml: "Indo-Western bridal makeup at DAVIN Salon Kaloor Ernakulam" } },
+        { slug: "party-makeup-1", src: img("/images/gallery/makeup/party-makeup-1.jpg"), label: { en: "Party Makeup 1", ml: "Party Makeup 1" }, alt: { en: "Reception party makeup look at DAVIN Beauty Salon Kochi", ml: "Reception party makeup look at DAVIN Beauty Salon Kochi" } },
+        { slug: "party-makeup-2", src: img("/images/gallery/makeup/party-makeup-2.jpg"), label: { en: "Party Makeup 2", ml: "Party Makeup 2" }, alt: { en: "Engagement makeup look at DAVIN Salon Stadium Link Road Kochi", ml: "Engagement makeup look at DAVIN Salon Stadium Link Road Kochi" } },
+        { slug: "saree-draping", src: img("/images/gallery/makeup/saree-draping.jpg"), label: { en: "Saree Draping", ml: "Saree Draping" }, alt: { en: "Professional saree draping service at DAVIN Beauty Salon Kochi", ml: "Professional saree draping service at DAVIN Beauty Salon Kochi" } },
+        { slug: "groom-makeup", src: img("/images/gallery/makeup/groom-makeup.jpg"), label: { en: "Groom Makeup", ml: "Groom Makeup" }, alt: { en: "Groom grooming and party look at DAVIN Salon Kaloor Kochi", ml: "Groom grooming and party look at DAVIN Salon Kaloor Kochi" } },
+        { slug: "festive-makeup", src: img("/images/gallery/makeup/festive-makeup.jpg"), label: { en: "Festive Makeup", ml: "Festive Makeup" }, alt: { en: "Festive occasion makeup look at DAVIN Beauty Salon Ernakulam", ml: "Festive occasion makeup look at DAVIN Beauty Salon Ernakulam" } },
       ],
     },
   ],

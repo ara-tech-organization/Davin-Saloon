@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { assetUrl as img } from '../lib/asset';
 import CustomCursor from '../components/CustomCursor';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -188,7 +189,7 @@ function BridalSection() {
   return (
     <section className="p-light" style={{ padding: '20px 40px 90px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/service-makeup.jpg" imageAlt="Bridal makeup artistry at DAVIN Beauty Salon Kochi" badge="Bridal · FTV Collaboration">
+        <SplitMedia image={img("/images/service-makeup.jpg")} imageAlt="Bridal makeup artistry at DAVIN Beauty Salon Kochi" badge="Bridal · FTV Collaboration">
           <SectionHeading numeral="01" title="Bridal Makeup in Kochi — Your Most Beautiful Day, Our Finest Artistry" />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: 0, maxWidth: 560 }}>
             Your bridal makeup in Kochi will live in photographs and memories for a lifetime and at DAVIN, we approach every bridal makeover in Kochi with the reverence and creative excellence it deserves. Our experienced bridal makeup artists in Kochi take time to understand your vision, skin tone, outfit, jewellery, and the spirit of your celebration crafting a look that is breathtakingly, authentically you.
@@ -215,7 +216,7 @@ function PartySection() {
   return (
     <section className="p-dark" style={{ borderTop: '1px solid var(--line)', padding: '130px 40px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/service-makeup.jpg" imageAlt="Party makeup look at DAVIN Beauty Salon Kochi" badge="Party · Glam Nights" reverse>
+        <SplitMedia image={img("/images/service-makeup.jpg")} imageAlt="Party makeup look at DAVIN Beauty Salon Kochi" badge="Party · Glam Nights" reverse>
           <SectionHeading numeral="02" title="Party Makeup in Kochi — Glam Up. Walk In. Own the Room." />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: '0 0 32px 0', maxWidth: 560 }}>
             Every celebration deserves a party makeup in Kochi that looks as memorable as the occasion. DAVIN's party makeup artists create stunning, personalized looks for receptions, engagements, festivals, birthdays, corporate events, and photoshoots crafted to complement your outfit, features, and the event's vibe. No templates, no repeats every look is made for you.
@@ -235,7 +236,7 @@ function HdSection() {
   return (
     <section className="p-light" style={{ borderTop: '1px solid var(--line)', padding: '130px 40px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/salon-aerial.jpg" imageAlt="HD makeup studio lighting setup at DAVIN Beauty Salon Kochi" badge="HD Makeup · Camera-Ready" reverse>
+        <SplitMedia image={img("/images/salon-aerial.jpg")} imageAlt="HD makeup studio lighting setup at DAVIN Beauty Salon Kochi" badge="HD Makeup · Camera-Ready" reverse>
           <SectionHeading numeral="03" title="HD Makeup in Kochi — Flawless for Every Camera, Stunning in Every Light" />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: 0, maxWidth: 560 }}>
             In the age of 4K cameras and HD reels, your makeup must perform as brilliantly through a lens as it does in person. DAVIN's HD makeup in Kochi delivers an ultra-smooth, camera-optimized finish, flawless in every photograph, long-lasting through every event.
@@ -266,7 +267,7 @@ function SareeSection() {
   return (
     <section className="p-dark" style={{ borderTop: '1px solid var(--line)', padding: '130px 40px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/salon-interior.jpg" imageAlt="Saree draping styling session at DAVIN Beauty Salon Kochi" badge="Saree · Studio Draping">
+        <SplitMedia image={img("/images/salon-interior.jpg")} imageAlt="Saree draping styling session at DAVIN Beauty Salon Kochi" badge="Saree · Studio Draping">
           <SectionHeading numeral="04" title="Saree Draping in Kochi — The Saree Is Art. Let Us Perfect It." />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: '0 0 12px 0', maxWidth: 560 }}>
             A perfectly draped saree transforms a beautiful garment into a breathtaking statement. At DAVIN, our saree draping service near Stadium Link Road ensures your saree falls with impeccable elegance, holds securely all day, and complements your makeup and jewellery perfectly.
@@ -341,7 +342,7 @@ export default function Makeup() {
           eyebrow="Makeup — MU"
           title="Bridal, Party, HD & Saree Draping at DAVIN"
           subline="Bridal · Party · HD Makeup · Saree Draping — Look stunning for every occasion"
-          image="/images/service-makeup.jpg"
+          image={img("/images/service-makeup.jpg")}
           imageAlt="Bridal and party makeup at DAVIN Beauty Salon Ernakulam"
           ctaLabel="Book A Trial"
         />

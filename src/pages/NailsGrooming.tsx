@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { assetUrl as img } from '../lib/asset';
 import CustomCursor from '../components/CustomCursor';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -212,7 +213,7 @@ function ManicureSection() {
   return (
     <section className="p-light" style={{ padding: '20px 40px 90px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/gallery-nails.jpg" imageAlt="Manicure and nail art detail at DAVIN Beauty Salon Kochi" badge="Manicure · Hand Care">
+        <SplitMedia image={img("/images/gallery-nails.jpg")} imageAlt="Manicure and nail art detail at DAVIN Beauty Salon Kochi" badge="Manicure · Hand Care">
           <SectionHeading numeral="01" title="Manicure in Kochi — Beautiful, Healthy, Well-Maintained Hands" />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: '0 0 12px 0', maxWidth: 560 }}>
             Our professional manicure in Kochi goes far beyond a simple polish change, It's a complete hand care ritual. Every session includes cleansing, exfoliation, nail shaping, cuticle care, a relaxing hand massage, and a flawless finish. At our nail salon in Kochi, we offer a full range of manicure styles for every preference and occasion.
@@ -232,7 +233,7 @@ function PedicureSection() {
   return (
     <section className="p-dark" style={{ borderTop: '1px solid var(--line)', padding: '130px 40px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/salon-interior.jpg" imageAlt="Relaxing pedicure and foot spa station at DAVIN Beauty Salon Kochi" badge="Pedicure · Spa Ritual">
+        <SplitMedia image={img("/images/salon-interior.jpg")} imageAlt="Relaxing pedicure and foot spa station at DAVIN Beauty Salon Kochi" badge="Pedicure · Spa Ritual">
           <SectionHeading numeral="02" title="Pedicure in Kochi — Happy Feet, Healthy Skin, Total Relaxation" />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: '0 0 12px 0', maxWidth: 560 }}>
             A great pedicure in Kochi is one of life's most satisfying luxuries and at DAVIN, we take foot care seriously. Our thorough, hygienic, and deeply relaxing pedicure treatments address everything from callused heels and rough skin to ingrown nails and tired, aching feet.
@@ -252,7 +253,7 @@ function NailArtSection() {
   return (
     <section className="p-light" style={{ borderTop: '1px solid var(--line)', padding: '130px 40px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/salon-tools.jpg" imageAlt="Nail art tools and creative workstation at DAVIN Beauty Salon Kochi" badge="Nail Art · Studio Craft" reverse>
+        <SplitMedia image={img("/images/salon-tools.jpg")} imageAlt="Nail art tools and creative workstation at DAVIN Beauty Salon Kochi" badge="Nail Art · Studio Craft" reverse>
           <SectionHeading numeral="03" title="Nail Art in Kochi — Your Nails. Your Canvas. Our Artistry." />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: '0 0 12px 0', maxWidth: 560 }}>
             DAVIN's nail art specialists in Kochi are among the most creative and technically accomplished in Ernakulam. From delicate minimalist line art and intricate floral patterns to geometric designs, ombre fades, and 3D embellishments our nail art salon in Kaloor brings every vision to life with genuine artistry and passion. Whether it's festive Onam nails, a bridal set, or a bold fashion statement, bring a reference, describe your idea, and we'll create it.
@@ -271,7 +272,7 @@ function ExtensionsSection() {
   return (
     <section className="p-dark" style={{ borderTop: '1px solid var(--line)', padding: '130px 40px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/salon-aerial.jpg" imageAlt="Nail extension studio setup at DAVIN Beauty Salon Kochi" badge="Extensions · Kaloor Studio">
+        <SplitMedia image={img("/images/salon-aerial.jpg")} imageAlt="Nail extension studio setup at DAVIN Beauty Salon Kochi" badge="Extensions · Kaloor Studio">
           <SectionHeading numeral="04" title="Nail Extensions in Kochi — The Length & Shape You've Always Wanted" />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: 0, maxWidth: 560 }}>
             Not everyone is born with naturally long, strong nails and our professional nail extensions in Kochi give you exactly the length, shape, and durability you're looking for, with beautiful, natural-looking results.
@@ -291,7 +292,7 @@ function GroomingSection() {
   return (
     <section className="p-light" style={{ borderTop: '1px solid var(--line)', padding: '130px 40px', display: 'flex', justifyContent: 'center' }}>
       <div ref={ref} data-reveal-group style={{ width: '100%', maxWidth: 1200 }}>
-        <SplitMedia image="/images/gallery-grooming.jpg" imageAlt="Men's beard grooming and styling at DAVIN Beauty Salon Kochi" badge="Grooming · Men's Care" reverse>
+        <SplitMedia image={img("/images/gallery-grooming.jpg")} imageAlt="Men's beard grooming and styling at DAVIN Beauty Salon Kochi" badge="Grooming · Men's Care" reverse>
           <SectionHeading numeral="05" title="Beard Grooming & Men's Grooming in Kochi — Sharp. Confidence. Impeccable." />
           <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: '0 0 12px 0', maxWidth: 560 }}>
             DAVIN is a proud unisex salon, and our men's grooming services in Kochi reflect the same standard of excellence we deliver across every service. Our grooming specialists understand masculine aesthetics, precise beard shaping in Kochi, clean line definition, and expert shaving technique that leaves every man looking polished and confident.
@@ -335,7 +336,7 @@ export default function NailsGrooming() {
           eyebrow="Nails & Grooming — NG"
           title="Pamper Your Hands, Feet & Look at DAVIN"
           subline="Manicure · Pedicure · Nail Art · Extensions · Beard — Pamper your hands & feet"
-          image="/images/service-nails.jpg"
+          image={img("/images/service-nails.jpg")}
           imageAlt="Nail art, manicure and pedicure at DAVIN Beauty Salon Kochi"
         />
         <section className="p-light" style={{ padding: '120px 40px' }}>

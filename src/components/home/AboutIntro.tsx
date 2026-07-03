@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { manifestoConfig } from '../../config';
+import { assetUrl as img } from '../../lib/asset';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -233,7 +234,7 @@ export default function Manifesto() {
       >
         <div style={{ overflow: 'hidden' }}>
           <img
-            src="/images/salon-tools.jpg"
+            src={img("/images/salon-tools.jpg")}
             alt="Professional salon tools at DAVIN Beauty Salon Kaloor Kochi"
             className="img-zoom"
             style={{
@@ -247,7 +248,7 @@ export default function Manifesto() {
         </div>
         <div style={{ overflow: 'hidden' }}>
           <img
-            src="/images/service-hair.jpg"
+            src={img("/images/service-hair.jpg")}
             alt="Professional hair styling at DAVIN Beauty Salon Stadium Link Road"
             className="img-zoom"
             style={{
@@ -261,7 +262,7 @@ export default function Manifesto() {
         </div>
         <div style={{ overflow: 'hidden' }}>
           <img
-            src="/images/gallery-hair-color.jpg"
+            src={img("/images/gallery-hair-color.jpg")}
             alt="Hair coloring services including balayage and highlights at DAVIN Kochi"
             className="img-zoom"
             style={{

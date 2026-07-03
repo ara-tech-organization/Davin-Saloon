@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { assetUrl } from '@/lib/asset';
 
 const MOON_CHARS =
   " `.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
@@ -50,7 +51,7 @@ export default function AsciiCanvas() {
     // Load salon image
     const salonImg = new Image();
     salonImg.crossOrigin = 'anonymous';
-    salonImg.src = '/images/salon-aerial.jpg';
+    salonImg.src = assetUrl('/images/salon-aerial.jpg');
     salonImg.onload = () => {
       imgRef.current = salonImg;
     };

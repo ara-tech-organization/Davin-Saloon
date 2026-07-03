@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { assetUrl as img } from '../lib/asset';
 import CustomCursor from '../components/CustomCursor';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -190,7 +191,7 @@ function Intro() {
         </div>
         <div style={{ flex: 1, position: 'relative', aspectRatio: '4 / 5', overflow: 'hidden', border: '1px solid var(--line-strong)' }}>
           <img
-            src="/images/featured-haircut.jpg"
+            src={img("/images/featured-haircut.jpg")}
             alt="Professional hair stylist at DAVIN Beauty Salon Kaloor"
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%)', transition: 'transform 0.6s ease' }}
             onMouseEnter={(e) => {
@@ -325,7 +326,7 @@ export default function HairCare() {
           eyebrow="Hair Care — HC"
           title="Expert Cuts, Color & Treatments at DAVIN Beauty Salon, Kaloor"
           subline="Haircuts · Styling · Color · Spa · Keratin · Botox — All hair types welcome"
-          image="/images/service-hair.jpg"
+          image={img("/images/service-hair.jpg")}
           imageAlt="Hair care services including haircuts, color and keratin at DAVIN Kochi"
         />
         <Intro />

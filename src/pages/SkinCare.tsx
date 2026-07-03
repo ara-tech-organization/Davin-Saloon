@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { assetUrl as img } from '../lib/asset';
 import CustomCursor from '../components/CustomCursor';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -43,7 +44,7 @@ const SERVICES = [
     n: '01',
     title: 'Facials in Kochi',
     kicker: 'Professional Facials for Every Skin Type at DAVIN',
-    image: '/images/service-skin.jpg',
+    image: img('/images/service-skin.jpg'),
     imageAlt: 'Professional facial treatment at DAVIN Beauty Salon Kaloor',
     body:
       "At DAVIN, the leading skin care salon in Kaloor, our professional facial menu is thoughtfully designed to address every concern from daily dullness and dehydration to pigmentation, premature ageing, and acne. Every facial in Kochi at DAVIN is a structured, multi-step ritual delivered by trained therapists using premium, clinically chosen formulations leaving skin refreshed, luminous, and visibly healthier after every session.\n\nWhether you're searching for a skin brightening facial near you in Kochi, a deep-cleansing skin detox facial in Kerala, or a targeted glow treatment in Kochi, our facial menu has the perfect option for your skin.",
@@ -54,7 +55,7 @@ const SERVICES = [
     n: '02',
     title: 'Skin Clean-Ups in Kochi',
     kicker: 'Quick, Effective Face Clean-Up at DAVIN',
-    image: '/images/salon-interior.jpg',
+    image: img('/images/salon-interior.jpg'),
     imageAlt: 'Skin clean-up treatment room at DAVIN Beauty Salon Kaloor',
     body:
       'A fast, effective face clean-up in Kaloor — skin that looks refreshed in under an hour.\n\nFor clients with a busy lifestyle, our professional skin clean-up in Kochi is the ideal way to keep skin consistently clear and healthy between deeper facial appointments. In just 30–40 minutes at our skin care salon in Kaloor, your skin is cleansed, exfoliated, extracted, toned, and moisturized leaving you looking noticeably fresh and put-together.\n\nSuitable for all skin types and equally popular with men and women, the face clean-up in Kochi at DAVIN is one of our most-booked treatments loved for its immediate results and unbeatable value.',
@@ -63,7 +64,7 @@ const SERVICES = [
     n: '03',
     title: 'De-Tan Treatment in Kochi',
     kicker: 'Restore Your Natural Skin Tone at DAVIN',
-    image: '/images/salon-aerial.jpg',
+    image: img('/images/salon-aerial.jpg'),
     imageAlt: 'De-tan treatment at DAVIN Beauty Salon Kaloor',
     body:
       "Kerala's sunshine is beautiful. Sun-damaged, uneven skin? We fix that.\n\nProlonged sun exposure from outdoor work, beach outings, or daily commuting can leave skin visibly darker and dull. DAVIN's professional de-tan treatment in Kochi is precisely formulated to reverse sun-induced pigmentation and uneven tone gently lightening tanned areas and restoring your skin's natural, healthy complexion. Using dermatologically approved formulations with kojic acid, turmeric extracts, and gentle AHAs, our de-tan treatment in Kaloor exfoliates pigmented cells, brightens the underlying skin, and reveals a fresher, more radiant finish.",
@@ -73,7 +74,7 @@ const SERVICES = [
     n: '04',
     title: 'Waxing in Kochi',
     kicker: 'Smooth, Long-Lasting Hair Removal at DAVIN',
-    image: '/images/salon-tools.jpg',
+    image: img('/images/salon-tools.jpg'),
     imageAlt: 'Waxing service tools at DAVIN Beauty Salon Kaloor',
     body:
       "Professional waxing in Kochi — precise, comfortable, and beautifully smooth.\n\nAt DAVIN, one of Kochi's most trusted waxing salons near Stadium Link Road, our professional waxing services in Kochi use premium, skin-conditioning formulations to deliver clean, long-lasting hair removal leaving skin silky smooth for 3–5 weeks. We use both soft and hard (stripless) wax, selecting the best formula per area and skin type for optimal comfort and results.",
@@ -85,7 +86,7 @@ const SERVICES = [
     n: '05',
     title: 'Threading in Kochi',
     kicker: 'Eyebrow Shaping & Facial Threading at DAVIN',
-    image: '/images/gallery-grooming.jpg',
+    image: img('/images/gallery-grooming.jpg'),
     imageAlt: 'Eyebrow threading service at DAVIN Beauty Salon Kaloor',
     body:
       "Precise brows. Defined features. Flawless results — every visit.\n\nThreading in Kochi offers unmatched precision for facial shaping and brow definition. At DAVIN, our expert eyebrow threading specialists in Kochi shape brows, remove fine facial hair, and define your features with a level of accuracy waxing simply can't match. Our eyebrow threading in Kochi is gentle on even the most sensitive skin — chemical-free, heat-free, and always leaving a crisp, clean finish.",
@@ -184,7 +185,7 @@ function Intro() {
     <section className="p-light" style={{ borderTop: '1px solid var(--line)', padding: '110px 40px' }}>
       <div ref={ref} data-reveal-group style={{ maxWidth: 1180, margin: '0 auto' }}>
         <SplitMedia
-          image="/images/salon-interior.jpg"
+          image={img("/images/salon-interior.jpg")}
           imageAlt="Skin care therapy room at DAVIN Beauty Salon Kaloor"
           badge="Est. 2020 · Kaloor"
           reverse
@@ -301,7 +302,7 @@ export default function SkinCare() {
           eyebrow="Skin Care — SC"
           title="Glow, Revive & Radiate at DAVIN Beauty Salon, Kaloor"
           subline="Facials · Clean-ups · Waxing · Threading · De-Tan — Glowing skin guaranteed, Kochi's most trusted skin care salon"
-          image="/images/service-skin.jpg"
+          image={img("/images/service-skin.jpg")}
           imageAlt="Facial and skin care services at DAVIN Beauty Salon Kaloor"
         />
         <Intro />
