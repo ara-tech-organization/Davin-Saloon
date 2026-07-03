@@ -1,71 +1,13 @@
-import { useEffect, useRef } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { siteConfig } from './config';
 import { LanguageProvider } from './contexts/LanguageContext';
-import CustomCursor from './components/CustomCursor';
-import Hero from './sections/Hero';
-import Manifesto from './sections/Manifesto';
-import FilmReel from './sections/FilmReel';
-import Facilities from './sections/Facilities';
-import Observation from './sections/Observation';
-import Archives from './sections/Archives';
-import Footer from './sections/Footer';
+import Home from './pages/home';
 import FacilityDetail from './pages/FacilityDetail';
-
-gsap.registerPlugin(ScrollTrigger);
-
-function Home() {
-  const { hash } = useLocation();
-  const lenisRef = useRef<Lenis | null>(null);
-
-  useEffect(() => {
-    if (!hash) return;
-    const id = hash.slice(1);
-    const el = document.getElementById(id);
-    if (!el) return;
-    requestAnimationFrame(() => {
-      el.scrollIntoView({ behavior: 'auto', block: 'start' });
-    });
-  }, [hash]);
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    lenisRef.current = lenis;
-
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
-  return (
-    <>
-      <CustomCursor />
-      <main>
-        <Hero />
-        <Manifesto />
-        <FilmReel />
-        <Facilities />
-        <Observation />
-        <Archives />
-      </main>
-      <Footer />
-    </>
-  );
-}
+import About from './pages/about';
+import Services from './pages/services';
+import Gallery from './pages/gallery';
+import Contact from './pages/contact';
 
 function App() {
   useEffect(() => {
@@ -102,7 +44,11 @@ function App() {
     <LanguageProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/facility/:slug" element={<FacilityDetail />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/services/:slug" element={<FacilityDetail />} />
       </Routes>
     </LanguageProvider>
   );

@@ -1,8 +1,9 @@
 import { useMemo, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { facilitiesConfig, navigationConfig } from '../config';
+import { facilitiesConfig } from '../config';
 import { useLanguage } from '../contexts/LanguageContext';
 import CustomCursor from '../components/CustomCursor';
+import Header from '../components/Header';
 
 export default function FacilityDetail() {
   const { language } = useLanguage();
@@ -34,13 +35,14 @@ export default function FacilityDetail() {
     return (
       <>
         <CustomCursor />
+        <Header />
         <div
           style={{
             minHeight: '100vh',
             background: '#fff',
             color: '#000',
             fontFamily: "'IBM Plex Mono', monospace",
-            padding: '40px',
+            padding: '160px 40px 40px',
           }}
         >
           <p>{facilitiesConfig.detailNotFoundText[language]}</p>
@@ -55,6 +57,7 @@ export default function FacilityDetail() {
   return (
     <>
       <CustomCursor />
+      <Header />
       <div
         style={{
           minHeight: '100vh',
@@ -63,53 +66,9 @@ export default function FacilityDetail() {
           fontFamily: "'IBM Plex Mono', monospace",
           display: 'flex',
           flexDirection: 'column',
+          paddingTop: '72px',
         }}
       >
-        <nav
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '24px 40px',
-            borderBottom: '1px solid #000',
-          }}
-        >
-          <Link
-            to="/"
-            style={{
-              fontSize: '18px',
-              fontWeight: 400,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: '#000',
-              textDecoration: 'none',
-            }}
-          >
-            {navigationConfig.brandName}
-          </Link>
-          <Link
-            to="/#facilities"
-            style={{
-              fontSize: '12px',
-              fontWeight: 400,
-              textTransform: 'uppercase',
-              color: '#000',
-              textDecoration: 'none',
-              borderBottom: '1px solid #000',
-              paddingBottom: '2px',
-              transition: 'opacity 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              (e.target as HTMLElement).style.opacity = '0.5';
-            }}
-            onMouseLeave={(e) => {
-              (e.target as HTMLElement).style.opacity = '1';
-            }}
-          >
-            {facilitiesConfig.detailBackText[language]}
-          </Link>
-        </nav>
-
         <div
           style={{
             flex: 1,
@@ -193,7 +152,7 @@ export default function FacilityDetail() {
             {facility.image ? (
               <img
                 src={facility.image}
-                alt={facility.name[language]}
+                alt={facility.imageAlt[language]}
                 style={{
                   width: '100%',
                   height: '100%',
