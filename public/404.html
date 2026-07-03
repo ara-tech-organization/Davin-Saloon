@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Davin Beauty Salon</title>
+    <script>
+      // GitHub Pages SPA fallback: redirect the deep-linked path back to
+      // index.html, encoding it in the query string so BrowserRouter can
+      // restore it once the app boots. See https://github.com/rafgraph/spa-github-pages
+      var segmentCount = 1; // repo name is the first path segment on project pages
+      var l = window.location;
+      var path = l.pathname.split('/').slice(0, 1 + segmentCount).join('/');
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        path + '/?redirect=' +
+        encodeURIComponent(l.pathname.slice(path.length) + l.search + l.hash)
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
