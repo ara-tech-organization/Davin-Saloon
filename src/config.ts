@@ -224,6 +224,91 @@ export interface GalleryConfig {
   categories: GalleryCategoryData[]
 }
 
+export interface ContactHoursRow {
+  day: Record<Language, string>
+  hours: Record<Language, string>
+}
+
+export interface ContactOption {
+  value: string
+  label: Record<Language, string>
+}
+
+export interface ContactExploreLink {
+  label: Record<Language, string>
+  href: string
+}
+
+export interface ContactConfig {
+  urlSlug: string
+  metaTitle: string
+  metaDescription: string
+  hero: {
+    eyebrow: Record<Language, string>
+    subEyebrow: Record<Language, string>
+    h1: Record<Language, string>
+  }
+  intro: {
+    h2: Record<Language, string>
+    paragraphs: Record<Language, string[]>
+  }
+  callCard: {
+    title: Record<Language, string>
+    description: Record<Language, string>
+    phone: string
+    availability: Record<Language, string>
+    callText: Record<Language, string>
+    whatsappText: Record<Language, string>
+    note: Record<Language, string>
+  }
+  visitCard: {
+    title: Record<Language, string>
+    description: Record<Language, string>
+    address: string
+    landmark: Record<Language, string>
+    ctaText: Record<Language, string>
+    ctaHref: string
+  }
+  hours: {
+    title: Record<Language, string>
+    rows: ContactHoursRow[]
+    note: Record<Language, string>
+  }
+  booking: {
+    title: Record<Language, string>
+    subtitle: Record<Language, string>
+    nameLabel: Record<Language, string>
+    namePlaceholder: Record<Language, string>
+    phoneLabel: Record<Language, string>
+    phonePlaceholder: Record<Language, string>
+    serviceLabel: Record<Language, string>
+    serviceOptions: ContactOption[]
+    dateLabel: Record<Language, string>
+    datePlaceholder: Record<Language, string>
+    timeLabel: Record<Language, string>
+    timeOptions: ContactOption[]
+    submitText: Record<Language, string>
+    consentText: Record<Language, string>
+    instantNote: Record<Language, string>
+    successText: Record<Language, string>
+  }
+  map: {
+    title: Record<Language, string>
+    note: Record<Language, string>
+    embedSrc: string
+  }
+  closing: {
+    title: Record<Language, string>
+    body: Record<Language, string>
+    address: string
+    phone: string
+    hours: Record<Language, string>
+    buttons: FinalCtaButton[]
+    exploreLabel: Record<Language, string>
+    exploreLinks: ContactExploreLink[]
+  }
+}
+
 export const siteConfig: SiteConfig = {
   language: "en",
   siteTitle: "Hair, Skin, Nails & Makeup | DAVIN Beauty Salon Kochi",
@@ -234,9 +319,9 @@ export const navigationConfig: NavigationConfig = {
   brandName: "DAVIN",
   links: [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Gallery", href: "/gallery" },
+    { label: "About Us", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
 }
@@ -251,7 +336,7 @@ export const heroConfig: HeroConfig = {
     ml: ["പുനർനിർവചിക്കുന്നു", "നിങ്ങളുടെ ലുക്ക്", "ഓരോ സന്ദർശനത്തിലും"],
   },
   leadText: {
-    en: "DAVIN BEAUTY SALON is Kaloor's premier destination for professional hair care, skin care, nail art, and makeup services.",
+    en: "DAVIN BEAUTY SALON is Kaloor's premier destination for professional hair care, skin care, nail art, and makeup, where every service is crafted with expertise, care, and an eye for what makes you extraordinary.",
     ml: "കാലൂർ മേഖലാത്തെ പ്രമാണ ഫാമിലി സാലോൺ ആയാണ് DAVIN.",
   },
   supportingNotes: {
@@ -928,4 +1013,186 @@ export const galleryConfig: GalleryConfig = {
       ],
     },
   ],
+}
+
+export const contactConfig: ContactConfig = {
+  urlSlug: "/contact",
+  metaTitle: "Contact Us | DAVIN Beauty Salon | Book Appointment Kochi",
+  metaDescription: "Book an appointment at DAVIN Beauty Salon, Kaloor, Kochi. Call or WhatsApp +91 80890 69996. Located at Stadium Link Road, above HDFC Bank. Open daily 9AM–9PM.",
+  hero: {
+    eyebrow: {
+      en: "CONTACT — DAVIN BEAUTY SALON",
+      ml: "ബന്ധപ്പെടുക — DAVIN BEAUTY SALON",
+    },
+    subEyebrow: {
+      en: "Kaloor, Kochi · Open Daily 9 AM – 9 PM",
+      ml: "കാലൂർ, കൊച്ചി · എല്ലാ ദിവസവും രാവിലെ 9 – രാത്രി 9",
+    },
+    h1: {
+      en: "Get in Touch — We're Here for You",
+      ml: "ബന്ധപ്പെടുക — ഞങ്ങൾ നിങ്ങൾക്കായി ഇവിടെയുണ്ട്",
+    },
+  },
+  intro: {
+    h2: {
+      en: "Your Transformation Starts with a Single Message",
+      ml: "നിങ്ങളുടെ പരിവർത്തനം ഒറ്റ സന്ദേശത്തിൽ തുടങ്ങുന്നു",
+    },
+    paragraphs: {
+      en: [
+        "Whether you'd like to book an appointment, ask about a service, enquire about bridal packages, or simply find out more about what DAVIN has to offer, we'd love to hear from you. Our team is responsive, friendly, and genuinely happy to help you plan your perfect beauty experience.",
+        "Reach us in whichever way works best for you. We're always just a call, a message, or a visit away.",
+      ],
+      ml: [
+        "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യണോ, ഒരു സേവനത്തെക്കുറിച്ച് ചോദിക്കണോ, ബ്രൈഡൽ പാക്കേജുകളെക്കുറിച്ച് അന്വേഷിക്കണോ, അല്ലെങ്കിൽ DAVIN നൽകുന്നതിനെക്കുറിച്ച് കൂടുതൽ അറിയണോ — ഞങ്ങൾ നിങ്ങളിൽ നിന്ന് കേൾക്കാൻ ആഗ്രഹിക്കുന്നു. ഞങ്ങളുടെ ടീം വേഗത്തിൽ പ്രതികരിക്കുന്നവരും സൗഹൃദപരവുമാണ്, നിങ്ങളുടെ മികച്ച സൗന്ദര്യ അനുഭവം ആസൂത്രണം ചെയ്യാൻ സന്തോഷത്തോടെ സഹായിക്കും.",
+        "നിങ്ങൾക്ക് ഏറ്റവും അനുയോജ്യമായ വഴിയിൽ ഞങ്ങളെ ബന്ധപ്പെടുക. ഒരു കോൾ, ഒരു സന്ദേശം, അല്ലെങ്കിൽ ഒരു സന്ദർശനം അകലെ മാത്രമേ ഞങ്ങളുള്ളൂ.",
+      ],
+    },
+  },
+  callCard: {
+    title: {
+      en: "Call or WhatsApp Us",
+      ml: "വിളിക്കുക അല്ലെങ്കിൽ വാട്ട്‌സ്ആപ്പ് ചെയ്യുക",
+    },
+    description: {
+      en: "The fastest and most direct way to reach us. Our team is available to answer calls and WhatsApp messages during salon hours. We typically respond within minutes during working hours.",
+      ml: "ഞങ്ങളെ ബന്ധപ്പെടാനുള്ള ഏറ്റവും വേഗതയേറിയതും നേരിട്ടുള്ളതുമായ വഴി. സലൂൺ സമയങ്ങളിൽ കോളുകൾക്കും വാട്ട്‌സ്ആപ്പ് സന്ദേശങ്ങൾക്കും മറുപടി നൽകാൻ ഞങ്ങളുടെ ടീം സന്നദ്ധരാണ്. പ്രവർത്തി സമയങ്ങളിൽ സാധാരണയായി മിനിറ്റുകൾക്കുള്ളിൽ ഞങ്ങൾ മറുപടി നൽകും.",
+    },
+    phone: "+91 80890 69996",
+    availability: {
+      en: "Available daily: 9:00 AM – 9:00 PM",
+      ml: "ദിവസവും ലഭ്യമാണ്: രാവിലെ 9:00 – രാത്രി 9:00",
+    },
+    callText: { en: "Call Now", ml: "ഇപ്പോൾ വിളിക്കുക" },
+    whatsappText: { en: "WhatsApp Us", ml: "വാട്ട്‌സ്ആപ്പ് ചെയ്യുക" },
+    note: {
+      en: "Tap to call or send a WhatsApp message directly.",
+      ml: "നേരിട്ട് വിളിക്കാനോ വാട്ട്‌സ്ആപ്പ് സന്ദേശം അയക്കാനോ ടാപ്പ് ചെയ്യുക.",
+    },
+  },
+  visitCard: {
+    title: {
+      en: "Visit Us",
+      ml: "ഞങ്ങളെ സന്ദർശിക്കുക",
+    },
+    description: {
+      en: "We'd love to welcome you in person. DAVIN Beauty Salon is conveniently located in the heart of Kaloor, easy to find, easy to access.",
+      ml: "നിങ്ങളെ നേരിട്ട് സ്വാഗതം ചെയ്യാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു. DAVIN ബ്യൂട്ടി സലൂൺ കാലൂരിന്റെ ഹൃദയഭാഗത്ത്, എളുപ്പത്തിൽ കണ്ടെത്താനും എത്തിച്ചേരാനും കഴിയുന്ന വിധത്തിൽ സ്ഥിതി ചെയ്യുന്നു.",
+    },
+    address: "DAVIN Beauty Salon 1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu, Kaloor, Kochi, Ernakulam, Kerala – 682025",
+    landmark: {
+      en: "Directly above HDFC Bank, PM Square, Stadium Link Road, Kaloor.",
+      ml: "സ്റ്റേഡിയം ലിങ്ക് റോഡ്, കാലൂർ, പി എം സ്ക്വയറിലെ എച്ച്ഡിഎഫ്‌സി ബാങ്കിന് നേരെ മുകളിൽ.",
+    },
+    ctaText: {
+      en: "Get Directions on Google Maps",
+      ml: "ഗൂഗിൾ മാപ്സിൽ വഴി കാണിക്കുക",
+    },
+    ctaHref: "https://www.google.com/maps/search/?api=1&query=DAVIN+Beauty+Salon+PM+Square+Stadium+Link+Road+Kaloor+Kochi",
+  },
+  hours: {
+    title: {
+      en: "Salon Hours",
+      ml: "സലൂൺ സമയം",
+    },
+    rows: [
+      { day: { en: "Monday", ml: "തിങ്കൾ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+      { day: { en: "Tuesday", ml: "ചൊവ്വ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+      { day: { en: "Wednesday", ml: "ബുധൻ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+      { day: { en: "Thursday", ml: "വ്യാഴം" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+      { day: { en: "Friday", ml: "വെള്ളി" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+      { day: { en: "Saturday", ml: "ശനി" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+      { day: { en: "Sunday", ml: "ഞായർ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+    ],
+    note: {
+      en: "Walk-ins are welcome. For bridal, special occasion, and group bookings, we recommend calling ahead to confirm your preferred time slot.",
+      ml: "വാക്ക്-ഇന്നുകൾക്ക് സ്വാഗതം. ബ്രൈഡൽ, പ്രത്യേക അവസര, ഗ്രൂപ്പ് ബുക്കിംഗുകൾക്ക്, നിങ്ങളുടെ ഇഷ്ട സമയം സ്ഥിരീകരിക്കാൻ മുൻകൂട്ടി വിളിക്കാൻ ഞങ്ങൾ ശുപാർശ ചെയ്യുന്നു.",
+    },
+  },
+  booking: {
+    title: {
+      en: "Book an Appointment",
+      ml: "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക",
+    },
+    subtitle: {
+      en: "Ready to visit DAVIN? Fill in the form below and our team will get back to you promptly to confirm your appointment.",
+      ml: "DAVIN സന്ദർശിക്കാൻ തയ്യാറാണോ? താഴെയുള്ള ഫോം പൂരിപ്പിക്കുക, നിങ്ങളുടെ അപ്പോയിന്റ്മെന്റ് സ്ഥിരീകരിക്കാൻ ഞങ്ങളുടെ ടീം ഉടൻ ബന്ധപ്പെടും.",
+    },
+    nameLabel: { en: "Your Name", ml: "നിങ്ങളുടെ പേര്" },
+    namePlaceholder: { en: "Enter your full name", ml: "നിങ്ങളുടെ പൂർണ്ണ പേര് നൽകുക" },
+    phoneLabel: { en: "Phone Number", ml: "ഫോൺ നമ്പർ" },
+    phonePlaceholder: { en: "Enter your mobile number", ml: "നിങ്ങളുടെ മൊബൈൽ നമ്പർ നൽകുക" },
+    serviceLabel: { en: "Preferred Service", ml: "ഇഷ്ട സേവനം" },
+    serviceOptions: [
+      { value: "hair-care", label: { en: "Hair Care (Haircut / Color / Spa / Keratin / Botox)", ml: "ഹെയർ കെയർ (ഹെയർകട്ട് / കളർ / സ്പാ / കെരാറ്റിൻ / ബോട്ടോക്സ്)" } },
+      { value: "skin-care", label: { en: "Skin Care (Facial / Clean-Up / Waxing / Threading / De-Tan)", ml: "സ്കിൻ കെയർ (ഫേഷ്യൽ / ക്ലീൻ-അപ്പ് / വാക്സിംഗ് / ത്രെഡിംഗ് / ഡീ-ടാൻ)" } },
+      { value: "nails-grooming", label: { en: "Nails & Grooming (Manicure / Pedicure / Nail Art / Extensions / Beard)", ml: "നെയിൽസ് & ഗ്രൂമിംഗ് (മാനിക്യൂർ / പെഡിക്യൂർ / നെയിൽ ആർട്ട് / എക്സ്റ്റൻഷൻസ് / ബിയേഡ്)" } },
+      { value: "makeup", label: { en: "Makeup (Bridal / Party / HD Makeup / Saree Draping)", ml: "മേക്കപ്പ് (ബ്രൈഡൽ / പാർട്ടി / HD മേക്കപ്പ് / സാരി ഡ്രേപ്പിംഗ്)" } },
+      { value: "combo", label: { en: "Multiple Services / Combo", ml: "ഒന്നിലധികം സേവനങ്ങൾ / കോംബോ" } },
+      { value: "other", label: { en: "Other / Not Sure Yet", ml: "മറ്റുള്ളവ / ഇതുവരെ ഉറപ്പില്ല" } },
+    ],
+    dateLabel: { en: "Preferred Date", ml: "ഇഷ്ട തീയതി" },
+    datePlaceholder: { en: "Select your preferred date", ml: "നിങ്ങളുടെ ഇഷ്ട തീയതി തിരഞ്ഞെടുക്കുക" },
+    timeLabel: { en: "Preferred Time", ml: "ഇഷ്ട സമയം" },
+    timeOptions: [
+      { value: "morning", label: { en: "Morning (9 AM – 12 PM)", ml: "രാവിലെ (9 – 12)" } },
+      { value: "afternoon", label: { en: "Afternoon (12 PM – 4 PM)", ml: "ഉച്ചകഴിഞ്ഞ് (12 – 4)" } },
+      { value: "evening", label: { en: "Evening (4 PM – 9 PM)", ml: "വൈകുന്നേരം (4 – 9)" } },
+    ],
+    submitText: { en: "Submit Booking Request", ml: "ബുക്കിംഗ് അഭ്യർത്ഥന സമർപ്പിക്കുക" },
+    consentText: {
+      en: "By submitting this form, you agree that DAVIN Beauty Salon may contact you via phone or WhatsApp to confirm your appointment.",
+      ml: "ഈ ഫോം സമർപ്പിക്കുന്നതിലൂടെ, നിങ്ങളുടെ അപ്പോയിന്റ്മെന്റ് സ്ഥിരീകരിക്കാൻ DAVIN ബ്യൂട്ടി സലൂൺ ഫോൺ വഴിയോ വാട്ട്‌സ്ആപ്പ് വഴിയോ നിങ്ങളെ ബന്ധപ്പെടാം എന്നതിന് നിങ്ങൾ സമ്മതിക്കുന്നു.",
+    },
+    instantNote: {
+      en: "Prefer instant confirmation? Just call or WhatsApp us directly at +91 80890 69996.",
+      ml: "തൽക്ഷണ സ്ഥിരീകരണം വേണോ? +91 80890 69996 എന്ന നമ്പറിൽ നേരിട്ട് വിളിക്കുകയോ വാട്ട്‌സ്ആപ്പ് ചെയ്യുകയോ ചെയ്യുക.",
+    },
+    successText: {
+      en: "Thank you! We've opened WhatsApp with your request pre-filled — just hit send and our team will confirm shortly.",
+      ml: "നന്ദി! നിങ്ങളുടെ അഭ്യർത്ഥനയോടെ വാട്ട്‌സ്ആപ്പ് തുറന്നിട്ടുണ്ട് — അയക്കുക ബട്ടൺ അമർത്തുക, ഞങ്ങളുടെ ടീം ഉടൻ സ്ഥിരീകരിക്കും.",
+    },
+  },
+  map: {
+    title: {
+      en: "Find Us — Location Map",
+      ml: "ഞങ്ങളെ കണ്ടെത്തുക — സ്ഥാന ഭൂപടം",
+    },
+    note: {
+      en: "Search \"DAVIN Beauty Salon Kaloor\" on Google Maps to get live directions.",
+      ml: "ലൈവ് വഴി ലഭിക്കാൻ ഗൂഗിൾ മാപ്സിൽ \"DAVIN Beauty Salon Kaloor\" എന്ന് തിരയുക.",
+    },
+    embedSrc: "https://www.google.com/maps?q=DAVIN+Beauty+Salon+PM+Square+Stadium+Link+Road+Kathrikadavu+Kaloor+Kochi+Ernakulam+Kerala+682025&output=embed",
+  },
+  closing: {
+    title: {
+      en: "We'd Love to See You",
+      ml: "നിങ്ങളെ കാണാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു",
+    },
+    body: {
+      en: "Every great beauty experience starts with a visit. Whether you've been planning a new look for months or decide on a whim — DAVIN Beauty Salon on Stadium Link Road, Kaloor is ready to welcome you. Our team is waiting to listen, to create, and to make sure you walk out feeling absolutely brilliant.",
+      ml: "ഓരോ മികച്ച സൗന്ദര്യ അനുഭവവും ഒരു സന്ദർശനത്തിൽ തുടങ്ങുന്നു. മാസങ്ങളായി ഒരു പുതിയ ലുക്ക് ആസൂത്രണം ചെയ്യുകയായാലും പെട്ടെന്ന് തീരുമാനിക്കുകയായാലും — കാലൂരിലെ സ്റ്റേഡിയം ലിങ്ക് റോഡിലുള്ള DAVIN ബ്യൂട്ടി സലൂൺ നിങ്ങളെ സ്വാഗതം ചെയ്യാൻ തയ്യാറാണ്. ശ്രദ്ധിക്കാനും സൃഷ്ടിക്കാനും നിങ്ങൾ പൂർണ്ണമായും തിളക്കത്തോടെ പുറത്തിറങ്ങുന്നുവെന്ന് ഉറപ്പാക്കാനും ഞങ്ങളുടെ ടീം കാത്തിരിക്കുന്നു.",
+    },
+    address: "PM Square, Stadium Link Road, Kaloor, Kochi – 682025",
+    phone: "+91 80890 69996",
+    hours: {
+      en: "Open Every Day: 9:00 AM – 9:00 PM",
+      ml: "എല്ലാ ദിവസവും തുറന്നിരിക്കും: രാവിലെ 9:00 – രാത്രി 9:00",
+    },
+    buttons: [
+      { label: { en: "Book Appointment", ml: "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക" }, href: "tel:+918089069996" },
+      { label: { en: "WhatsApp Us", ml: "വാട്ട്‌സ്ആപ്പ് ചെയ്യുക" }, href: "https://wa.me/918089069996" },
+      { label: { en: "Get Directions", ml: "വഴി കാണിക്കുക" }, href: "https://www.google.com/maps/search/?api=1&query=DAVIN+Beauty+Salon+PM+Square+Stadium+Link+Road+Kaloor+Kochi" },
+    ],
+    exploreLabel: {
+      en: "Explore our services:",
+      ml: "ഞങ്ങളുടെ സേവനങ്ങൾ പര്യവേക്ഷണം ചെയ്യുക:",
+    },
+    exploreLinks: [
+      { label: { en: "Hair Care", ml: "ഹെയർ കെയർ" }, href: "/services/hair-care" },
+      { label: { en: "Skin Care", ml: "സ്കിൻ കെയർ" }, href: "/services/skin-care" },
+      { label: { en: "Nails & Grooming", ml: "നെയിൽസ് & ഗ്രൂമിംഗ്" }, href: "/services/nails-grooming" },
+      { label: { en: "Makeup", ml: "മേക്കപ്പ്" }, href: "/services/makeup" },
+    ],
+  },
 }

@@ -77,7 +77,7 @@ export default function FAQ() {
       </h2>
 
       <div ref={contentRef} style={{ width: '100%', maxWidth: '820px', opacity: 0 }}>
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
           {items.map((item, index) => (
             <AccordionItem
               key={index}

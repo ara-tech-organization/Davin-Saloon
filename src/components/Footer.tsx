@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { footerConfig, navigationConfig, facilitiesConfig } from '../config';
 import { useLanguage } from '../contexts/LanguageContext';
+import logo from '../Assets/Logo.png';
 
 export default function Footer() {
   const { language } = useLanguage();
@@ -74,16 +75,17 @@ export default function Footer() {
         }}
       >
         <div>
-          <p
+          <img
+            src={logo}
+            alt={navigationConfig.brandName}
             style={{
-              fontFamily: "'Geist Pixel', monospace",
-              fontSize: '20px',
+              height: '48px',
+              width: 'auto',
+              display: 'block',
               margin: '0 0 12px 0',
-              textTransform: 'uppercase',
+              filter: 'invert(1)',
             }}
-          >
-            {navigationConfig.brandName}
-          </p>
+          />
           <p
             style={{
               fontSize: '11px',

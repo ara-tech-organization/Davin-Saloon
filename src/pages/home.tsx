@@ -8,6 +8,7 @@ import CustomCursor from '../components/CustomCursor';
 import Hero from '../components/home/Hero';
 import AboutIntro from '../components/home/AboutIntro';
 import Facilities from '../components/home/Facilities';
+import LiveLook from '../components/home/LiveLook';
 import WhyChooseUs from '../components/home/WhyChooseUs';
 import Archives from '../components/home/Archives';
 import Testimonials from '../components/home/Testimonials';
@@ -33,9 +34,39 @@ export default function Home() {
     }
     metaDescription.content = siteConfig.siteDescription;
 
+    const schema = document.createElement('script');
+    schema.type = 'application/ld+json';
+    schema.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BeautySalon',
+      name: 'DAVIN Beauty Salon',
+      image: 'https://davinsalon.com/images/davin-beauty-salon-kochi.jpg',
+      description:
+        'Premium unisex beauty salon in Kaloor, Kochi offering hair care, bridal makeup, skincare, nail services and grooming.',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu',
+        addressLocality: 'Kaloor',
+        addressRegion: 'Kochi',
+        postalCode: '682025',
+        addressCountry: 'IN',
+      },
+      telephone: '+918089069996',
+      openingHours: 'Mo-Su 09:00-21:00',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        reviewCount: '767',
+      },
+      url: 'https://davinsalon.com',
+      sameAs: ['https://www.instagram.com/davin.salon.kaloor/'],
+    });
+    document.head.appendChild(schema);
+
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      document.head.removeChild(schema);
     };
   }, []);
 
@@ -76,6 +107,7 @@ export default function Home() {
         <Hero />
         <AboutIntro />
         <Facilities />
+        <LiveLook />
         <WhyChooseUs />
         <Archives />
         <Testimonials />

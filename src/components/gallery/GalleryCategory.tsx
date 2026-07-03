@@ -21,9 +21,9 @@ const VARIANT_CONFIG: Record<GalleryCategoryVariant, { columns: string; gap: str
   mosaic: { columns: 'repeat(auto-fill, minmax(170px, 1fr))', gap: '10px', tile: 'flat' },
 };
 
-function tileAspect(variant: GalleryCategoryVariant, index: number): string {
+function tileAspect(variant: GalleryCategoryVariant): string {
   if (variant === 'editorial') return '4 / 5';
-  if (variant === 'mosaic') return index % 5 === 0 ? '1 / 1.3' : index % 3 === 0 ? '1 / 1' : '3 / 4';
+  if (variant === 'mosaic') return '3 / 4';
   return '3 / 4';
 }
 
@@ -83,14 +83,14 @@ export default function GalleryCategory({ category, dark, variant }: GalleryCate
             gap: cfg.gap,
           }}
         >
-          {category.items.map((item, i) => (
+          {category.items.map((item) => (
             <GalleryTile
               key={item.slug}
               item={item}
               language={language}
               dark={dark}
               interactive={cfg.tile}
-              aspect={tileAspect(variant, i)}
+              aspect={tileAspect(variant)}
             />
           ))}
         </div>

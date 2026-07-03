@@ -1,8 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import gsap from 'gsap';
-import { navigationConfig } from '../config';
+import { navigationConfig, facilitiesConfig } from '../config';
 import { useLanguage } from '../contexts/LanguageContext';
+import logo from '../Assets/Logo.png';
 
 interface HeaderProps {
   /** Only the home hero starts fully transparent over its video and turns
@@ -13,6 +14,7 @@ interface HeaderProps {
 
 export default function Header({ transparentOnTop = false }: HeaderProps) {
   const { language, setLanguage } = useLanguage();
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(!transparentOnTop);
   const navLinksRef = useRef<HTMLDivElement>(null);
   const preToggleRectRef = useRef<DOMRect | null>(null);
@@ -20,7 +22,11 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
   useEffect(() => {
     if (!transparentOnTop) return;
     const onScroll = () => {
-      const shouldScroll = window.scrollY > window.innerHeight * 0.5;
+      // A small fixed threshold — solidify as soon as the user starts
+      // scrolling, well before hero content scrolls up underneath the
+      // fixed header (a viewport-relative threshold left it transparent
+      // too long on short viewports, letting hero text show through).
+      const shouldScroll = window.scrollY > 60;
       setScrolled((prev) => {
         if (prev !== shouldScroll && navLinksRef.current) {
           // FLIP "first": snapshot the links' position before the move happens.
@@ -49,48 +55,113 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
 
   const navLinks = (
     <div ref={navLinksRef} style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
-      {navigationConfig.links.map((item, index) => (
-        <div
-          key={`${item.label}-${item.href}`}
-          style={{ display: 'flex', alignItems: 'center' }}
-        >
-          <Link
-            to={item.href}
-            className="nav-link"
-            style={{
-              fontSize: '11px',
-              fontWeight: 400,
-              color: '#fff',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              letterSpacing: '0.1em',
-              padding: '4px 14px',
-              transition: 'opacity 0.2s, letter-spacing 0.3s',
-            }}
-            onMouseEnter={(e) => {
-              (e.target as HTMLElement).style.opacity = '0.6';
-              (e.target as HTMLElement).style.letterSpacing = '0.16em';
-            }}
-            onMouseLeave={(e) => {
-              (e.target as HTMLElement).style.opacity = '1';
-              (e.target as HTMLElement).style.letterSpacing = '0.1em';
-            }}
+      {navigationConfig.links.map((item, index) => {
+        const isServices = item.href === '/services';
+        const servicesHref = isServices
+          ? `/services/${facilitiesConfig.items[0].slug}`
+          : item.href;
+        const isActive = isServices
+          ? location.pathname.startsWith('/services')
+          : item.href === '/'
+          ? location.pathname === '/'
+          : location.pathname.startsWith(item.href);
+        return (
+          <div
+            key={`${item.label}-${item.href}`}
+            className={isServices ? 'group' : undefined}
+            style={{ display: 'flex', alignItems: 'center', position: 'relative' }}
           >
-            {item.label}
-          </Link>
-          {index < navigationConfig.links.length - 1 && (
-            <span
+            <Link
+              to={servicesHref}
+              className="nav-link"
               style={{
-                color: 'rgba(255,255,255,0.2)',
-                fontSize: '10px',
-                padding: '0 2px',
+                fontSize: '11px',
+                fontWeight: 400,
+                color: '#fff',
+                textTransform: 'uppercase',
+                textDecoration: isActive ? 'underline' : 'none',
+                textUnderlineOffset: '4px',
+                letterSpacing: '0.1em',
+                padding: '4px 14px',
+                transition: 'opacity 0.2s, letter-spacing 0.3s',
+              }}
+              onMouseEnter={(e) => {
+                (e.target as HTMLElement).style.opacity = '0.6';
+                (e.target as HTMLElement).style.letterSpacing = '0.16em';
+                (e.target as HTMLElement).style.textDecoration = 'underline';
+              }}
+              onMouseLeave={(e) => {
+                (e.target as HTMLElement).style.opacity = '1';
+                (e.target as HTMLElement).style.letterSpacing = '0.1em';
+                (e.target as HTMLElement).style.textDecoration = isActive ? 'underline' : 'none';
               }}
             >
-              /
-            </span>
-          )}
-        </div>
-      ))}
+              {item.label}
+            </Link>
+
+            {isServices && (
+              <div
+                className="absolute left-0 top-full opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto"
+                style={{ paddingTop: '14px', minWidth: '240px', zIndex: 60 }}
+              >
+                <div
+                  style={{
+                    background: '#000',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    boxShadow: '0 24px 48px rgba(0,0,0,0.5)',
+                  }}
+                >
+                  {facilitiesConfig.items.map((service, serviceIndex) => {
+                    const isActive = location.pathname === `/services/${service.slug}`;
+                    return (
+                      <Link
+                        key={service.slug}
+                        to={`/services/${service.slug}`}
+                        style={{
+                          display: 'block',
+                          fontFamily: "'IBM Plex Mono', monospace",
+                          fontSize: '11px',
+                          fontWeight: 400,
+                          color: '#fff',
+                          textTransform: 'uppercase',
+                          textDecoration: isActive ? 'underline' : 'none',
+                          textUnderlineOffset: '4px',
+                          letterSpacing: '0.08em',
+                          padding: '14px 20px',
+                          borderBottom: serviceIndex === facilitiesConfig.items.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.1)',
+                          transition: 'letter-spacing 0.2s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.textDecoration = 'underline';
+                          e.currentTarget.style.letterSpacing = '0.12em';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.textDecoration = isActive ? 'underline' : 'none';
+                          e.currentTarget.style.letterSpacing = '0.08em';
+                        }}
+                      >
+                        {service.name[language]}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {index < navigationConfig.links.length - 1 && (
+              <span
+                style={{
+                  color: 'rgba(255,255,255,0.2)',
+                  fontSize: '10px',
+                  padding: '0 2px',
+                }}
+              >
+                /
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 
@@ -158,7 +229,9 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: scrolled ? '12px 36px' : '20px 36px',
-        background: scrolled ? '#000' : 'transparent',
+        background: scrolled
+          ? '#000'
+          : 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.35) 65%, transparent 100%)',
         fontFamily: "'IBM Plex Mono', monospace",
         boxSizing: 'border-box',
         transition: 'width 0.4s ease, background 0.4s ease, padding 0.4s ease',
@@ -170,17 +243,22 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
         <Link
           to="/"
           style={{
-            fontSize: scrolled ? '14px' : '18px',
-            fontWeight: 400,
-            color: '#fff',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
+            display: 'flex',
+            alignItems: 'center',
             flexShrink: 0,
             textDecoration: 'none',
-            transition: 'font-size 0.4s ease',
           }}
         >
-          {navigationConfig.brandName}
+          <img
+            src={logo}
+            alt={navigationConfig.brandName}
+            style={{
+              height: scrolled ? '38px' : '48px',
+              width: 'auto',
+              display: 'block',
+              transition: 'height 0.4s ease',
+            }}
+          />
         </Link>
         {!scrolled && navLinks}
       </div>

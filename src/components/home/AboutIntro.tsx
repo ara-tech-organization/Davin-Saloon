@@ -234,7 +234,7 @@ export default function Manifesto() {
         <div style={{ overflow: 'hidden' }}>
           <img
             src="/images/salon-tools.jpg"
-            alt="Salon tools"
+            alt="Professional salon tools at DAVIN Beauty Salon Kaloor Kochi"
             className="img-zoom"
             style={{
               width: '100%',
@@ -248,7 +248,7 @@ export default function Manifesto() {
         <div style={{ overflow: 'hidden' }}>
           <img
             src="/images/service-hair.jpg"
-            alt="Hair styling"
+            alt="Professional hair styling at DAVIN Beauty Salon Stadium Link Road"
             className="img-zoom"
             style={{
               width: '100%',
@@ -262,7 +262,7 @@ export default function Manifesto() {
         <div style={{ overflow: 'hidden' }}>
           <img
             src="/images/gallery-hair-color.jpg"
-            alt="Hair coloring"
+            alt="Hair coloring services including balayage and highlights at DAVIN Kochi"
             className="img-zoom"
             style={{
               width: '100%',

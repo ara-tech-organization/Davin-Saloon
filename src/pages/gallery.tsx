@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import GalleryHero from '../components/gallery/GalleryHero';
 import GalleryIntro from '../components/gallery/GalleryIntro';
 import GalleryCategory from '../components/gallery/GalleryCategory';
-import MakeupShowcase from '../components/gallery/MakeupShowcase';
+import FilmReelShowcase from '../components/gallery/FilmReelShowcase';
 
 export default function Gallery() {
   useEffect(() => {
@@ -71,9 +71,9 @@ export default function Gallery() {
         <GalleryHero />
         <GalleryIntro />
         <GalleryCategory category={galleryConfig.categories[0]} dark variant="tilt" />
-        <GalleryCategory category={galleryConfig.categories[1]} dark={false} variant="editorial" />
+        <FilmReelShowcase category={galleryConfig.categories[1]} />
         <GalleryCategory category={galleryConfig.categories[2]} dark variant="mosaic" />
-        <MakeupShowcase category={galleryConfig.categories[3]} />
+        <GalleryCategory category={galleryConfig.categories[3]} dark={false} variant="editorial" />
       </div>
       <Footer />
     </>

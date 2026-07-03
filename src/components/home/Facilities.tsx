@@ -106,7 +106,7 @@ function FacilityColumn({ facility, isLast, lang }: { facility: FacilityItem; is
           color: '#000',
         }}
       >
-        <h2
+        <h3
           style={{
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: '20px',
@@ -127,7 +127,7 @@ function FacilityColumn({ facility, isLast, lang }: { facility: FacilityItem; is
         >
           {facility.name[lang]}
           {facility.code ? `, ${facility.code}` : ''}
-        </h2>
+        </h3>
       </Link>
 
       <div style={{ marginTop: '20px' }}>
@@ -337,7 +337,7 @@ export default function Facilities() {
           padding: '40px 40px 20px',
         }}
       >
-        <h3
+        <p
           style={{
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: '17.5px',
@@ -349,7 +349,7 @@ export default function Facilities() {
           }}
         >
           {facilitiesConfig.sectionLabel[language]}
-        </h3>
+        </p>
 
         {facilitiesConfig.sectionTitle[language] && (
           <h2

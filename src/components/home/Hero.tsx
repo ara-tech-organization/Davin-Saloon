@@ -88,16 +88,23 @@ export default function Hero() {
           flexDirection: 'column',
         }}
       >
-        {/* Hero Content */}
+        {/* Hero Content — flex-centered with a reserved top gap so the
+            fixed header never has hero text scrolling up underneath it,
+            even on short viewports where absolute+translate centering
+            could push the title above the fold. */}
         <div
           style={{
-            position: 'absolute',
-            left: '40px',
-            right: '32px',
-            top: '50%',
-            transform: 'translateY(-50%)',
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            paddingLeft: '40px',
+            paddingRight: '32px',
+            paddingTop: '100px',
+            paddingBottom: '80px',
+            boxSizing: 'border-box',
             zIndex: 10,
-            width: 'calc(100% - 72px)',
+            position: 'relative',
           }}
         >
           {/* Eyebrow */}
