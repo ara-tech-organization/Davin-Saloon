@@ -323,7 +323,7 @@ export const navigationConfig: NavigationConfig = {
     { label: { en: "Home", ml: "ഹോം" }, href: "/" },
     { label: { en: "Services", ml: "സേവനങ്ങൾ" }, href: "/services" },
     { label: { en: "Gallery", ml: "ഗാലറി" }, href: "/gallery" },
-    { label: { en: "About Us", ml: "ഞങ്ങളെക്കുറിച്ച്" }, href: "/about" },
+    { label: { en: "About Us", ml: "ഞങ്ങളെക്കുറിച്ച്" }, href: "/about-us" },
     { label: { en: "Contact", ml: "ബന്ധപ്പെടുക" }, href: "/contact" },
   ],
 }
@@ -704,8 +704,8 @@ export const faqConfig: FaqConfig = {
     {
       question: { en: "What are DAVIN Beauty Salon's opening hours?", ml: "DAVIN ബ്യൂട്ടി സലൂണിന്റെ പ്രവർത്തന സമയം എന്താണ്?" },
       answer: {
-        en: "DAVIN Beauty Salon is open every day from 9:00 AM to 9:00 PM, including weekends and public holidays. Walk-ins are welcome, and appointments can be booked by calling or WhatsApp-ing +91 80890 69996.",
-        ml: "DAVIN ബ്യൂട്ടി സലൂൺ എല്ലാ ദിവസവും രാവിലെ 9:00 മുതൽ രാത്രി 9:00 വരെ തുറന്നിരിക്കും, വാരാന്ത്യങ്ങളും പൊതു അവധി ദിവസങ്ങളും ഉൾപ്പെടെ. വാക്ക്-ഇന്നുകൾക്ക് സ്വാഗതം, +91 80890 69996 എന്ന നമ്പറിൽ വിളിച്ചോ വാട്ട്‌സ്ആപ്പ് ചെയ്തോ അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യാം.",
+        en: "DAVIN Beauty Salon is open every day from 9 AM to 9 PM, including weekends and public holidays. Walk-ins are welcome, and appointments can be booked by calling or WhatsApp-ing +91 80890 69996.",
+        ml: "DAVIN ബ്യൂട്ടി സലൂൺ എല്ലാ ദിവസവും രാവിലെ 9 മുതൽ രാത്രി 9 വരെ തുറന്നിരിക്കും, വാരാന്ത്യങ്ങളും പൊതു അവധി ദിവസങ്ങളും ഉൾപ്പെടെ. വാക്ക്-ഇന്നുകൾക്ക് സ്വാഗതം, +91 80890 69996 എന്ന നമ്പറിൽ വിളിച്ചോ വാട്ട്‌സ്ആപ്പ് ചെയ്തോ അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യാം.",
       },
     },
     {
@@ -744,8 +744,8 @@ export const finalCtaConfig: FinalCtaConfig = {
   address: "1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu, Kaloor, Kochi – 682025",
   phone: "+91 80890 69996",
   hours: {
-    en: "Open Daily: 9:00 AM – 9:00 PM",
-    ml: "എല്ലാ ദിവസവും തുറന്നിരിക്കും: രാവിലെ 9:00 – രാത്രി 9:00",
+    en: "Open Daily: 9 AM – 9 PM",
+    ml: "എല്ലാ ദിവസവും തുറന്നിരിക്കും: രാവിലെ 9 – രാത്രി 9",
   },
   instagramHandle: "@davin.salon.kaloor",
   instagramHref: "https://www.instagram.com/davin.salon.kaloor/",
@@ -824,12 +824,12 @@ export const aboutConfig: AboutConfig = {
     paragraphs: {
       en: [
         "It all started with a simple but powerful belief: every person deserves to look and feel extraordinary. Founded in 2020, DAVIN Beauty Salon opened its doors on Stadium Link Road, Kaloor, with a singular mission to bring luxury beauty experiences to the heart of Kochi that were previously only accessible in high-end metropolitan salons.",
-        "What began as a neighborhood salon quickly grew into a community institution. Today, with a 4.8-star Google rating, over 767 glowing client reviews, and an Instagram community of 10,800+ loyal followers, DAVIN stands as one of the most trusted and celebrated beauty destinations in Ernakulam.",
+        "What began as a neighborhood salon quickly grew into a community institution. Today, with a 4.8-star Google rating from 750+ Google reviews, 767+ glowing client reviews overall, and an Instagram community of 10,800+ loyal followers, DAVIN stands as one of the most trusted and celebrated beauty destinations in Ernakulam.",
         "We are not just a salon. We are a transformation studio where expertise meets artistry, and where every client is treated as an individual not a number.",
       ],
       ml: [
         "എല്ലാം തുടങ്ങിയത് ഒരു ലളിതവും ശക്തവുമായ വിശ്വാസത്തിലാണ്: ഓരോ വ്യക്തിക്കും അസാധാരണമായി കാണപ്പെടാനും അനുഭവപ്പെടാനും അർഹതയുണ്ട്. 2020-ൽ സ്ഥാപിതമായ DAVIN ബ്യൂട്ടി സലൂൺ, മുമ്പ് ഉന്നത നഗര സലൂണുകളിൽ മാത്രം ലഭ്യമായിരുന്ന ആഡംബര സൗന്ദര്യ അനുഭവങ്ങൾ കൊച്ചിയുടെ ഹൃദയഭാഗത്ത് എത്തിക്കുക എന്ന ഒറ്റ ലക്ഷ്യത്തോടെ കാലൂരിലെ സ്റ്റേഡിയം ലിങ്ക് റോഡിൽ അതിന്റെ വാതിലുകൾ തുറന്നു.",
-        "ഒരു നാട്ടിൻപുറത്തെ സലൂണായി തുടങ്ങിയത് വേഗത്തിൽ ഒരു സമൂഹ സ്ഥാപനമായി വളർന്നു. ഇന്ന്, 4.8-സ്റ്റാർ ഗൂഗിൾ റേറ്റിംഗോടെയും 767-ലധികം മികച്ച ക്ലയന്റ് റിവ്യൂകളോടെയും 10,800+ വിശ്വസ്ത ഫോളോവേഴ്സുള്ള ഇൻസ്റ്റാഗ്രാം കമ്മ്യൂണിറ്റിയോടെയും, എറണാകുളത്തെ ഏറ്റവും വിശ്വസനീയവും ആഘോഷിക്കപ്പെടുന്നതുമായ ബ്യൂട്ടി ഡെസ്റ്റിനേഷനുകളിൽ ഒന്നായി DAVIN നിലകൊള്ളുന്നു.",
+        "ഒരു നാട്ടിൻപുറത്തെ സലൂണായി തുടങ്ങിയത് വേഗത്തിൽ ഒരു സമൂഹ സ്ഥാപനമായി വളർന്നു. ഇന്ന്, 750+ ഗൂഗിൾ റിവ്യൂകളിൽ നിന്നുള്ള 4.8-സ്റ്റാർ റേറ്റിംഗോടെയും ആകെ 767+ മികച്ച ക്ലയന്റ് റിവ്യൂകളോടെയും 10,800+ വിശ്വസ്ത ഫോളോവേഴ്സുള്ള ഇൻസ്റ്റാഗ്രാം കമ്മ്യൂണിറ്റിയോടെയും, എറണാകുളത്തെ ഏറ്റവും വിശ്വസനീയവും ആഘോഷിക്കപ്പെടുന്നതുമായ ബ്യൂട്ടി ഡെസ്റ്റിനേഷനുകളിൽ ഒന്നായി DAVIN നിലകൊള്ളുന്നു.",
         "ഞങ്ങൾ വെറുമൊരു സലൂൺ അല്ല. വൈദഗ്ധ്യവും കലാവൈഭവവും ഒത്തുചേരുന്ന, ഓരോ ക്ലയന്റിനെയും ഒരു നമ്പറായിട്ടല്ല, ഒരു വ്യക്തിയായി പരിഗണിക്കുന്ന ഒരു പരിവർത്തന സ്റ്റുഡിയോ ആണ് ഞങ്ങൾ.",
       ],
     },
@@ -1024,7 +1024,7 @@ export const galleryConfig: GalleryConfig = {
 export const contactConfig: ContactConfig = {
   urlSlug: "/contact",
   metaTitle: "Contact Us | DAVIN Beauty Salon | Book Appointment Kochi",
-  metaDescription: "Book an appointment at DAVIN Beauty Salon, Kaloor, Kochi. Call or WhatsApp +91 80890 69996. Located at Stadium Link Road, above HDFC Bank. Open daily 9AM–9PM.",
+  metaDescription: "Book an appointment at DAVIN Beauty Salon, Kaloor, Kochi. Call or WhatsApp +91 80890 69996. Located at Stadium Link Road, above HDFC Bank. Open daily 9 AM – 9 PM.",
   hero: {
     eyebrow: {
       en: "CONTACT — DAVIN BEAUTY SALON",
@@ -1066,8 +1066,8 @@ export const contactConfig: ContactConfig = {
     },
     phone: "+91 80890 69996",
     availability: {
-      en: "Available daily: 9:00 AM – 9:00 PM",
-      ml: "ദിവസവും ലഭ്യമാണ്: രാവിലെ 9:00 – രാത്രി 9:00",
+      en: "Available daily: 9 AM – 9 PM",
+      ml: "ദിവസവും ലഭ്യമാണ്: രാവിലെ 9 – രാത്രി 9",
     },
     callText: { en: "Call Now", ml: "ഇപ്പോൾ വിളിക്കുക" },
     whatsappText: { en: "WhatsApp Us", ml: "വാട്ട്‌സ്ആപ്പ് ചെയ്യുക" },
@@ -1085,7 +1085,7 @@ export const contactConfig: ContactConfig = {
       en: "We'd love to welcome you in person. DAVIN Beauty Salon is conveniently located in the heart of Kaloor, easy to find, easy to access.",
       ml: "നിങ്ങളെ നേരിട്ട് സ്വാഗതം ചെയ്യാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു. DAVIN ബ്യൂട്ടി സലൂൺ കാലൂരിന്റെ ഹൃദയഭാഗത്ത്, എളുപ്പത്തിൽ കണ്ടെത്താനും എത്തിച്ചേരാനും കഴിയുന്ന വിധത്തിൽ സ്ഥിതി ചെയ്യുന്നു.",
     },
-    address: "DAVIN Beauty Salon 1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu, Kaloor, Kochi, Ernakulam, Kerala – 682025",
+    address: "1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu, Kaloor, Kochi – 682025",
     landmark: {
       en: "Directly above HDFC Bank, PM Square, Stadium Link Road, Kaloor.",
       ml: "സ്റ്റേഡിയം ലിങ്ക് റോഡ്, കാലൂർ, പി എം സ്ക്വയറിലെ എച്ച്ഡിഎഫ്‌സി ബാങ്കിന് നേരെ മുകളിൽ.",
@@ -1102,13 +1102,13 @@ export const contactConfig: ContactConfig = {
       ml: "സലൂൺ സമയം",
     },
     rows: [
-      { day: { en: "Monday", ml: "തിങ്കൾ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
-      { day: { en: "Tuesday", ml: "ചൊവ്വ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
-      { day: { en: "Wednesday", ml: "ബുധൻ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
-      { day: { en: "Thursday", ml: "വ്യാഴം" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
-      { day: { en: "Friday", ml: "വെള്ളി" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
-      { day: { en: "Saturday", ml: "ശനി" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
-      { day: { en: "Sunday", ml: "ഞായർ" }, hours: { en: "9:00 AM – 9:00 PM", ml: "രാവിലെ 9:00 – രാത്രി 9:00" } },
+      { day: { en: "Monday", ml: "തിങ്കൾ" }, hours: { en: "9 AM – 9 PM", ml: "രാവിലെ 9 – രാത്രി 9" } },
+      { day: { en: "Tuesday", ml: "ചൊവ്വ" }, hours: { en: "9 AM – 9 PM", ml: "രാവിലെ 9 – രാത്രി 9" } },
+      { day: { en: "Wednesday", ml: "ബുധൻ" }, hours: { en: "9 AM – 9 PM", ml: "രാവിലെ 9 – രാത്രി 9" } },
+      { day: { en: "Thursday", ml: "വ്യാഴം" }, hours: { en: "9 AM – 9 PM", ml: "രാവിലെ 9 – രാത്രി 9" } },
+      { day: { en: "Friday", ml: "വെള്ളി" }, hours: { en: "9 AM – 9 PM", ml: "രാവിലെ 9 – രാത്രി 9" } },
+      { day: { en: "Saturday", ml: "ശനി" }, hours: { en: "9 AM – 9 PM", ml: "രാവിലെ 9 – രാത്രി 9" } },
+      { day: { en: "Sunday", ml: "ഞായർ" }, hours: { en: "9 AM – 9 PM", ml: "രാവിലെ 9 – രാത്രി 9" } },
     ],
     note: {
       en: "Walk-ins are welcome. For bridal, special occasion, and group bookings, we recommend calling ahead to confirm your preferred time slot.",
@@ -1179,11 +1179,11 @@ export const contactConfig: ContactConfig = {
       en: "Every great beauty experience starts with a visit. Whether you've been planning a new look for months or decide on a whim — DAVIN Beauty Salon on Stadium Link Road, Kaloor is ready to welcome you. Our team is waiting to listen, to create, and to make sure you walk out feeling absolutely brilliant.",
       ml: "ഓരോ മികച്ച സൗന്ദര്യ അനുഭവവും ഒരു സന്ദർശനത്തിൽ തുടങ്ങുന്നു. മാസങ്ങളായി ഒരു പുതിയ ലുക്ക് ആസൂത്രണം ചെയ്യുകയായാലും പെട്ടെന്ന് തീരുമാനിക്കുകയായാലും — കാലൂരിലെ സ്റ്റേഡിയം ലിങ്ക് റോഡിലുള്ള DAVIN ബ്യൂട്ടി സലൂൺ നിങ്ങളെ സ്വാഗതം ചെയ്യാൻ തയ്യാറാണ്. ശ്രദ്ധിക്കാനും സൃഷ്ടിക്കാനും നിങ്ങൾ പൂർണ്ണമായും തിളക്കത്തോടെ പുറത്തിറങ്ങുന്നുവെന്ന് ഉറപ്പാക്കാനും ഞങ്ങളുടെ ടീം കാത്തിരിക്കുന്നു.",
     },
-    address: "PM Square, Stadium Link Road, Kaloor, Kochi – 682025",
+    address: "1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu, Kaloor, Kochi – 682025",
     phone: "+91 80890 69996",
     hours: {
-      en: "Open Every Day: 9:00 AM – 9:00 PM",
-      ml: "എല്ലാ ദിവസവും തുറന്നിരിക്കും: രാവിലെ 9:00 – രാത്രി 9:00",
+      en: "Open Every Day: 9 AM – 9 PM",
+      ml: "എല്ലാ ദിവസവും തുറന്നിരിക്കും: രാവിലെ 9 – രാത്രി 9",
     },
     buttons: [
       { label: { en: "Book Appointment", ml: "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക" }, href: "tel:+918089069996" },

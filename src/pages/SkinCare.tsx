@@ -14,6 +14,8 @@ import {
   FaqAccordion,
   ClosingCta,
   useReveal,
+  handleScatterTiltMove,
+  handleScatterTiltLeave,
 } from '../components/services/premium';
 
 type Bi = Record<'en' | 'ml', string>;
@@ -32,7 +34,7 @@ const SCHEMA = {
     telephone: '+918089069996',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Stadium Link Road, Kathrikadavu',
+      streetAddress: '1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu',
       addressLocality: 'Kaloor, Kochi',
       postalCode: '682025',
     },
@@ -162,6 +164,45 @@ const SERVICES: {
     },
   },
 ];
+
+const DIFFERENCE_PILLARS = {
+  en: [
+    {
+      title: 'Skilled Therapists',
+      description: 'Experienced hands who listen first — every session begins with a real conversation about your skin, not a generic routine.',
+    },
+    {
+      title: 'Premium Products',
+      description: 'Every formula on our shelves is chosen for safety and efficacy, never for margin, so results show without compromising your skin.',
+    },
+    {
+      title: 'Personalized Protocols',
+      description: "Your skin is assessed before treatment begins and every protocol is adapted to your specific type and concerns — visit by visit.",
+    },
+    {
+      title: 'Consistent Visible Results',
+      description: 'No shortcuts, no generic formulas — just a skin care experience in Kochi built around a long-term relationship with your skin.',
+    },
+  ],
+  ml: [
+    {
+      title: 'വിദഗ്ദ്ധ തെറാപ്പിസ്റ്റുകൾ',
+      description: 'ആദ്യം ശ്രദ്ധയോടെ കേൾക്കുന്ന പരിചയസമ്പന്നരായ കൈകൾ — ഓരോ സെഷനും നിങ്ങളുടെ ചർമ്മത്തെക്കുറിച്ചുള്ള യഥാർത്ഥ സംഭാഷണത്തിലാണ് ആരംഭിക്കുന്നത്, സാധാരണ രീതിയിലല്ല.',
+    },
+    {
+      title: 'പ്രീമിയം ഉൽപ്പന്നങ്ങൾ',
+      description: 'ഞങ്ങളുടെ ഷെൽഫിലെ ഓരോ ഫോർമുലയും സുരക്ഷയ്ക്കും ഫലപ്രാപ്തിക്കും വേണ്ടിയാണ് തിരഞ്ഞെടുത്തിരിക്കുന്നത്, ലാഭത്തിനല്ല — ചർമ്മത്തെ വിട്ടുവീഴ്ച ചെയ്യാതെ ഫലങ്ങൾ കാണിക്കുന്നു.',
+    },
+    {
+      title: 'വ്യക്തിഗതമാക്കിയ പ്രോട്ടോക്കോളുകൾ',
+      description: 'ട്രീറ്റ്മെന്റ് ആരംഭിക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ ചർമ്മം വിലയിരുത്തുന്നു, ഓരോ പ്രോട്ടോക്കോളും നിങ്ങളുടെ പ്രത്യേക തരത്തിനും ആശങ്കകൾക്കും അനുസരിച്ച് ക്രമീകരിക്കുന്നു — ഓരോ സന്ദർശനത്തിലും.',
+    },
+    {
+      title: 'സ്ഥിരമായ ദൃശ്യ ഫലങ്ങൾ',
+      description: 'കുറുക്കുവഴികളില്ല, സാധാരണ ഫോർമുലകളില്ല — നിങ്ങളുടെ ചർമ്മവുമായി ദീർഘകാല ബന്ധം കെട്ടിപ്പടുക്കുന്ന ഒരു സ്കിൻ കെയർ അനുഭവം മാത്രം.',
+    },
+  ],
+};
 
 const FAQS: { q: Bi; a: Bi }[] = [
   {
@@ -433,23 +474,59 @@ function ServicesGrid() {
   );
 }
 
+const DIFFERENCE_TILT = [-5, 4, -4, 5] as const;
+
 function DifferenceSection() {
   const { language } = useLanguage();
   const ref = useReveal<HTMLDivElement>();
+  const pillars = DIFFERENCE_PILLARS[language];
   return (
     <section className="p-dark" style={{ borderTop: '1px solid var(--line)', padding: '110px 40px' }}>
-      <div ref={ref} data-reveal-group style={{ maxWidth: 1100, margin: '0 auto', textAlign: 'center' }}>
-        <Eyebrow>{language === 'ml' ? 'വ്യത്യാസം' : 'The Difference'}</Eyebrow>
-        <h2 className="p-serif" style={{ fontSize: 'clamp(26px, 3.2vw, 44px)', fontWeight: 400, margin: '18px 0 26px', textWrap: 'balance' }}>
-          {language === 'ml'
-            ? "DAVIN സ്കിൻ കെയർ വ്യത്യാസം — എന്തുകൊണ്ട് ഞങ്ങൾ കൊച്ചിയിലെ ഏറ്റവും വിശ്വസനീയമായ സ്കിൻ കെയർ സലോൺ ആണ്"
-            : "The DAVIN Skin Care Difference — Why We're Kochi's Most Trusted Skin Care Salon"}
-        </h2>
-        <p style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', maxWidth: 820, margin: '0 auto' }}>
-          {language === 'ml'
-            ? 'എറണാകുളം, കൊച്ചിയിലെ മികച്ച സ്കിൻ കെയർ പാർലറായ DAVIN-ൽ, ഓരോ ഫലവും മൂന്ന് അടിസ്ഥാനങ്ങളിലാണ് നിലകൊള്ളുന്നത്: ചികിത്സിക്കുന്നതിന് മുമ്പ് ശ്രദ്ധയോടെ കേൾക്കുന്ന വിദഗ്ദ്ധ തെറാപ്പിസ്റ്റുകൾ, സുരക്ഷയ്ക്കും ഫലപ്രാപ്തിക്കുമായി തിരഞ്ഞെടുത്ത പ്രീമിയം ഉൽപ്പന്നങ്ങൾ, നിങ്ങളുടെ വ്യക്തിഗത ചർമ്മത്തോടുള്ള ആത്മാർത്ഥമായ പ്രതിബദ്ധത. ട്രീറ്റ്മെന്റ് ആരംഭിക്കുന്നതിന് മുമ്പ് ഓരോ ക്ലയന്റിന്റെയും ചർമ്മം വിലയിരുത്തുന്നു, ഓരോ പ്രോട്ടോക്കോളും അവരുടെ പ്രത്യേക തരത്തിനും ആശങ്കകൾക്കും അനുസരിച്ച് ക്രമീകരിക്കുന്നു, ഓരോ സന്ദർശനത്തിലും ഫലം മെച്ചപ്പെടുത്തുന്നു. സാധാരണ ഫോർമുലകൾ ഇല്ല. കുറുക്കുവഴികൾ ഇല്ല. കൊച്ചിയിൽ സ്ഥിരമായി കാണാവുന്ന ഫലങ്ങൾ നൽകുന്നതും നിങ്ങളും നിങ്ങളുടെ ഏറ്റവും മികച്ച ചർമ്മവും തമ്മിൽ ദീർഘകാല ബന്ധം കെട്ടിപ്പടുക്കുന്നതുമായ ഒരു സ്കിൻ കെയർ അനുഭവം മാത്രം.'
-            : "At DAVIN, the best skin care parlour in Ernakulam, Kochi, every outcome rests on three pillars: skilled therapists who listen before they treat, premium products chosen for safety and efficacy, and a sincere commitment to your individual skin. Every client's skin is assessed before treatment begins, every protocol is adapted to their specific type and concerns, and every result is optimized visit by visit. No generic formulas. No shortcuts. Just a skin care experience in Kochi that consistently delivers visible results and builds a long-term relationship between you and your best possible skin."}
-        </p>
+      <div ref={ref} data-reveal-group style={{ maxWidth: 1100, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center' }}>
+          <Eyebrow>{language === 'ml' ? 'വ്യത്യാസം' : 'The Difference'}</Eyebrow>
+          <h2 className="p-serif" style={{ fontSize: 'clamp(26px, 3.2vw, 44px)', fontWeight: 400, margin: '18px 0 0', textWrap: 'balance' }}>
+            {language === 'ml'
+              ? "DAVIN സ്കിൻ കെയർ വ്യത്യാസം — എന്തുകൊണ്ട് ഞങ്ങൾ കൊച്ചിയിലെ ഏറ്റവും വിശ്വസനീയമായ സ്കിൻ കെയർ സലോൺ ആണ്"
+              : "The DAVIN Skin Care Difference — Why We're Kochi's Most Trusted Skin Care Salon"}
+          </h2>
+        </div>
+        <div style={{ marginTop: 64, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '28px 32px' }}>
+          {pillars.map((pillar, i) => (
+            <div
+              key={pillar.title}
+              data-rotate={DIFFERENCE_TILT[i % DIFFERENCE_TILT.length]}
+              onMouseMove={handleScatterTiltMove}
+              onMouseLeave={handleScatterTiltLeave}
+              style={{
+                background: '#000',
+                color: '#fff',
+                border: '1px solid #fff',
+                padding: '28px 26px',
+                width: 240,
+                boxShadow: '0 10px 24px rgba(0,0,0,0.5)',
+                transform: `rotate(${DIFFERENCE_TILT[i % DIFFERENCE_TILT.length]}deg)`,
+                transformStyle: 'preserve-3d',
+                willChange: 'transform',
+                transition: 'transform 0.25s ease-out',
+              }}
+            >
+              <h4
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: 13,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
+                  fontWeight: 400,
+                  margin: '0 0 10px 0',
+                }}
+              >
+                {pillar.title}
+              </h4>
+              <p style={{ fontSize: 12, lineHeight: '20px', margin: 0, color: 'rgba(255,255,255,0.65)' }}>{pillar.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

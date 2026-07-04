@@ -1178,7 +1178,7 @@ export function ClosingCta({
         <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 12.5, color: 'rgba(255,255,255,0.75)', lineHeight: '24px', margin: `${tagline ? 0 : 32}px 0 40px` }}>
           📍 1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu, Kaloor, Kochi – 682025
           <br />
-          📞 +91 80890 69996 &nbsp;|&nbsp; 🕐 Open Daily: 9:00 AM – 9:00 PM
+          📞 +91 80890 69996 &nbsp;|&nbsp; 🕐 Open Daily: 9 AM – 9 PM
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16 }}>
           <GoldButton href={phoneHref}>{primaryLabel}</GoldButton>

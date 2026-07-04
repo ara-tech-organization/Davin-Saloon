@@ -35,7 +35,7 @@ export default function Gallery() {
         telephone: '+918089069996',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Stadium Link Road, Kathrikadavu',
+          streetAddress: '1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu',
           addressLocality: 'Kaloor, Kochi',
           postalCode: '682025',
         },
