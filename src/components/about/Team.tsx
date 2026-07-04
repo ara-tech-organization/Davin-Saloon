@@ -134,6 +134,7 @@ export default function Team() {
       }}
     >
       <div
+        className="team-grid"
         style={{
           width: '100%',
           maxWidth: '1200px',
@@ -196,7 +197,7 @@ export default function Team() {
             onMouseEnter={(e) => { (e.target as HTMLElement).style.letterSpacing = '0.18em'; (e.target as HTMLElement).style.opacity = '0.6'; }}
             onMouseLeave={(e) => { (e.target as HTMLElement).style.letterSpacing = '0.12em'; (e.target as HTMLElement).style.opacity = '1'; }}
           >
-            Book Your Appointment
+            {language === 'ml' ? 'നിങ്ങളുടെ അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക' : 'Book Your Appointment'}
           </a>
         </div>
 
@@ -375,7 +376,7 @@ export default function Team() {
                           padding: '4px 8px',
                         }}
                       >
-                        Est. 2020 · Kaloor
+                        {language === 'ml' ? 'സ്ഥാപിതം 2020 · കാലൂർ' : 'Est. 2020 · Kaloor'}
                       </span>
                     )}
                   </div>

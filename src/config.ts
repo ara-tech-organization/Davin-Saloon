@@ -9,7 +9,7 @@ export interface SiteConfig {
 }
 
 export interface NavigationLink {
-  label: string
+  label: Record<Language, string>
   href: string
 }
 
@@ -320,11 +320,11 @@ export const siteConfig: SiteConfig = {
 export const navigationConfig: NavigationConfig = {
   brandName: "DAVIN",
   links: [
-    { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "About Us", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: { en: "Home", ml: "ഹോം" }, href: "/" },
+    { label: { en: "Services", ml: "സേവനങ്ങൾ" }, href: "/services" },
+    { label: { en: "Gallery", ml: "ഗാലറി" }, href: "/gallery" },
+    { label: { en: "About Us", ml: "ഞങ്ങളെക്കുറിച്ച്" }, href: "/about" },
+    { label: { en: "Contact", ml: "ബന്ധപ്പെടുക" }, href: "/contact" },
   ],
 }
 
@@ -417,13 +417,13 @@ export const facilitiesConfig: FacilitiesConfig = {
   items: [
     {
       slug: "hair-care",
-      name: { en: "Hair Care", ml: "ഹോർ കോൽ" },
+      name: { en: "Hair Care", ml: "ഹെയർ കെയർ" },
       code: "HC",
       address: {
         en: "Haircuts · Styling · Color · Spa · Keratin · Botox",
-        ml: "ഹോർകറ്റ് · സ്റ്റൈലിംഗ് · കലർ · സ്പാ · കോൽരടിൻ · ബോറ്സ്",
+        ml: "ഹെയർകട്ട് · സ്റ്റൈലിംഗ് · കളർ · സ്പാ · കെരാറ്റിൻ · ബോട്ടോക്സ്",
       },
-      status: { en: "All hair types welcome", ml: "എല്ലാ ഹോർ തരങ്ങളും സ്വാഗതം" },
+      status: { en: "All hair types welcome", ml: "എല്ലാ ഹെയർ ടൈപ്പുകൾക്കും സ്വാഗതം" },
       email: "",
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
@@ -440,27 +440,28 @@ export const facilitiesConfig: FacilitiesConfig = {
       exploreCtaText: { en: "Explore Hair Care", ml: "ഹെയർ കെയർ കാണുക" },
       utcOffset: 5.5,
       article: {
-        title: { en: "Hair Care Services", ml: "ഹോർ കോൽ സേവനകൾ" },
+        title: { en: "Hair Care Services", ml: "ഹെയർ കെയർ സേവനങ്ങൾ" },
         paragraphs: {
           en: [
             "From precision cuts to transformative color, our hair experts craft styles that complement your personality and lifestyle. We use premium products and the latest techniques to ensure your hair looks and feels its absolute best.",
             "Our signature services include professional haircuts for men, women, and children, creative hair coloring with global and streak highlights, rejuvenating hair spa treatments, smoothing keratin therapy, and restorative hair botox treatments.",
           ],
           ml: [
-            "പ്രേക്ഷണ കട്ടുകളിലാരംഭത് നിറംതരമായ കലർവരെക്കും. പ്രമാണ ഉപകരണകളും മേഖലാ ഉപകരണകളും എൽല്ലാം കാണിച്ചുവിക്കുന്നു.",
+            "കൃത്യതയുള്ള കട്ടിംഗ് മുതൽ പരിവർത്തനാത്മകമായ കളറിംഗ് വരെ, ഞങ്ങളുടെ ഹെയർ വിദഗ്ധർ നിങ്ങളുടെ വ്യക്തിത്വത്തിനും ജീവിതശൈലിക്കും യോജിക്കുന്ന സ്റ്റൈലുകൾ സൃഷ്ടിക്കുന്നു. നിങ്ങളുടെ മുടി എപ്പോഴും ഏറ്റവും മികച്ചതായി കാണപ്പെടാനും അനുഭവപ്പെടാനും ഞങ്ങൾ മികച്ച ഉൽപ്പന്നങ്ങളും ഏറ്റവും പുതിയ സാങ്കേതികവിദ്യകളും ഉപയോഗിക്കുന്നു.",
+            "പുരുഷന്മാർക്കും സ്ത്രീകൾക്കും കുട്ടികൾക്കുമുള്ള പ്രൊഫഷണൽ ഹെയർകട്ടുകൾ, ഗ്ലോബൽ, സ്ട്രീക്ക് ഹൈലൈറ്റുകളോടു കൂടിയ ക്രിയേറ്റീവ് ഹെയർ കളറിംഗ്, പുനരുജ്ജീവിപ്പിക്കുന്ന ഹെയർ സ്പാ ചികിത്സകൾ, മൃദുവാക്കുന്ന കെരാറ്റിൻ തെറാപ്പി, പുനഃസ്ഥാപിക്കുന്ന ഹെയർ ബോട്ടോക്സ് ചികിത്സകൾ എന്നിവയാണ് ഞങ്ങളുടെ പ്രധാന സേവനങ്ങൾ.",
           ],
         },
       },
     },
     {
       slug: "skin-care",
-      name: { en: "Skin Care", ml: "സ്കിൻ കോൽ" },
+      name: { en: "Skin Care", ml: "സ്കിൻ കെയർ" },
       code: "SC",
       address: {
         en: "Facials · Clean-ups · Waxing · Threading · De-Tan",
-        ml: "ഫേഷിയൽ · ക്ലീൺ-അപ്സ് · വാക്സിംഗ് · ത്രെഡിംഗ് · ഡീ-ടാൻ",
+        ml: "ഫേഷ്യൽ · ക്ലീൻ-അപ്പ് · വാക്സിംഗ് · ത്രെഡിംഗ് · ഡീ-ടാൻ",
       },
-      status: { en: "Glowing skin guaranteed", ml: "തിളക്കുന്ന സ്കിൻ ഗാരെണ്ടീ" },
+      status: { en: "Glowing skin guaranteed", ml: "തിളങ്ങുന്ന ചർമ്മം ഉറപ്പ്" },
       email: "",
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
@@ -477,27 +478,28 @@ export const facilitiesConfig: FacilitiesConfig = {
       exploreCtaText: { en: "Explore Skin Care", ml: "സ്കിൻ കെയർ കാണുക" },
       utcOffset: 5.5,
       article: {
-        title: { en: "Skin Care Services", ml: "സ്കിൻ കോൽ സേവനകൾ" },
+        title: { en: "Skin Care Services", ml: "സ്കിൻ കെയർ സേവനങ്ങൾ" },
         paragraphs: {
           en: [
             "Reveal your natural radiance with our comprehensive skincare treatments. Our experienced aestheticians analyze your skin type and customize each facial, cleanup, and treatment to address your specific concerns.",
             "We offer deep-cleansing facials, rejuvenating gold and diamond facials, gentle waxing for all body areas, precise eyebrow and upper-lip threading, and effective de-tan treatments to restore your natural complexion.",
           ],
           ml: [
-            "തങ്ങളുടെ സ്വാഭാവികാനം കാണാന് നമ്മുടെ കോൽസ്സകളിലൂടെ സഹായിക്കും.",
+            "ഞങ്ങളുടെ സമഗ്രമായ സ്കിൻകെയർ ചികിത്സകളിലൂടെ നിങ്ങളുടെ സ്വാഭാവിക തിളക്കം വെളിപ്പെടുത്തൂ. ഞങ്ങളുടെ പരിചയസമ്പന്നരായ എസ്തെറ്റീഷ്യൻമാർ നിങ്ങളുടെ ചർമ്മ തരം വിശകലനം ചെയ്ത്, നിങ്ങളുടെ പ്രത്യേക ആശങ്കകൾ പരിഹരിക്കുന്നതിനായി ഓരോ ഫേഷ്യലും ക്ലീൻ-അപ്പും ചികിത്സയും ക്രമീകരിക്കുന്നു.",
+            "ആഴത്തിലുള്ള ക്ലെൻസിംഗ് ഫേഷ്യലുകൾ, പുനരുജ്ജീവിപ്പിക്കുന്ന ഗോൾഡ്, ഡയമണ്ട് ഫേഷ്യലുകൾ, ശരീരത്തിന്റെ എല്ലാ ഭാഗങ്ങൾക്കുമുള്ള മൃദുവായ വാക്സിംഗ്, കൃത്യതയുള്ള ഐബ്രോ, അപ്പർ-ലിപ് ത്രെഡിംഗ്, നിങ്ങളുടെ സ്വാഭാവിക നിറം വീണ്ടെടുക്കുന്ന ഫലപ്രദമായ ഡീ-ടാൻ ചികിത്സകൾ എന്നിവ ഞങ്ങൾ വാഗ്ദാനം ചെയ്യുന്നു.",
           ],
         },
       },
     },
     {
       slug: "nails-grooming",
-      name: { en: "Nails & Grooming", ml: "നേിൽസ് എൺഗ് ഗ്രൂമിംഗ്" },
+      name: { en: "Nails & Grooming", ml: "നെയിൽസ് & ഗ്രൂമിംഗ്" },
       code: "NG",
       address: {
         en: "Manicure · Pedicure · Nail Art · Extensions · Beard",
-        ml: "മാനിക്യൂർ · പേഡിക്യൂർ · നേിൽ ആർട്ട് · ഐക്സ്റ്റെൻഷന്സ് · താഡി",
+        ml: "മാനിക്യൂർ · പെഡിക്യൂർ · നെയിൽ ആർട്ട് · എക്സ്റ്റൻഷനുകൾ · താടി",
       },
-      status: { en: "Pamper your hands & feet", ml: "കൈ എണ്ണം അൽപ്പം കാണിക്കുക" },
+      status: { en: "Pamper your hands & feet", ml: "നിങ്ങളുടെ കൈകളും കാലുകളും പരിപാലിക്കൂ" },
       email: "",
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
@@ -514,14 +516,15 @@ export const facilitiesConfig: FacilitiesConfig = {
       exploreCtaText: { en: "Explore Nails & Grooming", ml: "നെയിൽസ് & ഗ്രൂമിംഗ് കാണുക" },
       utcOffset: 5.5,
       article: {
-        title: { en: "Nails & Grooming", ml: "നേിൽസും എൺഗ് ഗ്രൂമിംഗും" },
+        title: { en: "Nails & Grooming", ml: "നെയിൽസ് & ഗ്രൂമിംഗ്" },
         paragraphs: {
           en: [
             "Indulge in our luxurious nail and grooming services designed to keep you looking polished from head to toe. Our nail technicians are artists, creating everything from classic manicures to elaborate nail art designs.",
             "Services include classic and spa manicures and pedicures, creative nail art with gel and acrylic options, nail extensions for added length and strength, and professional beard grooming and shaping for a refined look.",
           ],
           ml: [
-            "കൈമാത്ത നേിൽകളിലേക്ക് കലാകാരനെ പോലെ വരെ വിമ്മീക്ക് കാണിച്ചുവിക്കുന്നത്.",
+            "തലമുതൽ കാൽ വരെ എപ്പോഴും മിഴിവോടെ കാണപ്പെടാൻ രൂപകൽപ്പന ചെയ്ത ഞങ്ങളുടെ ആഡംബര നെയിൽ, ഗ്രൂമിംഗ് സേവനങ്ങളിൽ മുഴുകൂ. ക്ലാസിക് മാനിക്യൂറുകൾ മുതൽ വിശദമായ നെയിൽ ആർട്ട് ഡിസൈനുകൾ വരെ സൃഷ്ടിക്കുന്ന കലാകാരന്മാരാണ് ഞങ്ങളുടെ നെയിൽ ടെക്നീഷ്യൻമാർ.",
+            "ക്ലാസിക്, സ്പാ മാനിക്യൂറുകളും പെഡിക്യൂറുകളും, ജെൽ, അക്രിലിക് ഓപ്ഷനുകളോടു കൂടിയ ക്രിയേറ്റീവ് നെയിൽ ആർട്ട്, കൂടുതൽ നീളത്തിനും ബലത്തിനുമുള്ള നെയിൽ എക്സ്റ്റൻഷനുകൾ, മികച്ച ലുക്കിനായി പ്രൊഫഷണൽ താടി ഗ്രൂമിംഗും ഷേപ്പിംഗും ഉൾപ്പെടുന്നു.",
           ],
         },
       },
@@ -532,9 +535,9 @@ export const facilitiesConfig: FacilitiesConfig = {
       code: "MU",
       address: {
         en: "Bridal · Party · HD Makeup · Saree Draping",
-        ml: "ബ്രൈഡൽ · പാർട്ടി · HD മേക്കപ്പ് · ശാരി ദ്രപ്പിംഗ്",
+        ml: "ബ്രൈഡൽ · പാർട്ടി · എച്ച്.ഡി മേക്കപ്പ് · സാരി ഡ്രേപ്പിംഗ്",
       },
-      status: { en: "Look stunning for every occasion", ml: "എല്ലാ അവസരങ്ങളിലും മനോഹരമായി കാണിക്കുക" },
+      status: { en: "Look stunning for every occasion", ml: "എല്ലാ അവസരങ്ങളിലും മനോഹരമായി തിളങ്ങൂ" },
       email: "",
       phone: "+91 80890 69996",
       ctaText: { en: "Book Now", ml: "ബുക്ക് ചെയ്യുക" },
@@ -551,14 +554,15 @@ export const facilitiesConfig: FacilitiesConfig = {
       exploreCtaText: { en: "Explore Makeup", ml: "മേക്കപ്പ് കാണുക" },
       utcOffset: 5.5,
       article: {
-        title: { en: "Makeup Services", ml: "മേക്കപ്പ് സേവനകൾ" },
+        title: { en: "Makeup Services", ml: "മേക്കപ്പ് സേവനങ്ങൾ" },
         paragraphs: {
           en: [
             "Our makeup artists are masters of transformation, creating looks that range from naturally beautiful to red-carpet glamorous. Whether it's your wedding day or a special celebration, we ensure you look and feel your absolute best.",
             "We specialize in bridal makeup with trial sessions, party makeup for any celebration, HD makeup for photography-perfect results, and expert saree draping to complete your elegant look. Every session begins with a personalized consultation.",
           ],
           ml: [
-            "വിവാഹത്തിന്തേ അത്യാവശ്യമായി വിളിച്ചമായ അലങ്കാരികൾ തയ്യാരാകുന്നു.",
+            "പരിവർത്തനത്തിന്റെ വിദഗ്ധരാണ് ഞങ്ങളുടെ മേക്കപ്പ് ആർട്ടിസ്റ്റുകൾ, സ്വാഭാവിക സൗന്ദര്യം മുതൽ റെഡ്-കാർപെറ്റ് ഗ്ലാമർ വരെയുള്ള ലുക്കുകൾ സൃഷ്ടിക്കുന്നു. നിങ്ങളുടെ വിവാഹദിനമായാലും ഒരു പ്രത്യേക ആഘോഷമായാലും, നിങ്ങൾ ഏറ്റവും മികച്ചതായി കാണപ്പെടുന്നുവെന്നും അനുഭവപ്പെടുന്നുവെന്നും ഞങ്ങൾ ഉറപ്പാക്കുന്നു.",
+            "ട്രയൽ സെഷനുകളോടു കൂടിയ ബ്രൈഡൽ മേക്കപ്പ്, ഏതു ആഘോഷത്തിനുമുള്ള പാർട്ടി മേക്കപ്പ്, ഫോട്ടോഗ്രഫി-പെർഫെക്റ്റ് ഫലങ്ങൾക്കുള്ള എച്ച്.ഡി മേക്കപ്പ്, നിങ്ങളുടെ ലുക്ക് പൂർത്തിയാക്കുന്ന വിദഗ്ധ സാരി ഡ്രേപ്പിംഗ് എന്നിവയിൽ ഞങ്ങൾ വൈദഗ്ധ്യം നേടിയിരിക്കുന്നു. ഓരോ സെഷനും ആരംഭിക്കുന്നത് ഒരു വ്യക്തിഗത കൺസൾട്ടേഷനോടെയാണ്.",
           ],
         },
       },

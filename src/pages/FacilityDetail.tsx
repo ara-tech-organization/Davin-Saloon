@@ -181,7 +181,7 @@ export default function FacilityDetail() {
                   color: '#fff',
                 }}
               >
-                No Image
+                {language === 'ml' ? 'ചിത്രം ലഭ്യമല്ല' : 'No Image'}
               </div>
             )}
           </div>

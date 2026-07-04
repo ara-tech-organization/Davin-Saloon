@@ -16,8 +16,20 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
   const { language, setLanguage } = useLanguage();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(!transparentOnTop);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navLinksRef = useRef<HTMLDivElement>(null);
   const preToggleRectRef = useRef<DOMRect | null>(null);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     if (!transparentOnTop) return;
@@ -54,7 +66,7 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
   }, [scrolled]);
 
   const navLinks = (
-    <div ref={navLinksRef} style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
+    <div ref={navLinksRef} className="nav-links-desktop" style={{ display: 'flex', alignItems: 'center', gap: '0' }}>
       {navigationConfig.links.map((item, index) => {
         const isServices = item.href === '/services';
         const servicesHref = isServices
@@ -67,7 +79,7 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
           : location.pathname.startsWith(item.href);
         return (
           <div
-            key={`${item.label}-${item.href}`}
+            key={`${item.label.en}-${item.href}`}
             className={isServices ? 'group' : undefined}
             style={{ display: 'flex', alignItems: 'center', position: 'relative' }}
           >
@@ -96,7 +108,7 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
                 (e.target as HTMLElement).style.textDecoration = isActive ? 'underline' : 'none';
               }}
             >
-              {item.label}
+              {item.label[language]}
             </Link>
 
             {isServices && (
@@ -217,7 +229,7 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
 
   return (
     <nav
-      className={scrolled ? 'header-pattern' : ''}
+      className={`nav-bar${scrolled ? ' header-pattern' : ''}`}
       style={{
         position: 'fixed',
         top: 0,
@@ -239,7 +251,7 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
       }}
     >
       {/* Left side: Brand, joined by the nav links pre-scroll */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
+      <div className="nav-brand-group" style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
         <Link
           to="/"
           style={{
@@ -252,6 +264,7 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
           <img
             src={logo}
             alt={navigationConfig.brandName}
+            className="nav-logo"
             style={{
               height: scrolled ? '38px' : '48px',
               width: 'auto',
@@ -264,9 +277,146 @@ export default function Header({ transparentOnTop = false }: HeaderProps) {
       </div>
 
       {/* Right side: menu moves here once scrolled, toggle always here */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
+      <div className="nav-right-group" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         {scrolled && navLinks}
         {languageToggle}
+        <button
+          type="button"
+          className="nav-hamburger"
+          aria-label={
+            language === 'ml'
+              ? mobileOpen
+                ? 'മെനു അടയ്ക്കുക'
+                : 'മെനു തുറക്കുക'
+              : mobileOpen
+              ? 'Close menu'
+              : 'Open menu'
+          }
+          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen((v) => !v)}
+          style={{
+            display: 'none',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '5px',
+            width: '34px',
+            height: '34px',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            flexShrink: 0,
+            padding: 0,
+          }}
+        >
+          <span
+            style={{
+              width: '20px',
+              height: '1.5px',
+              background: '#fff',
+              transition: 'transform 0.3s ease, opacity 0.3s ease',
+              transform: mobileOpen ? 'translateY(6.5px) rotate(45deg)' : 'none',
+            }}
+          />
+          <span
+            style={{
+              width: '20px',
+              height: '1.5px',
+              background: '#fff',
+              opacity: mobileOpen ? 0 : 1,
+              transition: 'opacity 0.3s ease',
+            }}
+          />
+          <span
+            style={{
+              width: '20px',
+              height: '1.5px',
+              background: '#fff',
+              transition: 'transform 0.3s ease, opacity 0.3s ease',
+              transform: mobileOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
+            }}
+          />
+        </button>
+      </div>
+
+      {/* Mobile drawer — full-width dropdown below the fixed header */}
+      <div
+        className="nav-mobile-drawer"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100dvh',
+          background: '#000',
+          zIndex: 49,
+          paddingTop: '78px',
+          boxSizing: 'border-box',
+          overflowY: 'auto',
+          transform: mobileOpen ? 'translateY(0)' : 'translateY(-100%)',
+          opacity: mobileOpen ? 1 : 0,
+          visibility: mobileOpen ? 'visible' : 'hidden',
+          transition: 'transform 0.35s ease, opacity 0.35s ease, visibility 0.35s',
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', padding: '12px 28px 40px' }}>
+          {navigationConfig.links.map((item) => {
+            const isServices = item.href === '/services';
+            const href = isServices ? `/services/${facilitiesConfig.items[0].slug}` : item.href;
+            const isActive = isServices
+              ? location.pathname.startsWith('/services')
+              : item.href === '/'
+              ? location.pathname === '/'
+              : location.pathname.startsWith(item.href);
+            return (
+              <div key={item.href}>
+                <Link
+                  to={href}
+                  style={{
+                    display: 'block',
+                    fontSize: '18px',
+                    fontWeight: 400,
+                    color: '#fff',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    padding: '18px 0',
+                    borderBottom: isServices ? 'none' : '1px solid rgba(255,255,255,0.12)',
+                    textDecoration: isActive ? 'underline' : 'none',
+                    textUnderlineOffset: '5px',
+                  }}
+                >
+                  {item.label[language]}
+                </Link>
+
+                {isServices && (
+                  <div style={{ display: 'flex', flexDirection: 'column', borderBottom: '1px solid rgba(255,255,255,0.12)', paddingBottom: '6px' }}>
+                    {facilitiesConfig.items.map((service) => {
+                      const isServiceActive = location.pathname === `/services/${service.slug}`;
+                      return (
+                        <Link
+                          key={service.slug}
+                          to={`/services/${service.slug}`}
+                          style={{
+                            fontFamily: "'IBM Plex Mono', monospace",
+                            fontSize: '12px',
+                            fontWeight: 400,
+                            color: 'rgba(255,255,255,0.65)',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.06em',
+                            padding: '12px 0 12px 18px',
+                            textDecoration: isServiceActive ? 'underline' : 'none',
+                          }}
+                        >
+                          {service.name[language]}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );

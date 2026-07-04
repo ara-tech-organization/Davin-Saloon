@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './premium.css';
@@ -208,9 +209,11 @@ export function GhostButton({ href, children }: { href: string; children: ReactN
 export function TiltCard({
   children,
   style,
+  float,
 }: {
   children: ReactNode;
   style?: React.CSSProperties;
+  float?: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -232,9 +235,39 @@ export function TiltCard({
   }
 
   return (
-    <div className="p-tilt-wrap">
+    <div className={`p-tilt-wrap${float ? ' p-float' : ''}`}>
       <div ref={cardRef} className="p-card" style={style} onMouseMove={handleMove} onMouseLeave={handleLeave}>
         <div className="p-card-inner">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  3D flip card — click/hover rotates 180° to reveal a back face       */
+/* ------------------------------------------------------------------ */
+export function FlipCard({ front, back }: { front: ReactNode; back: ReactNode }) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div
+      className="p-flip-wrap"
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onClick={() => setFlipped((v) => !v)}
+      role="button"
+      tabIndex={0}
+      aria-pressed={flipped}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setFlipped((v) => !v);
+        }
+      }}
+    >
+      <div className={`p-flip-card${flipped ? ' is-flipped' : ''}`}>
+        <div className="p-flip-face p-flip-front">{front}</div>
+        <div className="p-flip-face p-flip-back">{back}</div>
       </div>
     </div>
   );
@@ -257,26 +290,45 @@ export function CornerFrame() {
 /* ------------------------------------------------------------------ */
 export function ComparisonTable({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
-    <div style={{ overflowX: 'auto' }}>
-      <table className="p-table">
-        <thead>
-          <tr>
-            {headers.map((h) => (
-              <th key={h}>{h}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, i) => (
-            <tr key={i}>
-              {row.map((cell, j) => (
-                <td key={j}>{cell}</td>
+    <>
+      {/* Desktop/tablet: real table. Hidden below the p-table-cards breakpoint
+          so mobile never needs horizontal scroll to read every column. */}
+      <div className="p-table-wrap" style={{ overflowX: 'auto' }}>
+        <table className="p-table">
+          <thead>
+            <tr>
+              {headers.map((h) => (
+                <th key={h}>{h}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {rows.map((row, i) => (
+              <tr key={i}>
+                {row.map((cell, j) => (
+                  <td key={j}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile: same data as stacked label/value cards, no scrolling needed. */}
+      <div className="p-table-cards">
+        {rows.map((row, i) => (
+          <div className="p-table-card" key={i}>
+            <div className="p-table-card-title">{row[0]}</div>
+            {row.slice(1).map((cell, j) => (
+              <div className="p-table-card-row" key={j}>
+                <span className="p-table-card-label">{headers[j + 1]}</span>
+                <span className="p-table-card-value">{cell}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -361,33 +413,47 @@ export function CenteredIntro({
 /* ------------------------------------------------------------------ */
 /*  Numbered section heading — large ghost numeral + display title     */
 /* ------------------------------------------------------------------ */
-export function SectionHeading({ numeral, title, center }: { numeral: string; title: ReactNode; center?: boolean }) {
+export function SectionHeading({
+  numeral,
+  title,
+  center,
+  compact,
+  showNumber = true,
+}: {
+  numeral: string;
+  title: ReactNode;
+  center?: boolean;
+  compact?: boolean;
+  showNumber?: boolean;
+}) {
   return (
-    <div style={{ position: 'relative', marginBottom: 28, textAlign: center ? 'center' : 'left' }}>
-      <span
-        aria-hidden
-        style={{
-          position: 'absolute',
-          top: -56,
-          left: center ? '50%' : -4,
-          transform: center ? 'translateX(-50%)' : undefined,
-          fontFamily: "'Geist Pixel', monospace",
-          fontSize: 140,
-          lineHeight: 1,
-          color: 'transparent',
-          WebkitTextStroke: '1px var(--line)',
-          pointerEvents: 'none',
-          userSelect: 'none',
-          zIndex: 0,
-        }}
-      >
-        {numeral}
-      </span>
+    <div style={{ position: 'relative', marginBottom: compact ? 16 : 28, textAlign: center ? 'center' : 'left' }}>
+      {showNumber && (
+        <span
+          aria-hidden
+          style={{
+            position: 'absolute',
+            top: compact ? -22 : -56,
+            left: center ? '50%' : -4,
+            transform: center ? 'translateX(-50%)' : undefined,
+            fontFamily: "'Geist Pixel', monospace",
+            fontSize: compact ? 64 : 140,
+            lineHeight: 1,
+            color: 'transparent',
+            WebkitTextStroke: '1px var(--line)',
+            pointerEvents: 'none',
+            userSelect: 'none',
+            zIndex: 0,
+          }}
+        >
+          {numeral}
+        </span>
+      )}
       <h3
         className="p-serif"
         style={{
           position: 'relative',
-          fontSize: 'clamp(22px, 2.8vw, 34px)',
+          fontSize: compact ? 'clamp(18px, 2.2vw, 26px)' : 'clamp(22px, 2.8vw, 34px)',
           fontWeight: 400,
           lineHeight: 1.15,
           margin: center ? '0 auto' : 0,
@@ -448,7 +514,7 @@ export function FeatureGrid({ items, columns = 3 }: { items: { title: string; de
 /* ------------------------------------------------------------------ */
 const TILT_ANGLES = [-4, 3, -3, 4, -2, 2] as const;
 
-function handleScatterTiltMove(e: MouseEvent<HTMLDivElement>) {
+export function handleScatterTiltMove(e: MouseEvent<HTMLDivElement>) {
   const card = e.currentTarget;
   const base = Number(card.dataset.rotate ?? 0);
   const rect = card.getBoundingClientRect();
@@ -457,7 +523,7 @@ function handleScatterTiltMove(e: MouseEvent<HTMLDivElement>) {
   card.style.transform = `perspective(900px) rotate(${base}deg) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateY(-4px) scale(1.05)`;
 }
 
-function handleScatterTiltLeave(e: MouseEvent<HTMLDivElement>) {
+export function handleScatterTiltLeave(e: MouseEvent<HTMLDivElement>) {
   const card = e.currentTarget;
   const base = Number(card.dataset.rotate ?? 0);
   card.style.transform = `perspective(900px) rotate(${base}deg) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)`;
@@ -598,9 +664,214 @@ export function TiltStatCards({ items }: { items: { title: string; body: string 
 }
 
 /* ------------------------------------------------------------------ */
+/*  Horizontal scroll-story — pins the section and drags a wide track  */
+/*  sideways as the user scrolls vertically. Falls back to a plain     */
+/*  stacked column below 861px (no scroll-jacking on touch).           */
+/* ------------------------------------------------------------------ */
+export function ScrollStory({
+  children,
+  eyebrow,
+  title,
+  tone = 'dark',
+}: {
+  children: ReactNode;
+  eyebrow?: string;
+  title?: ReactNode;
+  tone?: 'light' | 'dark';
+}) {
+  const wrapRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!wrapRef.current || !trackRef.current) return;
+    const track = trackRef.current;
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 861px)', () => {
+      const distance = () => track.scrollWidth - window.innerWidth;
+      const tween = gsap.to(track, {
+        x: () => -distance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: wrapRef.current,
+          start: 'top top',
+          end: () => `+=${distance()}`,
+          scrub: 0.7,
+          pin: true,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (progressRef.current) progressRef.current.style.transform = `scaleX(${self.progress})`;
+          },
+        },
+      });
+      return () => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      };
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  return (
+    <section ref={wrapRef} className={`p-story p-story-${tone}`}>
+      {(eyebrow || title) && (
+        <div className="p-story-head">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {title && (
+            <h2 className="p-serif p-story-title" style={{ margin: '16px 0 0 0' }}>
+              {title}
+            </h2>
+          )}
+        </div>
+      )}
+      <div className="p-story-track-wrap">
+        <div ref={trackRef} className="p-story-track">
+          {children}
+        </div>
+      </div>
+      <div className="p-story-progress">
+        <div ref={progressRef} className="p-story-progress-bar" />
+      </div>
+      <span className="p-story-hint">Scroll →</span>
+    </section>
+  );
+}
+
+export function StoryPanel({
+  children,
+  width = '92vw',
+  maxWidth = 1200,
+}: {
+  children: ReactNode;
+  width?: string;
+  maxWidth?: number;
+}) {
+  return (
+    <div className="p-story-panel" style={{ width }}>
+      <div className="p-story-panel-inner" style={{ width: '100%', maxWidth, margin: '0 auto' }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Swipe carousel — user-controlled horizontal scroller (drag/swipe/  */
+/*  arrow buttons). No scroll-jacking, no pinning, no fixed viewport   */
+/*  height — each slide is free to be as tall as its content needs,   */
+/*  so nothing can overflow or clip.                                   */
+/* ------------------------------------------------------------------ */
+export function SwipeCarousel({
+  children,
+  eyebrow,
+  title,
+  tone = 'dark',
+}: {
+  children: ReactNode;
+  eyebrow?: string;
+  title?: ReactNode;
+  tone?: 'light' | 'dark';
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  function scrollByDir(dir: 1 | -1) {
+    const track = trackRef.current;
+    if (!track) return;
+    const slide = track.querySelector<HTMLElement>('[data-carousel-slide]');
+    const amount = slide ? slide.getBoundingClientRect().width + 28 : track.clientWidth * 0.85;
+    track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  }
+
+  return (
+    <section className={`p-carousel p-carousel-${tone}`}>
+      {(eyebrow || title) && (
+        <div className="p-carousel-head">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {title && (
+            <h2 className="p-serif p-carousel-title" style={{ margin: '16px 0 0 0' }}>
+              {title}
+            </h2>
+          )}
+        </div>
+      )}
+      <div ref={trackRef} className="p-carousel-track">
+        {children}
+      </div>
+      <div className="p-carousel-controls">
+        <button type="button" aria-label="Previous" className="p-carousel-btn" onClick={() => scrollByDir(-1)}>
+          ←
+        </button>
+        <span className="p-carousel-hint">Drag or swipe to explore</span>
+        <button type="button" aria-label="Next" className="p-carousel-btn" onClick={() => scrollByDir(1)}>
+          →
+        </button>
+      </div>
+    </section>
+  );
+}
+
+export function CarouselSlide({
+  children,
+  width = '86vw',
+  maxWidth = 1000,
+}: {
+  children: ReactNode;
+  width?: string;
+  maxWidth?: number;
+}) {
+  return (
+    <div data-carousel-slide className="p-carousel-slide" style={{ width, maxWidth }}>
+      {children}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tab switcher — click a category, content below swaps instantly.    */
+/*  No scroll/drag interaction; each tab's content is free-height so   */
+/*  it can never overflow or clip.                                     */
+/* ------------------------------------------------------------------ */
+export function TabSwitcher({
+  tabs,
+  active,
+  onChange,
+}: {
+  tabs: { key: string; label: string }[];
+  active: string;
+  onChange: (key: string) => void;
+}) {
+  return (
+    <div className="p-tabs" role="tablist">
+      {tabs.map((tab) => (
+        <button
+          key={tab.key}
+          type="button"
+          role="tab"
+          aria-selected={active === tab.key}
+          className={`p-tab-btn${active === tab.key ? ' is-active' : ''}`}
+          onClick={() => onChange(tab.key)}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export function TabPanel({ children, maxWidth = 1180 }: { children: ReactNode; maxWidth?: number }) {
+  return (
+    <div className="p-tab-panel">
+      <div style={{ width: '100%', maxWidth, margin: '0 auto' }}>{children}</div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Split media block — offset framed image + heading/copy             */
 /* ------------------------------------------------------------------ */
-function handleMediaTiltMove(e: MouseEvent<HTMLDivElement>) {
+export function handleMediaTiltMove(e: MouseEvent<HTMLDivElement>) {
   const card = e.currentTarget;
   const rect = card.getBoundingClientRect();
   const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -610,11 +881,77 @@ function handleMediaTiltMove(e: MouseEvent<HTMLDivElement>) {
   if (img) (img as HTMLElement).style.transform = 'scale(1.06)';
 }
 
-function handleMediaTiltLeave(e: MouseEvent<HTMLDivElement>) {
+export function handleMediaTiltLeave(e: MouseEvent<HTMLDivElement>) {
   const card = e.currentTarget;
   card.style.transform = 'perspective(1100px) rotateY(0deg) rotateX(0deg) scale(1)';
   const img = card.querySelector('img');
   if (img) (img as HTMLElement).style.transform = 'scale(1)';
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tilt frame — standalone 3D-tilt framed photo, reusable outside     */
+/*  SplitMedia for one-off panels that need a single tilting image     */
+/* ------------------------------------------------------------------ */
+export function TiltFrame({
+  image,
+  imageAlt,
+  badge,
+  aspectRatio = '4 / 5',
+  float,
+}: {
+  image: string;
+  imageAlt: string;
+  badge?: string;
+  aspectRatio?: string;
+  float?: boolean;
+}) {
+  return (
+    <div className={float ? 'p-float' : undefined} style={{ position: 'relative' }}>
+      <div
+        aria-hidden
+        style={{ position: 'absolute', top: 14, left: 14, right: -14, bottom: -14, border: '1px solid var(--line-strong)', zIndex: 0 }}
+      />
+      <div
+        onMouseMove={handleMediaTiltMove}
+        onMouseLeave={handleMediaTiltLeave}
+        style={{
+          position: 'relative',
+          width: '100%',
+          aspectRatio,
+          overflow: 'hidden',
+          border: '1px solid var(--line-strong)',
+          zIndex: 1,
+          transformStyle: 'preserve-3d',
+          willChange: 'transform',
+          transition: 'transform 0.2s ease-out',
+        }}
+      >
+        <img
+          src={image}
+          alt={imageAlt}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%)', transition: 'transform 0.5s ease' }}
+        />
+      </div>
+      {badge && (
+        <span
+          style={{
+            display: 'inline-block',
+            marginTop: 16,
+            transform: 'rotate(-2deg)',
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: 10,
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            color: 'var(--btn-fg)',
+            background: 'var(--btn-bg)',
+            padding: '6px 12px',
+          }}
+        >
+          {badge}
+        </span>
+      )}
+    </div>
+  );
 }
 
 export function SplitMedia({
@@ -729,6 +1066,7 @@ export function ClosingCta({
   primaryLabel = 'Book Now',
   secondaryLabel = 'Call Us',
   phoneHref = 'tel:+918089069996',
+  secondaryHref,
   crossLinks,
 }: {
   title: ReactNode;
@@ -737,6 +1075,7 @@ export function ClosingCta({
   primaryLabel?: string;
   secondaryLabel?: string;
   phoneHref?: string;
+  secondaryHref?: string;
   crossLinks: { label: string; href: string }[];
 }) {
   const ref = useReveal<HTMLDivElement>();
@@ -759,7 +1098,7 @@ export function ClosingCta({
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16 }}>
           <GoldButton href={phoneHref}>{primaryLabel}</GoldButton>
-          <GhostButton href={phoneHref}>{secondaryLabel}</GhostButton>
+          <GhostButton href={secondaryHref ?? phoneHref}>{secondaryLabel}</GhostButton>
         </div>
         <CrossLinks links={crossLinks} />
       </div>
@@ -774,9 +1113,9 @@ export function CrossLinks({ links }: { links: { label: string; href: string }[]
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px 28px', marginTop: 56 }}>
       {links.map((l) => (
-        <a
+        <Link
           key={l.href}
-          href={l.href}
+          to={l.href}
           style={{
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: 11,
@@ -798,7 +1137,7 @@ export function CrossLinks({ links }: { links: { label: string; href: string }[]
           }}
         >
           {l.label}
-        </a>
+        </Link>
       ))}
     </div>
   );

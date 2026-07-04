@@ -73,6 +73,7 @@ export default function WhyChooseUs() {
 
         <ul
           ref={listRef}
+          className="why-choose-list"
           style={{
             listStyle: 'none',
             margin: 0,

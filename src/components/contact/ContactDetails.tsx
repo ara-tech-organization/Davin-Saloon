@@ -99,14 +99,14 @@ export default function ContactDetails() {
             textWrap: 'balance',
           }}
         >
-          Contact Details
+          {language === 'ml' ? 'ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ' : 'Contact Details'}
         </h2>
 
         {/* Call + Visit cards, 3D tilt on hover */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
             gap: '32px',
             marginBottom: '80px',
           }}
@@ -134,7 +134,7 @@ export default function ContactDetails() {
               📞
             </span>
             <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', margin: '0 0 14px 0' }}>
-              Call or WhatsApp
+              {language === 'ml' ? 'വിളിക്കുക അല്ലെങ്കിൽ വാട്സ്ആപ്പ്' : 'Call or WhatsApp'}
             </p>
             <h3
               style={{
@@ -224,7 +224,7 @@ export default function ContactDetails() {
               📍
             </span>
             <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', margin: '0 0 14px 0' }}>
-              Visit Us
+              {language === 'ml' ? 'ഞങ്ങളെ സന്ദർശിക്കൂ' : 'Visit Us'}
             </p>
             <h3
               style={{

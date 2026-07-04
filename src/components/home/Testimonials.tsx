@@ -74,6 +74,7 @@ export default function Testimonials() {
 
       <div
         ref={gridRef}
+        className="testimonials-grid"
         style={{
           width: '100%',
           maxWidth: '1200px',

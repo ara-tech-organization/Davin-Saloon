@@ -1,8 +1,22 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { archivesConfig } from '../../config';
 import { useLanguage } from '../../contexts/LanguageContext';
+
+// The carousel's whole 3D geometry (radius, card size) is designed around a
+// 900px-wide baseline — below that we scale everything down together so it
+// never overflows a narrow viewport instead of clipping.
+const BASE_VIEWPORT = 900;
+const BASE_RADIUS = 500;
+const BASE_CAROUSEL = { width: 400, height: 500 };
+const BASE_CARD = { width: 350, height: 420 };
+const BASE_TRANSLATE_Z = -550;
+
+function getScale() {
+  if (typeof window === 'undefined') return 1;
+  return Math.min(1, window.innerWidth / BASE_VIEWPORT);
+}
 
 export default function Archives() {
   const { language } = useLanguage();
@@ -11,13 +25,20 @@ export default function Archives() {
   const wrapperRef = useRef<HTMLElement>(null);
   const scrollTlRef = useRef<gsap.core.Timeline | null>(null);
   const vaultImages = archivesConfig.items;
+  const [scale, setScale] = useState(getScale);
 
-  const setupCarouselCells = useCallback(() => {
+  useEffect(() => {
+    const onResize = () => setScale(getScale());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const setupCarouselCells = useCallback((currentScale: number) => {
     if (!carouselRef.current) return;
     const cells = carouselRef.current.querySelectorAll<HTMLElement>('.carousel__cell');
     const count = cells.length;
     if (!count) return;
-    const radius = 500;
+    const radius = BASE_RADIUS * currentScale;
     const angleStep = 360 / count;
 
     cells.forEach((cell, index) => {
@@ -50,7 +71,7 @@ export default function Archives() {
   }, []);
 
   useEffect(() => {
-    setupCarouselCells();
+    setupCarouselCells(scale);
     createScrollTimeline();
 
     return () => {
@@ -59,7 +80,7 @@ export default function Archives() {
         scrollTlRef.current.kill();
       }
     };
-  }, [setupCarouselCells, createScrollTimeline]);
+  }, [scale, setupCarouselCells, createScrollTimeline]);
 
   if (!archivesConfig.sectionLabel[language] && !archivesConfig.vaultTitle[language] && vaultImages.length === 0) {
     return null;
@@ -149,12 +170,12 @@ export default function Archives() {
           ref={carouselRef}
           className="carousel"
           style={{
-            width: '400px',
-            height: '500px',
+            width: `${BASE_CAROUSEL.width * scale}px`,
+            height: `${BASE_CAROUSEL.height * scale}px`,
             position: 'absolute',
             transformStyle: 'preserve-3d',
             willChange: 'transform',
-            transform: 'translateZ(-550px) rotateY(0deg)',
+            transform: `translateZ(${BASE_TRANSLATE_Z * scale}px) rotateY(0deg)`,
           }}
         >
           {vaultImages.map((item, index) => (
@@ -163,8 +184,8 @@ export default function Archives() {
               className="carousel__cell"
               style={{
                 position: 'absolute',
-                width: '350px',
-                height: '420px',
+                width: `${BASE_CARD.width * scale}px`,
+                height: `${BASE_CARD.height * scale}px`,
                 left: '0',
                 top: '0',
                 transformStyle: 'preserve-3d',

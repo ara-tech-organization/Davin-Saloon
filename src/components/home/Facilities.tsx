@@ -291,6 +291,41 @@ export default function Facilities() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const facilities = facilitiesConfig.items;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const activeIndexRef = useRef(0);
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  const scrollToIndex = (index: number) => {
+    const length = facilities.length;
+    if (!length) return;
+    const clamped = ((index % length) + length) % length;
+    const grid = gridRef.current;
+    const child = grid?.children[clamped] as HTMLElement | undefined;
+    if (grid && child) {
+      grid.scrollTo({ left: child.offsetLeft, behavior: 'smooth' });
+    }
+    setActiveIndex(clamped);
+  };
+
+  useEffect(() => {
+    if (!isMobile || facilities.length < 2) return;
+    const interval = setInterval(() => {
+      scrollToIndex(activeIndexRef.current + 1);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isMobile, facilities.length]);
 
   useEffect(() => {
     if (!sectionRef.current || !gridRef.current) return;
@@ -385,23 +420,46 @@ export default function Facilities() {
         )}
       </div>
 
-      <div
-        ref={gridRef}
-        className="facilities-grid"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          borderTop: '1px solid #000',
-        }}
-      >
-        {facilities.map((facility, index) => (
-          <FacilityColumn
-            key={facility.slug || `${facility.name[language]}-${index}`}
-            facility={facility}
-            isLast={index === facilities.length - 1}
-            lang={language}
-          />
-        ))}
+      <div className="facilities-grid-wrap" style={{ position: 'relative' }}>
+        <div
+          ref={gridRef}
+          className="facilities-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            borderTop: '1px solid #000',
+          }}
+        >
+          {facilities.map((facility, index) => (
+            <FacilityColumn
+              key={facility.slug || `${facility.name[language]}-${index}`}
+              facility={facility}
+              isLast={index === facilities.length - 1}
+              lang={language}
+            />
+          ))}
+        </div>
+
+        {facilities.length > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous"
+              className="facilities-arrow facilities-arrow-left"
+              onClick={() => scrollToIndex(activeIndex - 1)}
+            >
+              &#8592;
+            </button>
+            <button
+              type="button"
+              aria-label="Next"
+              className="facilities-arrow facilities-arrow-right"
+              onClick={() => scrollToIndex(activeIndex + 1)}
+            >
+              &#8594;
+            </button>
+          </>
+        )}
       </div>
     </section>
   );

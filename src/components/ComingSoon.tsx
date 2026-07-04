@@ -2,8 +2,17 @@ import { useEffect } from 'react';
 import CustomCursor from '../components/CustomCursor';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useLanguage } from '../contexts/LanguageContext';
+import type { Language } from '../config';
 
-export default function ComingSoon({ title, subtitle }: { title: string; subtitle: string }) {
+export default function ComingSoon({
+  title,
+  subtitle,
+}: {
+  title: Record<Language, string>;
+  subtitle: Record<Language, string>;
+}) {
+  const { language } = useLanguage();
   useEffect(() => {
     document.body.style.cursor = 'none';
     const style = document.createElement('style');
@@ -55,7 +64,7 @@ export default function ComingSoon({ title, subtitle }: { title: string; subtitl
               margin: '0 0 20px 0',
             }}
           >
-            Coming Soon
+            {language === 'ml' ? 'ഉടൻ വരുന്നു' : 'Coming Soon'}
           </p>
           <h1
             style={{
@@ -67,7 +76,7 @@ export default function ComingSoon({ title, subtitle }: { title: string; subtitl
               textWrap: 'balance',
             }}
           >
-            {title}
+            {title[language]}
           </h1>
           <p
             style={{
@@ -80,7 +89,7 @@ export default function ComingSoon({ title, subtitle }: { title: string; subtitl
               letterSpacing: 'normal',
             }}
           >
-            {subtitle}
+            {subtitle[language]}
           </p>
           <a
             href="tel:+918089069996"
@@ -103,7 +112,7 @@ export default function ComingSoon({ title, subtitle }: { title: string; subtitl
               (e.target as HTMLElement).style.letterSpacing = '0.12em';
             }}
           >
-            Book Appointment
+            {language === 'ml' ? 'അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക' : 'Book Appointment'}
           </a>
         </div>
       </div>

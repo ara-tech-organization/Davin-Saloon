@@ -66,6 +66,7 @@ export default function Footer() {
 
       {/* Footer content */}
       <div
+        className="footer-grid"
         style={{
           padding: '56px 40px 40px',
           display: 'grid',
@@ -104,11 +105,15 @@ export default function Footer() {
           <p style={{ fontSize: '11px', margin: '0 0 16px 0', color: 'rgba(0,0,0,0.45)' }}>
             {footerConfig.quickLinksLabel[language]}
           </p>
-          {navigationConfig.links.map((link) => (
-            <Link key={link.href} to={link.href} style={linkStyle}>
-              {link.label}
-            </Link>
-          ))}
+          {navigationConfig.links.map((link) => {
+            const isServices = link.href === '/services';
+            const href = isServices ? `/services/${facilitiesConfig.items[0].slug}` : link.href;
+            return (
+              <Link key={link.href} to={href} style={linkStyle}>
+                {link.label[language]}
+              </Link>
+            );
+          })}
         </div>
 
         <div>

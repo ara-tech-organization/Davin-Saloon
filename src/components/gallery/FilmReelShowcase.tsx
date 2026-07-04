@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { GalleryCategoryData } from '../../config';
@@ -11,12 +11,33 @@ interface FilmReelShowcaseProps {
   category: GalleryCategoryData;
 }
 
+// The reel's whole layout (wheel diameter, frame radius/size) is designed
+// around a 700px-wide baseline — below that we scale everything down
+// together via a viewport-driven factor instead of letting it overflow.
+const BASE_VIEWPORT = 700;
+const BASE_WHEEL = 640;
+const BASE_RADIUS = 260;
+const BASE_FRAME = { width: 140, height: 180, imageHeight: 128 };
+const BASE_HUB = 100;
+
+function getReelScale() {
+  if (typeof window === 'undefined') return 1;
+  return Math.min(1, (window.innerWidth - 32) / BASE_VIEWPORT);
+}
+
 export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
   const { language } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const items = category.items;
+  const [scale, setScale] = useState(getReelScale);
+
+  useEffect(() => {
+    const onResize = () => setScale(getReelScale());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   const subtitle = language === 'en'
     ? 'A glimpse into our world of transformation'
@@ -68,7 +89,14 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
   }, []);
 
   const count = items.length;
-  const radius = 260;
+  const radius = BASE_RADIUS * scale;
+  const wheelSize = BASE_WHEEL * scale;
+  const frame = {
+    width: BASE_FRAME.width * scale,
+    height: BASE_FRAME.height * scale,
+    imageHeight: BASE_FRAME.imageHeight * scale,
+  };
+  const hubSize = BASE_HUB * scale;
 
   return (
     <section
@@ -116,7 +144,7 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
         </h2>
       </div>
 
-      <div style={{ position: 'relative', width: '640px', height: '640px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ position: 'relative', width: `${wheelSize}px`, height: `${wheelSize}px`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ position: 'absolute', inset: '20px', borderRadius: '50%', border: '1px solid rgba(0,0,0,0.08)' }} />
         <div style={{ position: 'absolute', inset: '45px', borderRadius: '50%', border: '1px dashed rgba(0,0,0,0.1)' }} />
 
@@ -135,8 +163,8 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
                   left: '50%',
                   top: '50%',
                   transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${angle + 90}deg)`,
-                  width: '140px',
-                  height: '180px',
+                  width: `${frame.width}px`,
+                  height: `${frame.height}px`,
                 }}
               >
                 <div style={{ width: '100%', height: '100%', background: '#000', padding: '6px 6px 24px 6px', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
@@ -144,7 +172,7 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
                     src={item.src}
                     alt={item.alt[language]}
                     dark
-                    style={{ height: '128px', filter: 'grayscale(100%)' }}
+                    style={{ height: `${frame.imageHeight}px`, filter: 'grayscale(100%)' }}
                   />
                   <p
                     style={{
@@ -175,8 +203,8 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
         <div
           style={{
             position: 'absolute',
-            width: '100px',
-            height: '100px',
+            width: `${hubSize}px`,
+            height: `${hubSize}px`,
             borderRadius: '50%',
             background: '#000',
             display: 'flex',
@@ -186,7 +214,7 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
             boxShadow: '0 0 40px rgba(0,0,0,0.1)',
           }}
         >
-          <div style={{ width: '70px', height: '70px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: `${hubSize * 0.7}px`, height: `${hubSize * 0.7}px`, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ fontFamily: "'Geist Pixel', monospace", fontSize: '10px', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.1em' }}>D</span>
           </div>
         </div>
@@ -202,7 +230,7 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
               background: 'rgba(0,0,0,0.12)',
               left: '50%',
               top: '50%',
-              transform: `translate(-50%, -50%) rotate(${deg}deg) translateX(55px)`,
+              transform: `translate(-50%, -50%) rotate(${deg}deg) translateX(${55 * scale}px)`,
             }}
           />
         ))}
@@ -211,7 +239,7 @@ export default function FilmReelShowcase({ category }: FilmReelShowcaseProps) {
       <div style={{ position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <div style={{ width: '40px', height: '1px', background: 'rgba(0,0,0,0.15)' }} />
         <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '9px', letterSpacing: '0.2em', color: 'rgba(0,0,0,0.3)', textTransform: 'uppercase' }}>
-          {count} Frames
+          {language === 'ml' ? `${count} ഫ്രെയിമുകൾ` : `${count} Frames`}
         </span>
         <div style={{ width: '40px', height: '1px', background: 'rgba(0,0,0,0.15)' }} />
       </div>

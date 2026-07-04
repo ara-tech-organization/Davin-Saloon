@@ -26,6 +26,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      className="home-hero"
       style={{
         position: 'relative',
         width: '100%',
@@ -77,6 +78,7 @@ export default function Hero() {
 
       {/* Left Panel */}
       <div
+        className="home-hero-left"
         style={{
           position: 'relative',
           zIndex: 2,
@@ -253,6 +255,7 @@ export default function Hero() {
 
       {/* Right Panel - ASCII Canvas with Salon Image (unchanged) */}
       <div
+        className="home-hero-right"
         style={{
           position: 'relative',
           zIndex: 2,

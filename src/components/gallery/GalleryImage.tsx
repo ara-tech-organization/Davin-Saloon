@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface GalleryImageProps {
   src: string;
@@ -11,6 +12,7 @@ interface GalleryImageProps {
 
 export default function GalleryImage({ src, alt, label, dark = true, className, style }: GalleryImageProps) {
   const [errored, setErrored] = useState(false);
+  const { language } = useLanguage();
 
   if (errored) {
     return (
@@ -42,7 +44,7 @@ export default function GalleryImage({ src, alt, label, dark = true, className, 
           </span>
         )}
         <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '9px', color: dark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)' }}>
-          Image coming soon
+          {language === 'ml' ? 'ചിത്രം ഉടൻ വരുന്നു' : 'Image coming soon'}
         </span>
       </div>
     );

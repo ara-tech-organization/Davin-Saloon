@@ -101,6 +101,7 @@ export default function Story() {
     >
       <div style={{ width: '100%', maxWidth: '1200px' }}>
         <div
+          className="story-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'minmax(320px, 44%) minmax(320px, 1fr)',
@@ -166,7 +167,7 @@ export default function Story() {
                 padding: '6px 12px',
               }}
             >
-              Since 2020 · Kaloor
+              {language === 'ml' ? '2020 മുതൽ · കാലൂർ' : 'Since 2020 · Kaloor'}
             </span>
           </div>
 

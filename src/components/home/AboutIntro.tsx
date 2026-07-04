@@ -93,6 +93,7 @@ export default function Manifesto() {
       }}
     >
       <div
+        className="manifesto-grid"
         style={{
           width: '100%',
           maxWidth: '1360px',
@@ -222,6 +223,7 @@ export default function Manifesto() {
       {/* Decorative Image Strip */}
       <div
         ref={imageStripRef}
+        className="manifesto-strip"
         style={{
           width: '100%',
           maxWidth: '1360px',
