@@ -8,6 +8,9 @@ import GalleryIntro from '../components/gallery/GalleryIntro';
 import GalleryCategory from '../components/gallery/GalleryCategory';
 import FilmReelShowcase from '../components/gallery/FilmReelShowcase';
 
+const META_KEYWORDS =
+  'DAVIN Beauty Salon gallery, salon transformation photos Kochi, hair makeover Kaloor, bridal makeup gallery Kochi, nail art photos Kochi, before after salon Kochi';
+
 export default function Gallery() {
   useEffect(() => {
     const prevTitle = document.title;
@@ -20,6 +23,15 @@ export default function Gallery() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = galleryConfig.metaDescription;
+
+    let metaKeywords = document.querySelector<HTMLMetaElement>('meta[name="keywords"]');
+    const prevKeywords = metaKeywords?.content ?? '';
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = 'keywords';
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = META_KEYWORDS;
 
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
@@ -57,6 +69,7 @@ export default function Gallery() {
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      if (metaKeywords) metaKeywords.content = prevKeywords;
       document.head.removeChild(schema);
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);

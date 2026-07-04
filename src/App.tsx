@@ -22,16 +22,22 @@ function App() {
   }, [pathname, hash]);
 
   useEffect(() => {
-    document.title = siteConfig.siteTitle || 'Davin Beauty Salon';
     document.documentElement.lang = siteConfig.language || 'en';
 
-    let metaDescription = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
+    // Home manages its own title/description; every other route sets its own
+    // page-specific meta tags in a child effect. Since effects fire child-first
+    // on mount, setting site-wide defaults here unconditionally would clobber
+    // whatever a directly-loaded deep page (e.g. /services/makeup) just set.
+    if (pathname === '/') {
+      document.title = siteConfig.siteTitle || 'Davin Beauty Salon';
+      let metaDescription = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+      if (!metaDescription) {
+        metaDescription = document.createElement('meta');
+        metaDescription.name = 'description';
+        document.head.appendChild(metaDescription);
+      }
+      metaDescription.content = siteConfig.siteDescription || '';
     }
-    metaDescription.content = siteConfig.siteDescription || '';
 
     // Hide default cursor
     document.body.style.cursor = 'none';

@@ -23,6 +23,8 @@ type Bi = Record<'en' | 'ml', string>;
 const META_TITLE = 'Skin Care Services in Kochi | DAVIN Beauty Salon';
 const META_DESCRIPTION =
   'Reveal your best skin at DAVIN Beauty Salon, Kochi. Our skilled therapists provide personalized skin care treatments for a flawless, healthy glow.';
+const META_KEYWORDS =
+  'skin care salon Kochi, facial Kaloor, de-tan treatment Kochi, waxing Kochi, threading Kaloor, clean-up facial Kochi, skin therapist Kochi';
 
 const SCHEMA = {
   '@context': 'https://schema.org',
@@ -270,7 +272,7 @@ const FAQS: { q: Bi; a: Bi }[] = [
   },
 ];
 
-function useMetaTags(title: string, description: string, schema?: object) {
+function useMetaTags(title: string, description: string, schema?: object, keywords?: string) {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = title;
@@ -282,6 +284,17 @@ function useMetaTags(title: string, description: string, schema?: object) {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = description;
+
+    let metaKeywords = document.querySelector<HTMLMetaElement>('meta[name="keywords"]');
+    const prevKeywords = metaKeywords?.content ?? '';
+    if (keywords) {
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.name = 'keywords';
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.content = keywords;
+    }
 
     let schemaTag: HTMLScriptElement | null = null;
     if (schema) {
@@ -305,11 +318,12 @@ function useMetaTags(title: string, description: string, schema?: object) {
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      if (keywords && metaKeywords) metaKeywords.content = prevKeywords;
       if (schemaTag) document.head.removeChild(schemaTag);
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);
     };
-  }, [title, description, schema]);
+  }, [title, description, schema, keywords]);
 }
 
 function Intro() {
@@ -553,7 +567,7 @@ function FaqSection() {
 
 export default function SkinCare() {
   const { language } = useLanguage();
-  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA);
+  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA, META_KEYWORDS);
 
   return (
     <>

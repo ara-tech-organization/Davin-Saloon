@@ -25,6 +25,8 @@ type Lang = 'en' | 'ml';
 const META_TITLE = 'Nail Art & Grooming in Kochi | DAVIN Beauty Salon';
 const META_DESCRIPTION =
   'Get stunning nail art & grooming services at DAVIN Beauty Salon, Kochi. Manicures, pedicures, nail extensions & more for perfectly polished nails.';
+const META_KEYWORDS =
+  'nail salon Kochi, manicure Kaloor, pedicure Kochi, nail art Kochi, gel nail extensions Kochi, beard grooming Kaloor, nail technician Kochi';
 
 const SCHEMA = {
   '@context': 'https://schema.org',
@@ -36,7 +38,7 @@ const SCHEMA = {
     telephone: '+918089069996',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Stadium Link Road, Kathrikadavu',
+      streetAddress: '1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu',
       addressLocality: 'Kaloor, Kochi',
       postalCode: '682025',
     },
@@ -329,7 +331,7 @@ const CLOSING_CTA_TEXT = {
   },
 };
 
-function useMetaTags(title: string, description: string, schema?: object) {
+function useMetaTags(title: string, description: string, schema?: object, keywords?: string) {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = title;
@@ -341,6 +343,17 @@ function useMetaTags(title: string, description: string, schema?: object) {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = description;
+
+    let metaKeywords = document.querySelector<HTMLMetaElement>('meta[name="keywords"]');
+    const prevKeywords = metaKeywords?.content ?? '';
+    if (keywords) {
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.name = 'keywords';
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.content = keywords;
+    }
 
     let schemaTag: HTMLScriptElement | null = null;
     if (schema) {
@@ -364,11 +377,12 @@ function useMetaTags(title: string, description: string, schema?: object) {
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      if (keywords && metaKeywords) metaKeywords.content = prevKeywords;
       if (schemaTag) document.head.removeChild(schemaTag);
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);
     };
-  }, [title, description, schema]);
+  }, [title, description, schema, keywords]);
 }
 
 function ManicurePanel({ language }: { language: Lang }) {
@@ -586,7 +600,7 @@ function FaqSection({ language }: { language: Lang }) {
 }
 
 export default function NailsGrooming() {
-  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA);
+  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA, META_KEYWORDS);
   const { language } = useLanguage();
 
   return (

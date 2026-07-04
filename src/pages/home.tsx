@@ -18,6 +18,9 @@ import Footer from '../components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const META_KEYWORDS =
+  'DAVIN Beauty Salon, beauty salon Kaloor Kochi, hair salon Kochi, skin care salon Kochi, bridal makeup Kochi, nails and grooming Kochi, unisex salon Kaloor, salon near Stadium Link Road';
+
 export default function Home() {
   const { hash } = useLocation();
   const lenisRef = useRef<Lenis | null>(null);
@@ -33,6 +36,15 @@ export default function Home() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = siteConfig.siteDescription;
+
+    let metaKeywords = document.querySelector<HTMLMetaElement>('meta[name="keywords"]');
+    const prevKeywords = metaKeywords?.content ?? '';
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = 'keywords';
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = META_KEYWORDS;
 
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
@@ -66,6 +78,7 @@ export default function Home() {
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      if (metaKeywords) metaKeywords.content = prevKeywords;
       document.head.removeChild(schema);
     };
   }, []);

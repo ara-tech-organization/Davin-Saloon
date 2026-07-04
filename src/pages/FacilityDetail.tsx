@@ -15,6 +15,11 @@ export default function FacilityDetail() {
   );
 
   useEffect(() => {
+    const prevTitle = document.title;
+    document.title = facility
+      ? `${facility.article.title[language]} | DAVIN Beauty Salon`
+      : `${facilitiesConfig.detailNotFoundText[language]} | DAVIN Beauty Salon`;
+
     document.body.style.cursor = 'none';
     const style = document.createElement('style');
     style.innerHTML = `
@@ -26,10 +31,11 @@ export default function FacilityDetail() {
     `;
     document.head.appendChild(style);
     return () => {
+      document.title = prevTitle;
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);
     };
-  }, []);
+  }, [facility, language]);
 
   if (!facility) {
     return (

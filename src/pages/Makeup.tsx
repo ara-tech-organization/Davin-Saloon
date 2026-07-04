@@ -27,6 +27,8 @@ import {
 const META_TITLE = 'Makeup Artist in Kochi | DAVIN Beauty Salon';
 const META_DESCRIPTION =
   'DAVIN Beauty Salon in Kochi is home to experienced makeup artists specializing in bridal, party & everyday looks. Step in and let us create your perfect look!';
+const META_KEYWORDS =
+  'bridal makeup Kochi, makeup artist Kaloor, HD makeup Kochi, party makeup Kochi, saree draping Kochi, FTV bridal makeup, makeup salon Kaloor';
 
 const BRIDAL_STYLES = {
   en: [
@@ -229,7 +231,7 @@ const SCHEMA = {
   },
 };
 
-function useMetaTags(title: string, description: string, schema?: object) {
+function useMetaTags(title: string, description: string, schema?: object, keywords?: string) {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = title;
@@ -241,6 +243,17 @@ function useMetaTags(title: string, description: string, schema?: object) {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = description;
+
+    let metaKeywords = document.querySelector<HTMLMetaElement>('meta[name="keywords"]');
+    const prevKeywords = metaKeywords?.content ?? '';
+    if (keywords) {
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.name = 'keywords';
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.content = keywords;
+    }
 
     let schemaTag: HTMLScriptElement | null = null;
     if (schema) {
@@ -264,11 +277,12 @@ function useMetaTags(title: string, description: string, schema?: object) {
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      if (keywords && metaKeywords) metaKeywords.content = prevKeywords;
       if (schemaTag) document.head.removeChild(schemaTag);
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);
     };
-  }, [title, description, schema]);
+  }, [title, description, schema, keywords]);
 }
 
 function BridalPanel() {
@@ -461,7 +475,7 @@ function FaqSection() {
 }
 
 export default function Makeup() {
-  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA);
+  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA, META_KEYWORDS);
   const { language } = useLanguage();
 
   return (

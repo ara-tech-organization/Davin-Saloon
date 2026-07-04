@@ -20,6 +20,8 @@ type Bi = { en: string; ml: string };
 const META_TITLE = 'Hair Care Services in Kochi | DAVIN Beauty Salon Kaloor';
 const META_DESCRIPTION =
   "Get the hair you've always wanted at DAVIN Beauty Salon in Kaloor, Kochi. Professional hair care services tailored to your unique style and needs.";
+const META_KEYWORDS =
+  'hair salon Kochi, haircut Kaloor, hair color Kochi, hair spa Kochi, keratin treatment Kochi, hair botox Kochi, hair styling Kaloor';
 
 const SCHEMA = {
   '@context': 'https://schema.org',
@@ -238,7 +240,7 @@ const FAQS: { q: Bi; a: Bi }[] = [
   },
 ];
 
-function useMetaTags(title: string, description: string, schema?: object) {
+function useMetaTags(title: string, description: string, schema?: object, keywords?: string) {
   useEffect(() => {
     const prevTitle = document.title;
     document.title = title;
@@ -250,6 +252,17 @@ function useMetaTags(title: string, description: string, schema?: object) {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = description;
+
+    let metaKeywords = document.querySelector<HTMLMetaElement>('meta[name="keywords"]');
+    const prevKeywords = metaKeywords?.content ?? '';
+    if (keywords) {
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.name = 'keywords';
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.content = keywords;
+    }
 
     let schemaTag: HTMLScriptElement | null = null;
     if (schema) {
@@ -273,11 +286,12 @@ function useMetaTags(title: string, description: string, schema?: object) {
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      if (keywords && metaKeywords) metaKeywords.content = prevKeywords;
       if (schemaTag) document.head.removeChild(schemaTag);
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);
     };
-  }, [title, description, schema]);
+  }, [title, description, schema, keywords]);
 }
 
 function Intro() {
@@ -487,7 +501,7 @@ function FaqSection() {
 
 export default function HairCare() {
   const { language } = useLanguage();
-  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA);
+  useMetaTags(META_TITLE, META_DESCRIPTION, SCHEMA, META_KEYWORDS);
 
   return (
     <>

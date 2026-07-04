@@ -10,6 +10,9 @@ import BookingForm from '../components/contact/BookingForm';
 import LocationMap from '../components/contact/LocationMap';
 import ContactClosing from '../components/contact/ContactClosing';
 
+const META_KEYWORDS =
+  'DAVIN Beauty Salon contact, beauty salon Kaloor Kochi, book appointment Kochi salon, salon phone number Kaloor, salon WhatsApp booking, Stadium Link Road salon, beauty salon near Kathrikadavu';
+
 export default function Contact() {
   useEffect(() => {
     const prevTitle = document.title;
@@ -22,6 +25,15 @@ export default function Contact() {
       document.head.appendChild(metaDescription);
     }
     metaDescription.content = contactConfig.metaDescription;
+
+    let metaKeywords = document.querySelector<HTMLMetaElement>('meta[name="keywords"]');
+    const prevKeywords = metaKeywords?.content ?? '';
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = 'keywords';
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = META_KEYWORDS;
 
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
@@ -74,6 +86,7 @@ export default function Contact() {
     return () => {
       document.title = prevTitle;
       if (metaDescription) metaDescription.content = prevDescription;
+      if (metaKeywords) metaKeywords.content = prevKeywords;
       document.head.removeChild(schema);
       document.body.style.cursor = 'auto';
       document.head.removeChild(style);
