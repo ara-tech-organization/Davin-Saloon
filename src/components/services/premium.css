@@ -75,8 +75,18 @@
   animation: p-float 5.5s ease-in-out infinite;
 }
 
+@keyframes p-kenburns {
+  0% { transform: scale(1) translate3d(0, 0, 0); }
+  100% { transform: scale(1.12) translate3d(-1%, -1%, 0); }
+}
+
+.p-kenburns {
+  animation: p-kenburns 14s ease-in-out infinite alternate;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .p-float {
+  .p-float,
+  .p-kenburns {
     animation: none;
   }
 }
@@ -436,6 +446,7 @@
   flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
+  perspective: 1500px;
 }
 
 .p-story-track {
@@ -443,6 +454,7 @@
   align-items: stretch;
   height: 100%;
   will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .p-story-panel {
@@ -452,6 +464,8 @@
   display: flex;
   align-items: center;
   padding: 24px 40px 48px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
 }
 
 .p-story-panel-inner {

@@ -19,7 +19,6 @@ import {
   useReveal,
   ScrollStory,
   StoryPanel,
-  TiltFrame,
   TiltCard,
   handleScatterTiltMove,
   handleScatterTiltLeave,
@@ -276,28 +275,26 @@ function BridalPanel() {
   const { language } = useLanguage();
   return (
     <StoryPanel width="92vw" maxWidth={1100}>
-      <TiltFrame
-        image={img('/images/service-makeup.jpg')}
-        imageAlt={language === 'ml' ? 'DAVIN ബ്യൂട്ടി സലോൺ കൊച്ചിയിലെ ബ്രൈഡൽ മേക്കപ്പ് ആർട്ട്' : 'Bridal makeup artistry at DAVIN Beauty Salon Kochi'}
-        badge="Bridal · FTV Collaboration"
-        aspectRatio="21 / 8"
-        float
-      />
-      <div style={{ marginTop: 36, textAlign: 'center' }}>
-        <SectionHeading numeral="01" compact showNumber={false} title={language === 'ml' ? 'ബ്രൈഡൽ മേക്കപ്പ് — നിങ്ങളുടെ ഏറ്റവും മികച്ച കലാവിരുത്' : 'Bridal Makeup — Your Finest Artistry'} center />
-        <p style={{ fontSize: 13.5, lineHeight: '24px', color: 'var(--fg-soft)', margin: '0 auto 8px', maxWidth: 640 }}>
+      <div data-reveal-group>
+        <div style={{ textAlign: 'center' }}>
+          <Eyebrow>Bridal · FTV Collaboration</Eyebrow>
+        </div>
+        <div style={{ marginTop: 20, textAlign: 'center' }}>
+          <SectionHeading numeral="01" compact showNumber={false} title={language === 'ml' ? 'ബ്രൈഡൽ മേക്കപ്പ് — നിങ്ങളുടെ ഏറ്റവും മികച്ച കലാവിരുത്' : 'Bridal Makeup — Your Finest Artistry'} center />
+        </div>
+        <p style={{ fontSize: 13.5, lineHeight: '24px', color: 'var(--fg-soft)', margin: '0 auto 8px', maxWidth: 640, textAlign: 'center' }}>
           {language === 'ml'
             ? 'നിങ്ങളുടെ കാഴ്ചപ്പാട്, ചർമ്മ നിറം, വസ്ത്രം, ആഭരണങ്ങൾ എന്നിവ മനസ്സിലാക്കാൻ ഞങ്ങൾ സമയമെടുക്കുന്നു — അതിശയകരമാം വിധം, ആധികാരികമായി നിങ്ങളായ ഒരു ലുക്ക് സൃഷ്ടിക്കുന്നു.'
             : 'We take time to understand your vision, skin tone, outfit, and jewellery — crafting a look that is breathtakingly, authentically you.'}
         </p>
-      </div>
-      <FeatureGrid items={BRIDAL_STYLES[language]} columns={4} />
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
-        <PullQuote>
-          {language === 'ml'
-            ? '"ഞങ്ങളുടെ ക്ലയന്റുകൾ ഒരു പുഞ്ചിരിയോടെ പോകുന്നത് കാണുന്നതിനേക്കാൾ ഞങ്ങളെ സന്തോഷിപ്പിക്കുന്ന മറ്റൊന്നുമില്ല."'
-            : '“Nothing makes us happier than seeing our clients leave with a smile.”'}
-        </PullQuote>
+        <FeatureGrid items={BRIDAL_STYLES[language]} columns={4} />
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 8 }}>
+          <PullQuote>
+            {language === 'ml'
+              ? '"ഞങ്ങളുടെ ക്ലയന്റുകൾ ഒരു പുഞ്ചിരിയോടെ പോകുന്നത് കാണുന്നതിനേക്കാൾ ഞങ്ങളെ സന്തോഷിപ്പിക്കുന്ന മറ്റൊന്നുമില്ല."'
+              : '“Nothing makes us happier than seeing our clients leave with a smile.”'}
+          </PullQuote>
+        </div>
       </div>
     </StoryPanel>
   );
@@ -310,36 +307,39 @@ function PartyPanel() {
     <StoryPanel width="90vw" maxWidth={1000}>
       <div className="p-party-media" style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', overflow: 'hidden', border: '1px solid var(--line-strong)' }}>
         <img
+          className="p-kenburns"
           src={img('/images/service-makeup.jpg')}
           alt={language === 'ml' ? 'DAVIN ബ്യൂട്ടി സലോൺ കൊച്ചിയിലെ പാർട്ടി മേക്കപ്പ് ലുക്ക്' : 'Party makeup look at DAVIN Beauty Salon Kochi'}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%)' }}
         />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.55)' }} />
-        <div className="p-party-heading" style={{ position: 'absolute', top: 32, left: 0, right: 0, textAlign: 'center' }}>
-          <SectionHeading
-            numeral="02" compact showNumber={false}
-            title={<span style={{ color: '#fff' }}>{language === 'ml' ? 'പാർട്ടി മേക്കപ്പ് — മുറി കീഴടക്കൂ' : 'Party Makeup — Own the Room'}</span>}
-            center
-          />
-        </div>
-        <div className="p-party-tags">
-          {PARTY_OCCASIONS[language].map((tag, i) => (
-            <div
-              key={tag}
-              className="p-party-tag"
-              data-rotate={ANGLES[i % ANGLES.length]}
-              onMouseMove={handleScatterTiltMove}
-              onMouseLeave={handleScatterTiltLeave}
-              style={{
-                transform: `rotate(${ANGLES[i % ANGLES.length]}deg)`,
-                transformStyle: 'preserve-3d',
-                willChange: 'transform',
-                transition: 'transform 0.25s ease-out',
-              }}
-            >
-              {tag}
-            </div>
-          ))}
+        <div data-reveal-group>
+          <div className="p-party-heading" style={{ position: 'absolute', top: 32, left: 0, right: 0, textAlign: 'center' }}>
+            <SectionHeading
+              numeral="02" compact showNumber={false}
+              title={<span style={{ color: '#fff' }}>{language === 'ml' ? 'പാർട്ടി മേക്കപ്പ് — മുറി കീഴടക്കൂ' : 'Party Makeup — Own the Room'}</span>}
+              center
+            />
+          </div>
+          <div className="p-party-tags">
+            {PARTY_OCCASIONS[language].map((tag, i) => (
+              <div
+                key={tag}
+                className="p-party-tag"
+                data-rotate={ANGLES[i % ANGLES.length]}
+                onMouseMove={handleScatterTiltMove}
+                onMouseLeave={handleScatterTiltLeave}
+                style={{
+                  transform: `rotate(${ANGLES[i % ANGLES.length]}deg)`,
+                  transformStyle: 'preserve-3d',
+                  willChange: 'transform',
+                  transition: 'transform 0.25s ease-out',
+                }}
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </StoryPanel>
@@ -350,7 +350,7 @@ function HdPanel() {
   const { language } = useLanguage();
   return (
     <StoryPanel width="90vw" maxWidth={1080}>
-      <div className="p-panel-split" style={{ display: 'grid', gridTemplateColumns: 'minmax(220px, 36%) minmax(320px, 1fr)', gap: 56, alignItems: 'center' }}>
+      <div data-reveal-group className="p-panel-split" style={{ display: 'grid', gridTemplateColumns: 'minmax(220px, 36%) minmax(320px, 1fr)', gap: 56, alignItems: 'center' }}>
         <TiltCard float>
           <div style={{ height: '100%', minHeight: 220, boxSizing: 'border-box', padding: '30px 26px', display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
             <span className="p-serif" style={{ fontSize: 52, fontWeight: 400, lineHeight: 1, margin: '0 0 8px 0' }}>12–16+</span>
@@ -379,31 +379,34 @@ function SareePanel() {
   const styles = SAREE_STYLES[language];
   return (
     <StoryPanel width="94vw" maxWidth={1180}>
-      <SectionHeading numeral="04" compact showNumber={false} title={language === 'ml' ? 'സാരി ഡ്രേപ്പിംഗ് — സാരി ഒരു കലയാണ്' : 'Saree Draping — The Saree Is Art'} center />
-      <p style={{ fontSize: 13.5, lineHeight: '24px', color: 'var(--fg-soft)', margin: '0 auto 32px', maxWidth: 620, textAlign: 'center' }}>
-        {language === 'ml'
-          ? 'അതിശയകരമായ ഭംഗിയോടെ വീഴുന്നു, ദിവസം മുഴുവൻ സുരക്ഷിതമായി നിലനിൽക്കുന്നു, നിങ്ങളുടെ മേക്കപ്പിനെയും ആഭരണങ്ങളെയും തികച്ചും പൂരകമാക്കുന്നു.'
-          : 'Falls with impeccable elegance, holds securely all day, and complements your makeup and jewellery perfectly.'}
-      </p>
-      <div className="p-strip" style={{ display: 'grid', gridTemplateColumns: `repeat(${styles.length}, 1fr)`, gap: 14 }}>
-        {styles.map((style, i) => (
-          <div key={style}>
-            <div style={{ overflow: 'hidden', border: '1px solid var(--line-strong)', aspectRatio: '3 / 4' }}>
-              <img
-                src={img(SAREE_IMAGES[i % SAREE_IMAGES.length])}
-                alt={
-                  language === 'ml'
-                    ? `DAVIN ബ്യൂട്ടി സലോൺ കൊച്ചിയിലെ ${style} സാരി ഡ്രേപ്പിംഗ് റഫറൻസ്`
-                    : `${style} saree draping reference at DAVIN Beauty Salon Kochi`
-                }
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%)' }}
-              />
+      <div data-reveal-group>
+        <SectionHeading numeral="04" compact showNumber={false} title={language === 'ml' ? 'സാരി ഡ്രേപ്പിംഗ് — സാരി ഒരു കലയാണ്' : 'Saree Draping — The Saree Is Art'} center />
+        <p style={{ fontSize: 13.5, lineHeight: '24px', color: 'var(--fg-soft)', margin: '0 auto 32px', maxWidth: 620, textAlign: 'center' }}>
+          {language === 'ml'
+            ? 'അതിശയകരമായ ഭംഗിയോടെ വീഴുന്നു, ദിവസം മുഴുവൻ സുരക്ഷിതമായി നിലനിൽക്കുന്നു, നിങ്ങളുടെ മേക്കപ്പിനെയും ആഭരണങ്ങളെയും തികച്ചും പൂരകമാക്കുന്നു.'
+            : 'Falls with impeccable elegance, holds securely all day, and complements your makeup and jewellery perfectly.'}
+        </p>
+        <div className="p-strip" style={{ display: 'grid', gridTemplateColumns: `repeat(${styles.length}, 1fr)`, gap: 14 }}>
+          {styles.map((style, i) => (
+            <div key={style}>
+              <div style={{ overflow: 'hidden', border: '1px solid var(--line-strong)', aspectRatio: '3 / 4' }}>
+                <img
+                  className="p-kenburns"
+                  src={img(SAREE_IMAGES[i % SAREE_IMAGES.length])}
+                  alt={
+                    language === 'ml'
+                      ? `DAVIN ബ്യൂട്ടി സലോൺ കൊച്ചിയിലെ ${style} സാരി ഡ്രേപ്പിംഗ് റഫറൻസ്`
+                      : `${style} saree draping reference at DAVIN Beauty Salon Kochi`
+                  }
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%)', animationDelay: `${i * 1.4}s` }}
+                />
+              </div>
+              <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, letterSpacing: '0.04em', color: 'var(--fg-soft)', margin: '10px 0 0 0', textAlign: 'center', lineHeight: '15px' }}>
+                {style}
+              </p>
             </div>
-            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, letterSpacing: '0.04em', color: 'var(--fg-soft)', margin: '10px 0 0 0', textAlign: 'center', lineHeight: '15px' }}>
-              {style}
-            </p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </StoryPanel>
   );
@@ -413,10 +416,12 @@ function PackagePanel() {
   const { language } = useLanguage();
   return (
     <StoryPanel width="86vw" maxWidth={860}>
-      <h2 className="p-serif" style={{ fontSize: 'clamp(22px, 2.6vw, 34px)', fontWeight: 400, margin: '0 0 36px 0', textAlign: 'center', textWrap: 'balance' }}>
-        {language === 'ml' ? 'നിങ്ങളുടെ ലുക്ക് പൂർത്തിയാക്കൂ — DAVIN ടോട്ടൽ ഒക്കേഷൻ പാക്കേജ്' : 'Complete Your Look — The DAVIN Total Occasion Package'}
-      </h2>
-      <ComparisonTable headers={language === 'ml' ? ['സേവനം', 'ഇത് നൽകുന്നത്'] : ['Service', 'What It Adds']} rows={PACKAGE_ROWS[language].map((r) => [...r])} />
+      <div data-reveal-group>
+        <h2 className="p-serif" style={{ fontSize: 'clamp(22px, 2.6vw, 34px)', fontWeight: 400, margin: '0 0 36px 0', textAlign: 'center', textWrap: 'balance' }}>
+          {language === 'ml' ? 'നിങ്ങളുടെ ലുക്ക് പൂർത്തിയാക്കൂ — DAVIN ടോട്ടൽ ഒക്കേഷൻ പാക്കേജ്' : 'Complete Your Look — The DAVIN Total Occasion Package'}
+        </h2>
+        <ComparisonTable headers={language === 'ml' ? ['സേവനം', 'ഇത് നൽകുന്നത്'] : ['Service', 'What It Adds']} rows={PACKAGE_ROWS[language].map((r) => [...r])} />
+      </div>
     </StoryPanel>
   );
 }
@@ -425,7 +430,7 @@ function PhilosophyPanel() {
   const { language } = useLanguage();
   return (
     <StoryPanel width="78vw" maxWidth={760}>
-      <div style={{ textAlign: 'center' }}>
+      <div data-reveal-group style={{ textAlign: 'center' }}>
         <Eyebrow>{language === 'ml' ? 'ഞങ്ങളുടെ തത്വശാസ്ത്രം' : 'Our Philosophy'}</Eyebrow>
         <p className="p-serif" style={{ fontSize: 'clamp(17px, 1.8vw, 24px)', fontWeight: 400, lineHeight: 1.6, margin: '24px 0 0 0', textWrap: 'balance', textTransform: 'none' }}>
           {language === 'ml'

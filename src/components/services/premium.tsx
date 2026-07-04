@@ -471,8 +471,9 @@ export function SectionHeading({
 /*  Section band — thin rules either side of a centered label          */
 /* ------------------------------------------------------------------ */
 export function SectionBand({ children }: { children: ReactNode }) {
+  const ref = useReveal<HTMLDivElement>();
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, padding: '0 40px 80px' }}>
+    <div ref={ref} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, padding: '0 40px 80px' }}>
       <span style={{ height: 1, flex: 1, maxWidth: 140, background: 'var(--line)' }} />
       <h2
         className="p-serif"
@@ -686,6 +687,7 @@ export function ScrollStory({
   useEffect(() => {
     if (!wrapRef.current || !trackRef.current) return;
     const track = trackRef.current;
+    const panels = Array.from(track.children) as HTMLElement[];
     const mm = gsap.matchMedia();
 
     mm.add('(min-width: 861px)', () => {
@@ -705,10 +707,92 @@ export function ScrollStory({
           },
         },
       });
+
+      const panelTimelines = panels.map((panel, i) => {
+        // The first panel sits at the left edge from the moment the section
+        // pins — it never scrolls in horizontally, so a containerAnimation
+        // trigger tied to its "left" position never fires. Give it a normal
+        // reveal tied to the section entering the viewport instead.
+        if (i === 0) {
+          gsap.set(panel, { transformPerspective: 1200, transformOrigin: '50% 50%' });
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: wrapRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+          tl.fromTo(
+            panel,
+            { opacity: 0.3, scale: 0.88, rotateX: 10, z: -140 },
+            { opacity: 1, scale: 1, rotateX: 0, z: 0, duration: 1, ease: 'power2.out' },
+            0
+          );
+          const group = panel.querySelector('[data-reveal-group]');
+          if (group) {
+            const items = Array.from(group.children);
+            tl.fromTo(items, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.12 }, 0.2);
+          }
+          return tl;
+        }
+
+        const fromSide = i % 2 === 0 ? 26 : -26;
+        gsap.set(panel, { transformPerspective: 1200, transformOrigin: '50% 50%' });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: panel,
+            containerAnimation: tween,
+            start: 'left 85%',
+            end: 'left 30%',
+            scrub: true,
+          },
+        });
+        tl.fromTo(
+          panel,
+          { opacity: 0.25, scale: 0.86, rotateY: fromSide, rotateX: 6, z: -160 },
+          { opacity: 1, scale: 1, rotateY: 0, rotateX: 0, z: 0, ease: 'power1.out' },
+          0
+        );
+        const group = panel.querySelector('[data-reveal-group]');
+        if (group) {
+          const items = Array.from(group.children);
+          tl.fromTo(items, { opacity: 0, y: 26 }, { opacity: 1, y: 0, ease: 'power1.out', stagger: 0.12 }, 0.25);
+        }
+        return tl;
+      });
+
       return () => {
+        panelTimelines.forEach((tl) => tl.scrollTrigger?.kill());
         tween.scrollTrigger?.kill();
         tween.kill();
       };
+    });
+
+    mm.add('(max-width: 860px)', () => {
+      const ctx = gsap.context(() => {
+        panels.forEach((panel) => {
+          gsap.set(panel, { transformPerspective: 1000, transformOrigin: '50% 100%' });
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: panel,
+              start: 'top 88%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+          tl.fromTo(
+            panel,
+            { opacity: 0, y: 50, rotateX: 14, scale: 0.94 },
+            { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.9, ease: 'power3.out' },
+            0
+          );
+          const group = panel.querySelector('[data-reveal-group]');
+          if (group) {
+            const items = Array.from(group.children);
+            tl.fromTo(items, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.1 }, 0.2);
+          }
+        });
+      });
+      return () => ctx.revert();
     });
 
     return () => mm.revert();
