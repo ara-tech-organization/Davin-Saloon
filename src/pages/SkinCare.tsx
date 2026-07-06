@@ -450,7 +450,7 @@ function ServiceRow({ s, index }: { s: (typeof SERVICES)[number]; index: number 
     <section className={tone} style={{ borderTop: index === 0 ? undefined : '1px solid var(--line)', padding: '90px 40px' }}>
       <div ref={ref} data-reveal-group style={{ maxWidth: 1180, margin: '0 auto' }}>
         <SplitMedia image={s.image} imageAlt={s.imageAlt[language]} badge={s.kicker[language]} reverse={reverse}>
-          <SectionHeading numeral={s.n} title={s.title[language]} />
+          <SectionHeading numeral={s.n} title={s.title[language]} showNumber={false} />
           {paragraphs.map((p, i) => (
             <p key={i} style={{ fontSize: 14, lineHeight: '26px', color: 'var(--fg-soft)', margin: i === paragraphs.length - 1 ? 0 : '0 0 16px 0', maxWidth: 560 }}>
               {p}

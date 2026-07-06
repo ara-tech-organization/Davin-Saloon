@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { assetUrl as img } from '../lib/asset';
 import { useLanguage } from '../contexts/LanguageContext';
 import CustomCursor from '../components/CustomCursor';
@@ -420,26 +420,27 @@ function ManicurePanel({ language }: { language: Lang }) {
 function PedicurePanel({ language }: { language: Lang }) {
   return (
     <TabPanel maxWidth={1100}>
-      <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', overflow: 'hidden', border: '1px solid var(--line-strong)' }}>
-        <img
-          src={img('/images/salon-interior.jpg')}
-          alt={PEDICURE_PANEL_TEXT.imageAlt[language]}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%)' }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.85) 100%)',
-          }}
-        />
-        <div style={{ position: 'absolute', top: 28, left: 28, right: 28 }}>
+      <div className="p-pedicure-frame">
+        <div className="p-pedicure-photo">
+          <img
+            src={img('/images/salon-interior.jpg')}
+            alt={PEDICURE_PANEL_TEXT.imageAlt[language]}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%)' }}
+          />
+          <div
+            className="p-pedicure-gradient"
+            style={{
+              background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.85) 100%)',
+            }}
+          />
+        </div>
+        <div className="p-pedicure-top">
           <SectionHeading numeral="02" compact showNumber={false} title={<span style={{ color: '#fff' }}>{PEDICURE_PANEL_TEXT.title[language]}</span>} />
           <p style={{ fontSize: 13, lineHeight: '23px', color: 'rgba(255,255,255,0.75)', margin: 0, maxWidth: 480 }}>
             {PEDICURE_PANEL_TEXT.paragraph[language]}
           </p>
         </div>
-        <div style={{ position: 'absolute', bottom: 24, left: 24, right: 24, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+        <div className="p-pedicure-tags">
           {PEDICURE_OPTIONS.map((item) => (
             <span
               key={item.title.en}
@@ -471,7 +472,7 @@ function NailArtPanel({ language }: { language: Lang }) {
         <p style={{ fontSize: 13.5, lineHeight: '24px', color: 'var(--fg-soft)', margin: '0 auto 32px', maxWidth: 620 }}>
           {NAIL_ART_PANEL_TEXT.paragraph[language]}
         </p>
-        <TiltTags label={NAIL_ART_PANEL_TEXT.tagsLabel[language]} tags={NAIL_ART_STYLES.map((tag) => tag[language])} />
+        <TiltTags label={NAIL_ART_PANEL_TEXT.tagsLabel[language]} tags={NAIL_ART_STYLES.map((tag) => tag[language])} center />
       </div>
     </TabPanel>
   );
@@ -548,10 +549,23 @@ function GroomingPanel({ language }: { language: Lang }) {
   );
 }
 
-function ServicesTabs({ language }: { language: Lang }) {
+function ServicesTabsHead({ language }: { language: Lang }) {
+  return (
+    <div style={{ textAlign: 'center', padding: '0 40px 40px' }}>
+      <Eyebrow>{SCROLL_STORY_TEXT.eyebrow[language]}</Eyebrow>
+      <h2 className="p-serif" style={{ fontSize: 'clamp(22px, 3vw, 40px)', fontWeight: 400, margin: '16px 0 0 0', textWrap: 'balance' }}>
+        {SCROLL_STORY_TEXT.title[language]}
+      </h2>
+    </div>
+  );
+}
+
+// Desktop/tablet: click-through tabs that also auto-advance every 5.5s.
+function ServicesTabsDesktop({ language }: { language: Lang }) {
   const [active, setActive] = useState<(typeof TABS_TEXT)[number]['key']>('manicure');
 
   useEffect(() => {
+    if (window.matchMedia('(max-width: 860px)').matches) return;
     const timer = setTimeout(() => {
       const currentIndex = TABS_TEXT.findIndex((tab) => tab.key === active);
       const nextIndex = (currentIndex + 1) % TABS_TEXT.length;
@@ -561,13 +575,7 @@ function ServicesTabs({ language }: { language: Lang }) {
   }, [active]);
 
   return (
-    <section className="p-dark" style={{ padding: '90px 0 70px' }}>
-      <div style={{ textAlign: 'center', padding: '0 40px 40px' }}>
-        <Eyebrow>{SCROLL_STORY_TEXT.eyebrow[language]}</Eyebrow>
-        <h2 className="p-serif" style={{ fontSize: 'clamp(22px, 3vw, 40px)', fontWeight: 400, margin: '16px 0 0 0', textWrap: 'balance' }}>
-          {SCROLL_STORY_TEXT.title[language]}
-        </h2>
-      </div>
+    <div className="p-tabs-desktop-only">
       <TabSwitcher
         tabs={TABS_TEXT.map((tab) => ({ key: tab.key, label: tab.label[language] }))}
         active={active}
@@ -578,6 +586,35 @@ function ServicesTabs({ language }: { language: Lang }) {
       {active === 'nailart' && <NailArtPanel language={language} />}
       {active === 'extensions' && <ExtensionsPanel language={language} />}
       {active === 'grooming' && <GroomingPanel language={language} />}
+    </div>
+  );
+}
+
+// Phone: no tab-clicking, no auto-advance — every service panel is stacked
+// one after another and simply fades up into view as the user scrolls.
+function MobileRevealPanel({ children }: { children: ReactNode }) {
+  const ref = useReveal<HTMLDivElement>();
+  return <div ref={ref}>{children}</div>;
+}
+
+function ServicesTabsMobile({ language }: { language: Lang }) {
+  return (
+    <div className="p-tabs-mobile-only">
+      <MobileRevealPanel><ManicurePanel language={language} /></MobileRevealPanel>
+      <MobileRevealPanel><PedicurePanel language={language} /></MobileRevealPanel>
+      <MobileRevealPanel><NailArtPanel language={language} /></MobileRevealPanel>
+      <MobileRevealPanel><ExtensionsPanel language={language} /></MobileRevealPanel>
+      <MobileRevealPanel><GroomingPanel language={language} /></MobileRevealPanel>
+    </div>
+  );
+}
+
+function ServicesTabs({ language }: { language: Lang }) {
+  return (
+    <section className="p-dark" style={{ padding: '90px 0 70px' }}>
+      <ServicesTabsHead language={language} />
+      <ServicesTabsDesktop language={language} />
+      <ServicesTabsMobile language={language} />
     </section>
   );
 }

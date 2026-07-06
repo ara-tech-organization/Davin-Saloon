@@ -530,7 +530,7 @@ export function handleScatterTiltLeave(e: MouseEvent<HTMLDivElement>) {
   card.style.transform = `perspective(900px) rotate(${base}deg) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)`;
 }
 
-export function TiltTags({ label, tags }: { label?: string; tags: string[] }) {
+export function TiltTags({ label, tags, center }: { label?: string; tags: string[]; center?: boolean }) {
   const ref = useReveal<HTMLDivElement>();
   return (
     <div>
@@ -543,12 +543,17 @@ export function TiltTags({ label, tags }: { label?: string; tags: string[] }) {
             textTransform: 'uppercase',
             color: 'var(--fg-mute)',
             margin: '0 0 18px 0',
+            textAlign: center ? 'center' : undefined,
           }}
         >
           {label}
         </p>
       )}
-      <div ref={ref} data-reveal-group style={{ display: 'flex', flexWrap: 'wrap', gap: '14px 16px' }}>
+      <div
+        ref={ref}
+        data-reveal-group
+        style={{ display: 'flex', flexWrap: 'wrap', gap: '14px 16px', justifyContent: center ? 'center' : undefined }}
+      >
         {tags.map((tag) => {
           return (
             <div
@@ -771,7 +776,6 @@ export function ScrollStory({
     mm.add('(max-width: 860px)', () => {
       const ctx = gsap.context(() => {
         panels.forEach((panel) => {
-          gsap.set(panel, { transformPerspective: 1000, transformOrigin: '50% 100%' });
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: panel,
@@ -779,12 +783,7 @@ export function ScrollStory({
               toggleActions: 'play none none reverse',
             },
           });
-          tl.fromTo(
-            panel,
-            { opacity: 0, y: 50, rotateX: 14, scale: 0.94 },
-            { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.9, ease: 'power3.out' },
-            0
-          );
+          tl.fromTo(panel, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0);
           const group = panel.querySelector('[data-reveal-group]');
           if (group) {
             const items = Array.from(group.children);

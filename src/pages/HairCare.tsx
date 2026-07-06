@@ -358,9 +358,9 @@ function ServicesGrid() {
           {language === 'ml' ? 'കൊച്ചിയിലെ ഞങ്ങളുടെ വിദഗ്ധ ഹെയർ കെയർ സേവനങ്ങൾ' : 'Our Expert Hair Care Services in Kochi'}
         </h2>
       </div>
-      <div ref={gridRef} data-reveal-group className="p-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1180, margin: '0 auto' }}>
+      <div ref={gridRef} data-reveal-group className="p-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1180, margin: '0 auto', alignItems: 'stretch' }}>
         {SERVICES.map((s) => (
-          <div key={s.n}>
+          <div key={s.n} style={{ height: '100%' }}>
             <FlipCard
               front={
                 <div style={{ height: '100%', boxSizing: 'border-box', padding: '32px 26px', display: 'flex', flexDirection: 'column' }}>
