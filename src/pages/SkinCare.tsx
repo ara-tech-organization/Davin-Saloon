@@ -24,7 +24,7 @@ const META_TITLE = 'Skin Care Services in Kochi | DAVIN Beauty Salon';
 const META_DESCRIPTION =
   'Reveal your best skin at DAVIN Beauty Salon, Kochi. Our skilled therapists provide personalized skin care treatments for a flawless, healthy glow.';
 const META_KEYWORDS =
-  'skin care salon Kochi, facial Kaloor, de-tan treatment Kochi, waxing Kochi, threading Kaloor, clean-up facial Kochi, skin therapist Kochi';
+  'Skin care salon in Kochi / Kaloor, Best facial salon in Kaloor, Kochi, Most trusted skin care salon in Kochi, Skin care parlour in Ernakulam';
 
 const SCHEMA = {
   '@context': 'https://schema.org',

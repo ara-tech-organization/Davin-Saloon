@@ -26,7 +26,7 @@ const META_TITLE = 'Nail Art & Grooming in Kochi | DAVIN Beauty Salon';
 const META_DESCRIPTION =
   'Get stunning nail art & grooming services at DAVIN Beauty Salon, Kochi. Manicures, pedicures, nail extensions & more for perfectly polished nails.';
 const META_KEYWORDS =
-  'nail salon Kochi, manicure Kaloor, pedicure Kochi, nail art Kochi, gel nail extensions Kochi, beard grooming Kaloor, nail technician Kochi';
+  'Nail salon in Kochi / Kaloor, Best nail art salon in Kaloor, Kochi, Unisex nail salon in Kochi, Nail studio in Ernakulam';
 
 const SCHEMA = {
   '@context': 'https://schema.org',

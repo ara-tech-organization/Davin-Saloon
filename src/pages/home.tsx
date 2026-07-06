@@ -19,7 +19,7 @@ import Footer from '../components/Footer';
 gsap.registerPlugin(ScrollTrigger);
 
 const META_KEYWORDS =
-  'DAVIN Beauty Salon, beauty salon Kaloor Kochi, hair salon Kochi, skin care salon Kochi, bridal makeup Kochi, nails and grooming Kochi, unisex salon Kaloor, salon near Stadium Link Road';
+  "DAVIN Beauty Salon Kaloor, Kaloor's premier beauty salon, Beauty salon in Kaloor, Best beauty salon Kochi, Unisex salon in Kaloor, Bridal makeover Kerala";
 
 export default function Home() {
   const { hash } = useLocation();

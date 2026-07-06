@@ -21,7 +21,7 @@ const META_TITLE = 'Hair Care Services in Kochi | DAVIN Beauty Salon Kaloor';
 const META_DESCRIPTION =
   "Get the hair you've always wanted at DAVIN Beauty Salon in Kaloor, Kochi. Professional hair care services tailored to your unique style and needs.";
 const META_KEYWORDS =
-  'hair salon Kochi, haircut Kaloor, hair color Kochi, hair spa Kochi, keratin treatment Kochi, hair botox Kochi, hair styling Kaloor';
+  'Hair salon in Kochi / Kaloor, Best hair salon in Kaloor, Hair care in Kochi, Professional hair stylist in Kochi';
 
 const SCHEMA = {
   '@context': 'https://schema.org',

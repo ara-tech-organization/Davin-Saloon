@@ -28,7 +28,7 @@ const META_TITLE = 'Makeup Artist in Kochi | DAVIN Beauty Salon';
 const META_DESCRIPTION =
   'DAVIN Beauty Salon in Kochi is home to experienced makeup artists specializing in bridal, party & everyday looks. Step in and let us create your perfect look!';
 const META_KEYWORDS =
-  'bridal makeup Kochi, makeup artist Kaloor, HD makeup Kochi, party makeup Kochi, saree draping Kochi, FTV bridal makeup, makeup salon Kaloor';
+  'Makeup artists in Kochi / Kaloor, Best bridal makeup artist in Kaloor, Kochi, Makeup studio in Kochi, Bridal beauty salon in Ernakulam';
 
 const BRIDAL_STYLES = {
   en: [
