@@ -771,7 +771,7 @@ export const finalCtaConfig: FinalCtaConfig = {
   buttons: [
     { label: { en: "Book Appointment", ml: "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക" }, href: "tel:+918089069996" },
     { label: { en: "Call Us", ml: "വിളിക്കുക" }, href: "tel:+918089069996" },
-    { label: { en: "Get Directions", ml: "വഴി കാണിക്കുക" }, href: "https://www.google.com/maps/search/?api=1&query=DAVIN+Beauty+Salon+PM+Square+Stadium+Link+Road+Kaloor+Kochi" },
+    { label: { en: "Get Directions", ml: "വഴി കാണിക്കുക" }, href: "https://www.google.com/maps?cid=17379074361228759332" },
     { label: { en: "WhatsApp Us", ml: "വാട്ട്‌സ്ആപ്പ് ചെയ്യുക" }, href: "https://wa.me/918089069996" },
   ],
 }
@@ -1114,7 +1114,7 @@ export const contactConfig: ContactConfig = {
       en: "Get Directions on Google Maps",
       ml: "ഗൂഗിൾ മാപ്സിൽ വഴി കാണിക്കുക",
     },
-    ctaHref: "https://www.google.com/maps/search/?api=1&query=DAVIN+Beauty+Salon+PM+Square+Stadium+Link+Road+Kaloor+Kochi",
+    ctaHref: "https://www.google.com/maps?cid=17379074361228759332",
   },
   hours: {
     title: {
@@ -1182,7 +1182,7 @@ export const contactConfig: ContactConfig = {
       en: "Search \"DAVIN Beauty Salon Kaloor\" on Google Maps to get live directions.",
       ml: "ലൈവ് വഴി ലഭിക്കാൻ ഗൂഗിൾ മാപ്സിൽ \"DAVIN Beauty Salon Kaloor\" എന്ന് തിരയുക.",
     },
-    embedSrc: "https://www.google.com/maps?q=DAVIN+Beauty+Salon+PM+Square+Stadium+Link+Road+Kathrikadavu+Kaloor+Kochi+Ernakulam+Kerala+682025&output=embed",
+    embedSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15880.951638242355!2d76.28291568715817!3d9.991428200000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080debf6d8925d%3A0xf12ee00da2239124!2sDAVIN%20BEAUTY%20SALON%20STADIUM%20LINK%20ROAD%20KOCHI!5e1!3m2!1sen!2sus!4v1783509136245!5m2!1sen!2sus",
   },
   closing: {
     title: {
@@ -1204,7 +1204,7 @@ export const contactConfig: ContactConfig = {
     buttons: [
       { label: { en: "Book Appointment", ml: "അപ്പോയിന്റ്മെന്റ് ബുക്ക് ചെയ്യുക" }, href: "tel:+918089069996" },
       { label: { en: "WhatsApp Us", ml: "വാട്ട്‌സ്ആപ്പ് ചെയ്യുക" }, href: "https://wa.me/918089069996" },
-      { label: { en: "Get Directions", ml: "വഴി കാണിക്കുക" }, href: "https://www.google.com/maps/search/?api=1&query=DAVIN+Beauty+Salon+PM+Square+Stadium+Link+Road+Kaloor+Kochi" },
+      { label: { en: "Get Directions", ml: "വഴി കാണിക്കുക" }, href: "https://www.google.com/maps?cid=17379074361228759332" },
     ],
     exploreLabel: {
       en: "Explore our services:",
