@@ -71,7 +71,7 @@ export default function Home() {
         reviewCount: '767',
       },
       url: 'https://davinsalon.com',
-      sameAs: ['https://www.instagram.com/davin.salon.kaloor/'],
+      sameAs: ['https://www.instagram.com/davin.salon.kaloor/', 'https://www.facebook.com/profile.php?id=61590811551156'],
     });
     document.head.appendChild(schema);
 

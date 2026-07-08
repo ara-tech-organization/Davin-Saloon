@@ -23,7 +23,7 @@ const SCHEMA = {
     name: 'DAVIN Beauty Salon',
     telephone: '+918089069996',
     url: 'https://davinsalon.com',
-    sameAs: 'https://www.instagram.com/davin.salon.kaloor/',
+    sameAs: ['https://www.instagram.com/davin.salon.kaloor/', 'https://www.facebook.com/profile.php?id=61590811551156'],
     address: {
       '@type': 'PostalAddress',
       streetAddress: '1st Floor, PM Square, Stadium Link Road, Above HDFC Bank, Kathrikadavu',

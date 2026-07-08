@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Instagram, Facebook } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { contactConfig } from '../../config';
@@ -89,6 +90,26 @@ export default function ContactClosing() {
           <span>📍 {closing.address}</span>
           <span>📞 {closing.phone}</span>
           <span>🕐 {closing.hours[language]}</span>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginTop: '4px' }}>
+            <a
+              href={closing.instagramHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              style={{ color: '#000', display: 'inline-flex' }}
+            >
+              <Instagram size={20} strokeWidth={1.5} />
+            </a>
+            <a
+              href={closing.facebookHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              style={{ color: '#000', display: 'inline-flex' }}
+            >
+              <Facebook size={20} strokeWidth={1.5} />
+            </a>
+          </div>
         </div>
 
         <div

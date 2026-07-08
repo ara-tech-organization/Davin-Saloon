@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Instagram, Facebook } from 'lucide-react';
 import { footerConfig, navigationConfig, facilitiesConfig } from '../config';
 import { useLanguage } from '../contexts/LanguageContext';
 import logo from '../Assets/Logo.png';
@@ -92,13 +93,33 @@ export default function Footer() {
               fontSize: '11px',
               lineHeight: '18px',
               color: 'rgba(0,0,0,0.6)',
-              margin: 0,
+              margin: '0 0 16px 0',
               textTransform: 'none',
               letterSpacing: 'normal',
             }}
           >
             {footerConfig.tagline[language]}
           </p>
+          <div style={{ display: 'flex', gap: '14px' }}>
+            <a
+              href={footerConfig.instagramHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              style={{ color: '#000', display: 'inline-flex' }}
+            >
+              <Instagram size={18} strokeWidth={1.5} />
+            </a>
+            <a
+              href={footerConfig.facebookHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              style={{ color: '#000', display: 'inline-flex' }}
+            >
+              <Facebook size={18} strokeWidth={1.5} />
+            </a>
+          </div>
         </div>
 
         <div>
@@ -137,17 +158,9 @@ export default function Footer() {
           </a>
           <p style={{ fontSize: '11px', margin: '0 0 16px 0' }}>{footerConfig.hours[language]}</p>
 
-          <p style={{ fontSize: '11px', margin: '0 0 8px 0', color: 'rgba(0,0,0,0.45)' }}>
+          <p style={{ fontSize: '11px', margin: '0', color: 'rgba(0,0,0,0.45)' }}>
             {footerConfig.followLabel[language]}
           </p>
-          <a
-            href={footerConfig.instagramHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={linkStyle}
-          >
-            {footerConfig.instagramHandle}
-          </a>
         </div>
       </div>
 

@@ -30,7 +30,7 @@ const SCHEMA = {
       postalCode: '682025',
       addressCountry: 'IN',
     },
-    sameAs: 'https://www.instagram.com/davin.salon.kaloor/',
+    sameAs: ['https://www.instagram.com/davin.salon.kaloor/', 'https://www.facebook.com/profile.php?id=61590811551156'],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
